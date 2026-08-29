@@ -1,4 +1,4 @@
-# Bryllupsside — Alexander & Tonje, 28. august 2027
+# Bryllupsside — Tonje & Alexander, 28. august 2027
 
 Statisk side, én fil: `index.html`. Ingen byggesteg og ingen avhengigheter utover
 Google Fonts. Vercel deployer `main` automatisk til tonjeogalexander.vercel.app.
@@ -190,9 +190,10 @@ Andre farger: bytt `#C8A96A` (gull) og `#2C2F28` (blekk) i SVG-filene.
 Trenger dere PNG, åpne SVG-en i nettleseren og eksporter — den er vektor og
 tåler hvilken som helst størrelse.
 
-**Merk rekkefølgen:** monogrammet står som *T & A* (Tonje først), mens teksten
-på siden gjennomgående sier *Alexander & Tonje*. Begge deler er vanlig, men
-skal de være like, må én av dem snus.
+**Rekkefølgen er gjennomgående *Tonje & Alexander*** — i monogrammet, i
+sidetittelen, over hero-bildet, i signaturen og i bunnteksten. Det stemmer
+også med domenet. Snur dere den ett sted, må den snus alle stedene: søk på
+«Tonje» i `index.html`, det er fjorten treff.
 
 ## Bevegelse og navigasjon
 
