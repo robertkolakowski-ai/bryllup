@@ -4,19 +4,62 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Alexander &amp; Tonje — 28. august 2027</title>
+<meta name="description" content="Alexander og Tonje gifter seg 28. august 2027 på Huser Gård i Fenstad. Program, praktisk informasjon og påmelding.">
+<meta name="theme-color" content="#F6F1E3">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="nb_NO">
+<meta property="og:title" content="Alexander &amp; Tonje — 28. august 2027">
+<meta property="og:description" content="Vi gifter oss på Huser Gård i Fenstad. Program, praktisk informasjon og påmelding.">
+<!-- Absolutt URL kreves. Bytt domenet hvis siden får et eget. -->
+<meta property="og:image" content="https://tonjeogalexander.vercel.app/bilder/hero-brygge.jpg">
+<meta property="og:image:width" content="1536">
+<meta property="og:image:height" content="672">
+<meta property="og:image:alt" content="Alexander og Tonje på brygga en gyllen sommerkveld">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23F6F1E3'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='19' text-anchor='middle' fill='%234E5B44'%3EA%26T%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&family=Parisienne&display=swap" rel="stylesheet">
+
+<!--
+  ============================================================
+  FØR PUBLISERING — dette må paret bekrefte eller fylle inn:
+
+  I KONFIG nederst i filen (alt annet retter seg etter disse verdiene):
+    1. rsvpEpost ELLER rsvpEndepunkt — hvor RSVP-svarene skal
+    2. onskelisteUrl, vipps, kontonummer — gavekortene
+
+  I teksten:
+    3. Klokkeslettene i programmet (antatt, ikke bekreftet)
+    4. Historien i «Oss» + sitatet        — søk: TEKST
+    5. Overnatting og transport           — søk: TEKST
+    6. Kontaktinfo til toastmaster        — søk: TEKST
+    7. Kart-lenken (peker nå på et Google Maps-søk, ikke en pin)
+    8. Tre bilder av Huser Gård           — søk: BILDE
+       (hero og portrett ligger inne, se bilder/)
+  ============================================================
+-->
+
 <style>
   :root{
-    --cream: #F7F2E7;
-    --cream-deep: #EFE7D6;
-    --ink: #2B3327;
-    --sage: #7C8A6E;
-    --sage-deep: #5C6B52;
-    --gold: #B08D57;
-    --line: rgba(43,51,39,0.18);
-    --white: #FFFDF8;
+    --cream:        #F6F1E3;
+    --cream-light:  #FBF7EC;
+    --ink:          #2C2F28;
+    --ink-soft:     #3C4038;
+    --sage-dark:    #4E5B44;
+    --sage:         #7C8A6B;
+    --sage-light:   #A9B79A;
+    --muted:        #5C6155;
+    --muted-warm:   #7E7869;
+    --gold:         #C8A96A;
+    --on-dark:      #F6F1E3;
+    --on-dark-2:    #CFCCBE;
+    --on-dark-3:    #A8A597;
+    --hairline:     rgba(124,138,107,0.28);
+    --hairline-gold:rgba(200,169,106,0.6);
+    --serif:  'Cormorant Garamond', Garamond, serif;
+    --sans:   'Jost', system-ui, sans-serif;
+    --script: 'Parisienne', cursive;
   }
 
   *{ box-sizing: border-box; }
@@ -25,433 +68,898 @@
     margin:0;
     background: var(--cream);
     color: var(--ink);
-    font-family: 'EB Garamond', serif;
-    font-size: 18px;
-    line-height: 1.6;
+    font-family: var(--serif);
+    overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
   }
+  a{ color: var(--sage-dark); text-decoration: none; transition: color .2s ease; }
+  a:hover{ color: var(--ink); }
+  ::selection{ background: var(--gold); color: #FDFBF4; }
+  h1,h2{ margin:0; font-weight:300; letter-spacing:.02em; }
+  p{ margin:0; text-wrap: pretty; }
+  [hidden]{ display: none !important; }   /* .form er display:grid og overstyrer ellers hidden */
+  section{ scroll-margin-top: 76px; }
+  :focus-visible{ outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 2px; }
 
-  h1,h2,h3,.display{
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: 500;
-    letter-spacing: 0.02em;
-    margin: 0;
+  .skip{
+    position: absolute; left: -9999px; top: 0; z-index: 60;
+    font-family: var(--sans); font-size: 12px; letter-spacing: .2em;
+    background: var(--ink); color: var(--cream); padding: 12px 20px;
   }
+  .skip:focus{ left: 12px; top: 12px; color: var(--cream); }
 
   .eyebrow{
-    font-family: 'EB Garamond', serif;
-    font-size: 0.78rem;
-    letter-spacing: 0.35em;
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: .42em;
     text-transform: uppercase;
-    color: var(--sage-deep);
-  }
-
-  a{ color: var(--sage-deep); }
-
-  .wrap{
-    max-width: 720px;
-    margin: 0 auto;
-    padding: 0 28px;
-  }
-
-  /* Ornamental divider — simple hand-drawn style branch, echoes the watercolor motif */
-  .divider{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:14px;
-    margin: 28px 0;
     color: var(--sage);
   }
-  .divider svg{ width: 60px; height: 14px; }
-  .divider .dot{ width:5px; height:5px; border-radius:50%; background: var(--gold); }
+  .eyebrow--gold{ color: var(--gold); }
+  .sec{ padding: clamp(80px,11vw,140px) 24px; }
+  .sec__inner{ max-width: 1080px; margin: 0 auto; }
+  .sec__head{ text-align:center; }
+  .sec__title{ font-size: clamp(40px,6vw,68px); margin: 14px 0 0; }
+  .sec__lede{
+    font-style: italic; font-size: 19px; color: var(--muted);
+    max-width: 560px; margin: 16px auto 0; line-height: 1.7;
+  }
 
-  /* HERO */
+  /* ---------- NAV ---------- */
+  .nav{
+    position: sticky; top: 0; z-index: 40;
+    display:flex; align-items:center; justify-content:center; flex-wrap: wrap;
+    gap: 38px; padding: 14px 24px;
+    background: rgba(246,241,227,.92);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--hairline);
+    font-family: var(--sans); font-size: 11px; font-weight: 400;
+    letter-spacing: .22em; text-transform: uppercase;
+  }
+  .nav__rsvp{
+    padding: 7px 18px;
+    border: 1px solid var(--sage);
+    border-radius: 999px;
+    color: var(--ink);
+  }
+  .nav__rsvp:hover{ background: var(--sage); color: var(--cream); }
+
+  /* ---------- HERO ---------- */
   .hero{
-    min-height: 100svh;
-    display:flex;
-    flex-direction: column;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
     position: relative;
-    padding: 60px 28px 80px;
-    background:
-      radial-gradient(ellipse at 50% 0%, rgba(124,138,110,0.10), transparent 60%),
-      var(--cream);
+    min-height: calc(100svh - 48px);
+    display: grid; grid-template-rows: 1fr auto;
+    padding: 56px 24px 0;
+    background: linear-gradient(180deg,var(--cream-light) 0%, var(--cream) 62%);
   }
-  .hero .eyebrow{ margin-bottom: 18px; }
-  .hero h1{
-    font-size: clamp(3.6rem, 12vw, 6.4rem);
-    line-height: 0.95;
+  .hero__inner{
+    max-width: 920px; min-width: 0; margin: 0 auto; align-self: center; text-align: center;
+    animation: fadeUp 1.1s ease both;
   }
-  .hero h1 .amp{
-    display:block;
-    font-style: italic;
-    font-weight: 400;
-    font-size: 0.42em;
-    color: var(--sage-deep);
-    margin: 6px 0;
+  .hero .eyebrow{ display:block; margin-bottom: 34px; }
+  .hero__name{
+    display: block;
+    font-size: clamp(38px,11vw,132px);
+    line-height: .82; letter-spacing: .06em;
+    font-weight: 300; text-transform: uppercase;
   }
-  .hero .date-line{
-    margin-top: 26px;
-    font-size: 1.3rem;
-    letter-spacing: 0.08em;
+  .hero__amp{
+    display: block;
+    font-family: var(--script);
+    font-size: clamp(38px,7vw,84px);
+    line-height: 1; color: var(--sage);
+    margin: 2px 0 -4px;
+    text-transform: none; letter-spacing: 0;
   }
-  .hero .place-line{
-    font-style: italic;
-    color: var(--sage-deep);
-    margin-top: 4px;
-    font-size: 1.15rem;
+  .hero__rule{
+    display:flex; align-items:center; justify-content:center;
+    gap: 18px; max-width: 460px; margin: 38px auto 0;
+  }
+  .hero__rule i{ height:1px; flex:1; background: linear-gradient(90deg,transparent,var(--gold)); }
+  .hero__rule i:last-child{ background: linear-gradient(270deg,transparent,var(--gold)); }
+  .hero__date{
+    font-family: var(--sans); font-size: 12px;
+    letter-spacing: .34em; text-transform: uppercase;
+    color: var(--ink); white-space: nowrap;
+  }
+  .hero__place{
+    font-style: italic; font-size: 19px; color: var(--sage-dark);
+    margin-top: 14px; letter-spacing: .04em;
   }
 
   .countdown{
-    display:flex;
-    gap: clamp(18px, 5vw, 44px);
-    margin-top: 46px;
+    display:flex; justify-content:center; flex-wrap: wrap;
+    gap: clamp(14px,5vw,46px); margin-top: 46px;
   }
-  .countdown div{ text-align:center; }
-  .countdown .num{
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(1.8rem, 5vw, 2.6rem);
-    color: var(--ink);
-  }
+  .countdown > div{ text-align:center; }
+  .countdown .num{ font-size: clamp(30px,5vw,44px); line-height: 1; font-weight: 300; }
   .countdown .lab{
-    font-size: 0.68rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--sage-deep);
+    font-family: var(--sans); font-size: 9px;
+    letter-spacing: .28em; text-transform: uppercase;
+    color: var(--sage); margin-top: 8px;
   }
 
-  .scroll-hint{
-    position:absolute;
-    bottom: 34px;
-    font-size: 0.72rem;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--sage-deep);
-    opacity: 0.7;
+  /* ---------- BILDEPLASSHOLDERE ---------- */
+  .ph{
+    position: relative; width: 100%;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center; padding: 24px;
+    border: 1px dashed var(--sage-light);
+    border-radius: 4px;
+    background: repeating-linear-gradient(135deg,#EFE9D7 0 14px,#EDE6D1 14px 28px);
   }
+  .ph__tag{
+    font-family: var(--sans); font-size: 10px;
+    letter-spacing: .3em; text-transform: uppercase; color: var(--sage);
+  }
+  .ph__what{ font-style: italic; font-size: 20px; color: var(--sage-dark); margin-top: 10px; max-width: 620px; }
+  .ph__spec{
+    font-family: var(--sans); font-size: 11px; letter-spacing: .06em;
+    color: var(--muted-warm); margin-top: 12px; line-height: 1.8;
+  }
+  .hero__figure{ max-width: 1180px; width: 100%; min-width: 0; margin: 56px auto 0; }
+  .hero__bilde{
+    display: block; width: 100%; height: auto;
+    border-radius: 6px 6px 0 0;
+  }
+  .oss__bilde{
+    display: block; width: 100%; height: auto;
+    border-radius: 4px;
+  }
+  .ph--dark{
+    aspect-ratio: 3/4;
+    background: none;
+    border-color: var(--hairline-gold);
+  }
+  .ph--dark .ph__tag{ color: var(--gold); }
+  .ph--dark .ph__what{ color: var(--on-dark); font-size: 19px; margin-top: 8px; }
+  .ph--dark .ph__spec{ color: var(--on-dark-3); margin-top: 10px; line-height: 1.7; }
 
-  /* SECTIONS */
-  section{
-    padding: 92px 0;
-    border-top: 1px solid var(--line);
-  }
-  section .eyebrow{ display:block; text-align:center; margin-bottom: 10px; }
-  section h2{
-    text-align:center;
-    font-size: clamp(2.2rem, 6vw, 3rem);
-    font-style: italic;
-    font-weight: 400;
-    margin-bottom: 12px;
-  }
-  section .lede{
-    text-align:center;
-    max-width: 480px;
-    margin: 0 auto 52px;
-    color: var(--sage-deep);
-    font-size: 1.05rem;
-  }
-
-  /* PROGRAM / TIMELINE — order is real here, so a vertical line + time markers is earned */
-  .program{
-    position:relative;
-    padding-left: 26px;
-  }
-  .program::before{
-    content:"";
-    position:absolute;
-    left: 4px; top: 6px; bottom: 6px;
-    width: 1px;
-    background: var(--line);
-  }
-  .program-item{
-    position:relative;
-    padding-bottom: 40px;
-  }
-  .program-item:last-child{ padding-bottom: 0; }
-  .program-item::before{
-    content:"";
-    position:absolute;
-    left: -26px; top: 6px;
-    width: 9px; height:9px;
-    border-radius:50%;
-    background: var(--white);
-    border: 1.5px solid var(--gold);
-  }
-  .program-item .time{
-    font-family:'Cormorant Garamond', serif;
-    font-size: 1.5rem;
-    color: var(--sage-deep);
-  }
-  .program-item .what{ font-size: 1.08rem; margin-top: 2px; }
-
-  /* VENUE CARD */
-  .venue-card{
-    background: var(--white);
-    border: 1px solid var(--line);
-    padding: 44px 40px;
-    text-align:center;
-  }
-  .venue-card h3{
-    font-size: 1.9rem;
-    font-style: italic;
-    font-weight: 400;
-    margin-bottom: 6px;
-  }
-  .venue-card .addr{ color: var(--sage-deep); margin-bottom: 20px; }
-  .venue-card .btn{
-    display:inline-block;
-    margin-top: 6px;
-    padding: 11px 26px;
-    border: 1px solid var(--ink);
-    text-decoration:none;
-    color: var(--ink);
-    font-size: 0.85rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    transition: background 0.2s ease, color 0.2s ease;
-  }
-  .venue-card .btn:hover{ background: var(--ink); color: var(--white); }
-
-  .info-grid{
+  /* ---------- OSS ---------- */
+  .oss{
     display:grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 36px;
-    margin-top: 48px;
+    grid-template-columns: repeat(auto-fit, minmax(min(320px,100%),1fr));
+    gap: clamp(36px,6vw,72px);
+    align-items: center;
   }
-  .info-grid .block h4{
-    font-family:'Cormorant Garamond', serif;
-    font-style: italic;
-    font-weight: 500;
-    font-size: 1.3rem;
-    margin-bottom: 8px;
-    color: var(--sage-deep);
+  .oss__title{ font-size: clamp(38px,5.5vw,62px); margin: 14px 0 22px; }
+  .oss__title em{ font-family: var(--script); font-style: normal; color: var(--sage); font-size: .8em; }
+  .oss__body{ font-size: 20px; line-height: 1.85; color: var(--ink-soft); margin-bottom: 18px; }
+  .oss__quote{ font-style: italic; font-size: 19px; line-height: 1.8; color: var(--muted); }
+  .oss__sign{ margin-top: 26px; font-family: var(--script); font-size: 34px; color: var(--sage); }
+  .stripe{
+    display:grid;
+    /* faste spalter, ikke auto-fit: fire bilder skal bli 2x2 eller 4x1,
+       aldri 3+1 med en foreldreløs rute på slutten */
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    margin-top: clamp(44px,6vw,72px);
   }
-  .info-grid .block p{ margin:0; font-size: 0.98rem; }
+  @media (min-width: 680px){
+    .stripe{ grid-template-columns: repeat(4, 1fr); }
+  }
+  .stripe img{
+    display:block; width:100%; height:auto;
+    aspect-ratio: 1/1; object-fit: cover;
+    border-radius: 4px;
+  }
 
-  /* RSVP */
-  .rsvp-form{
-    max-width: 460px;
-    margin: 0 auto;
-    display:flex;
-    flex-direction:column;
-    gap: 20px;
+  /* ---------- PROGRAM ---------- */
+  .dagen{ background: var(--cream-light); }
+  .dagen .sec__head{ margin-bottom: 70px; }
+  .program{ display:grid; max-width: 720px; margin: 0 auto; }
+  .program__row{ display:grid; grid-template-columns: 96px 40px 1fr; }
+  .program__time{
+    text-align: right; padding: 26px 20px 26px 0;
+    font-family: var(--sans); font-size: 14px;
+    letter-spacing: .12em; color: var(--sage-dark);
   }
-  .field{ display:flex; flex-direction:column; gap:6px; }
-  .field label{
-    font-size: 0.72rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--sage-deep);
+  .program__line{
+    position: relative; justify-self: center;
+    width: 1px;
+    background: rgba(124,138,107,.4);
   }
-  .field input, .field select, .field textarea{
-    font-family: 'EB Garamond', serif;
-    font-size: 1.05rem;
-    background: var(--white);
-    border: 1px solid var(--line);
-    padding: 12px 14px;
+  .program__line::after{
+    content:""; position:absolute; top: 32px; left: 50%;
+    transform: translate(-50%,-50%);
+    width: 9px; height: 9px; border-radius: 50%;
+    background: var(--cream-light);
+    border: 1px solid var(--sage);
+  }
+  /* Linjen skal stoppe ved siste prikk, ikke henge videre ned i tomrommet */
+  .program__row:last-child .program__line{ height: 32px; align-self: start; }
+  .program__body{ padding: 22px 0 30px 22px; }
+  .program__what{ font-size: 26px; letter-spacing: .01em; }
+  .program__desc{ font-style: italic; font-size: 17px; color: var(--muted); margin-top: 6px; line-height: 1.6; }
+
+  /* ---------- STEDET ---------- */
+  .stedet{ background: var(--ink); color: var(--on-dark); }
+  .stedet .sec__head{ margin-bottom: 56px; }
+  .stedet .sec__lede{ color: var(--on-dark-2); }
+  .stedet__grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(260px,100%),1fr));
+    gap: 18px;
+  }
+  .stedet__grid > *:nth-child(2){ transform: translateY(28px); }
+  .stedet__cta{ display:flex; justify-content:center; margin-top: 64px; }
+  .btn-ghost{
+    font-family: var(--sans); font-size: 11px;
+    letter-spacing: .28em; text-transform: uppercase;
+    color: var(--on-dark);
+    border: 1px solid rgba(200,169,106,.7);
+    border-radius: 999px;
+    padding: 14px 30px;
+    transition: background .2s ease, color .2s ease, border-color .2s ease;
+  }
+  .btn-ghost:hover{ background: var(--gold); color: var(--ink); border-color: var(--gold); }
+
+  /* ---------- PRAKTISK ---------- */
+  .praktisk{ background: var(--cream-light); }
+  .praktisk .sec__head{ margin-bottom: 60px; }
+  .cards{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(280px,100%),1fr));
+    gap: 1px;                                   /* hairlines kommer herfra, ikke fra borders */
+    background: rgba(124,138,107,.3);
+    border: 1px solid rgba(124,138,107,.3);
+  }
+  .card{ background: var(--cream-light); padding: 38px 32px; }
+  .card__tag{
+    font-family: var(--sans); font-size: 10px;
+    letter-spacing: .3em; text-transform: uppercase; color: #A6853F;
+  }
+  .card__title{ font-size: 27px; margin: 12px 0 10px; }
+  .card__body{ font-size: 18px; line-height: 1.75; color: var(--muted); }
+
+  /* ---------- GAVER ---------- */
+  .gaver .sec__head{ margin-bottom: 56px; }
+  .gaver__grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(260px,100%),1fr));
+    gap: 18px;
+  }
+  .gavekort{
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    gap: 10px; text-align:center;
+    padding: 40px 28px;
+    background: #FDFBF4;
+    border: 1px solid var(--hairline);
+    border-radius: 6px;
     color: var(--ink);
   }
-  .field input:focus, .field select:focus, .field textarea:focus{
+  a.gavekort:hover{ border-color: var(--gold); color: var(--ink); }
+  .gavekort__tag{
+    font-family: var(--sans); font-size: 10px;
+    letter-spacing: .3em; text-transform: uppercase; color: #A6853F;
+  }
+  .gavekort__verdi{ font-size: 30px; letter-spacing: .03em; line-height: 1.2; }
+  .gavekort__hjelp{ font-style: italic; font-size: 16px; color: var(--muted); }
+  .kopier, .btn-line{
+    margin-top: 6px;
+    font-family: var(--sans); font-size: 10px;
+    letter-spacing: .24em; text-transform: uppercase;
+    color: var(--sage-dark); background: transparent;
+    border: 1px solid rgba(124,138,107,.6); border-radius: 999px;
+    padding: 11px 20px; cursor: pointer;
+    transition: background .2s ease, color .2s ease, border-color .2s ease;
+  }
+  .kopier:hover, a.gavekort:hover .btn-line{ background: var(--sage-dark); color: var(--cream); border-color: var(--sage-dark); }
+  .kopier[data-kopiert="ja"]{ background: var(--sage-dark); color: var(--cream); border-color: var(--sage-dark); }
+  .gaver__tom{ text-align:center; font-style: italic; font-size: 19px; color: var(--muted); }
+
+  /* ---------- RSVP ---------- */
+  .rsvp__inner{ max-width: 620px; margin: 0 auto; text-align: center; }
+  .rsvp__lede{ margin: 16px 0 44px; }
+  .rsvp__lede b{ font-style: normal; }
+  .form{ display:grid; gap: 22px; text-align: left; }
+  .field{ display:grid; gap: 8px; border: none; padding: 0; margin: 0; min-width: 0; }
+  .field > span, .field > legend{
+    font-family: var(--sans); font-size: 10px;
+    letter-spacing: .26em; text-transform: uppercase; color: var(--sage);
+    padding: 0;
+  }
+  .field input, .field textarea{
+    font-family: var(--serif); font-size: 19px;
+    padding: 12px 2px;
+    border: none; border-bottom: 1px solid rgba(124,138,107,.5);
+    background: transparent; color: var(--ink);
     outline: none;
-    border-color: var(--gold);
+    transition: border-color .2s ease;
   }
-  .rsvp-submit{
-    margin-top: 8px;
-    padding: 14px;
-    background: var(--sage-deep);
-    color: var(--white);
-    border: none;
-    font-family: 'EB Garamond', serif;
-    font-size: 1rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: background 0.2s ease;
+  .field textarea{ resize: vertical; }
+  .field input:focus, .field textarea:focus{ border-bottom-color: var(--gold); }
+  .field input:focus-visible, .field textarea:focus-visible{ outline-offset: 2px; }
+  .chips{ display:flex; gap: 12px; flex-wrap: wrap; margin-top: 8px; }
+  .chip{
+    font-family: var(--sans); font-size: 11px;
+    letter-spacing: .2em; text-transform: uppercase;
+    padding: 13px 24px; border-radius: 999px;
+    background: transparent; color: var(--sage-dark);
+    border: 1px solid rgba(124,138,107,.6);
+    cursor: pointer; transition: all .2s ease;
   }
-  .rsvp-submit:hover{ background: var(--ink); }
-  .form-note{
-    text-align:center;
-    font-size: 0.85rem;
-    color: var(--sage-deep);
-    margin-top: 14px;
+  .chip[aria-pressed="true"]{
+    background: var(--sage-dark); color: var(--cream); border-color: var(--sage-dark);
+  }
+  /* felter som bare gir mening for dem som kommer */
+  .kun-hvis-kommer[hidden]{ display: none !important; }
+  .submit{
+    margin-top: 14px; justify-self: stretch;
+    font-family: var(--sans); font-size: 11px;
+    letter-spacing: .28em; text-transform: uppercase;
+    background: var(--ink); color: var(--cream);
+    border: none; border-radius: 999px;
+    padding: 17px 34px; cursor: pointer;
+    transition: background .2s ease;
+  }
+  .submit:hover{ background: var(--sage-dark); }
+  .submit[disabled]{ opacity: .55; cursor: default; }
+  .form__note{ font-family: var(--sans); font-size: 11px; color: var(--muted-warm); line-height: 1.8; }
+  .form__error{ font-style: italic; font-size: 17px; color: #8B4A3C; }
+  .thanks{ padding: 20px 0 0; }
+  .thanks:focus{ outline: none; }
+  .thanks__h{ font-family: var(--script); font-size: 42px; color: var(--sage-dark); }
+  .thanks__p{ font-style: italic; font-size: 19px; color: var(--muted); margin-top: 8px; }
+
+  /* ---------- FOOTER ---------- */
+  .foot{
+    padding: 70px 24px 56px;
+    background: var(--ink); color: var(--on-dark-2);
+    text-align: center;
+  }
+  .foot__script{ font-family: var(--script); font-size: 44px; color: var(--on-dark); }
+  .foot__fine{
+    font-family: var(--sans); font-size: 11px;
+    letter-spacing: .28em; text-transform: uppercase;
+    margin-top: 22px; line-height: 2.2;
   }
 
-  footer{
-    text-align:center;
-    padding: 56px 28px 70px;
-    color: var(--sage-deep);
-  }
-  footer .display{
-    font-style: italic;
-    font-size: 1.6rem;
-    margin-bottom: 6px;
-  }
-  footer .fine{ font-size: 0.85rem; opacity: 0.8; }
+  @keyframes fadeUp{ from{ opacity:0; transform: translateY(18px); } to{ opacity:1; transform:none; } }
 
   @media (max-width: 560px){
-    .info-grid{ grid-template-columns: 1fr; }
-    .countdown{ gap: 20px; }
-    section{ padding: 70px 0; }
+    .program__row{ grid-template-columns: 72px 32px 1fr; }
+    .program__time{ padding-right: 14px; font-size: 13px; }
+    .program__body{ padding-left: 16px; }
+    /* navet skal holde seg på én linje helt ned til 320px */
+    .nav{ gap: 12px; padding: 12px 12px; font-size: 10px; letter-spacing: .12em; }
+    .nav__rsvp{ padding: 6px 11px; }
+    .countdown .lab{ font-size: 8px; letter-spacing: .2em; }
+    .ph__spec{ font-size: 10px; }
+    .stedet__grid > *:nth-child(2){ transform: none; }
   }
-
-  [data-reveal]{
-    opacity: 0;
-    transform: translateY(14px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-  }
-  [data-reveal].in{
-    opacity: 1;
-    transform: none;
+  @media (max-width: 380px){
+    .nav{ gap: 9px; font-size: 9px; letter-spacing: .08em; }
+    .nav__rsvp{ padding: 5px 9px; }
   }
   @media (prefers-reduced-motion: reduce){
-    [data-reveal]{ opacity:1; transform:none; transition:none; }
     html{ scroll-behavior: auto; }
+    .hero__inner{ animation: none; }
+    *{ transition: none !important; }
   }
 </style>
 </head>
 <body>
 
-<section class="hero">
-  <div class="eyebrow">Vi gifter oss</div>
-  <h1>Alexander<span class="amp">&amp;</span>Tonje</h1>
-  <div class="date-line">28. august 2027</div>
-  <div class="place-line">Huser Gård, Fenstad</div>
+<a class="skip" href="#innhold">Hopp til innhold</a>
 
-  <div class="countdown" id="countdown">
-    <div><div class="num" id="cd-days">–</div><div class="lab">Dager</div></div>
-    <div><div class="num" id="cd-hours">–</div><div class="lab">Timer</div></div>
-    <div><div class="num" id="cd-min">–</div><div class="lab">Minutter</div></div>
-    <div><div class="num" id="cd-sec">–</div><div class="lab">Sekunder</div></div>
+<nav class="nav" aria-label="Hovedmeny">
+  <a href="#dagen">Dagen</a>
+  <a href="#stedet">Stedet</a>
+  <a href="#oss">Oss</a>
+  <a href="#gaver">Gaver</a>
+  <a href="#praktisk">Praktisk</a>
+  <a href="#rsvp" class="nav__rsvp">RSVP</a>
+</nav>
+
+<header class="hero" id="innhold">
+  <div class="hero__inner">
+    <span class="eyebrow">Vi gifter oss</span>
+    <h1>
+      <span class="hero__name">Alexander</span>
+      <span class="hero__amp">og</span>
+      <span class="hero__name">Tonje</span>
+    </h1>
+
+    <div class="hero__rule">
+      <i></i>
+      <div class="hero__date">28 . 08 . 2027</div>
+      <i></i>
+    </div>
+    <p class="hero__place">Huser Gård, Fenstad</p>
+
+    <div class="countdown">
+      <div><div class="num" id="cd-d">–</div><div class="lab">Dager</div></div>
+      <div><div class="num" id="cd-h">–</div><div class="lab">Timer</div></div>
+      <div><div class="num" id="cd-m">–</div><div class="lab">Minutter</div></div>
+      <div><div class="num" id="cd-s">–</div><div class="lab">Sekunder</div></div>
+    </div>
   </div>
 
-  <div class="scroll-hint">Bla ned ↓</div>
+  <div class="hero__figure">
+    <picture>
+      <source media="(max-width: 640px)" srcset="bilder/hero-brygge-mobil.jpg" width="1536" height="1152">
+      <img class="hero__bilde" src="bilder/hero-brygge.jpg"
+           alt="Alexander og Tonje på brygga en gyllen sommerkveld, med fjell og sjø bak"
+           width="1536" height="672" fetchpriority="high" decoding="async">
+    </picture>
+  </div>
+</header>
+
+<section id="oss" class="sec">
+  <div class="sec__inner">
+   <div class="oss">
+    <img class="oss__bilde" src="bilder/oss-portrett.jpg"
+         srcset="bilder/oss-portrett-600.jpg 600w, bilder/oss-portrett.jpg 1200w"
+         sizes="(max-width: 719px) calc(100vw - 48px), 504px"
+         alt="Tonje og Alexander ute og spiser"
+         width="1200" height="1500" loading="lazy" decoding="async">
+    <div>
+      <span class="eyebrow">Oss to</span>
+      <h2 class="oss__title">Alexander <em>og</em> Tonje</h2>
+      <!-- TEKST: erstattes av paret — tre–fire korte avsnitt kler spalten -->
+      <p class="oss__body">Her skriver dere deres egen historie — hvordan dere møttes, hvor frieriet skjedde, og hvorfor det ble akkurat Huser Gård.</p>
+      <p class="oss__quote">«En setning fra dere to — gjerne noe kort og personlig som gjestene smiler av.»</p>
+      <div class="oss__sign">Alexander &amp; Tonje</div>
+    </div>
+   </div>
+
+    <div class="stripe">
+      <img src="bilder/galleri-hvite-gensere.jpg" alt="Alexander og Tonje i hvite strikkegensere i døråpningen hjemme"
+           width="600" height="600" loading="lazy" decoding="async">
+      <img src="bilder/galleri-fjelltopp.jpg" alt="Alexander og Tonje på en fjelltopp i solnedgang, med fjorden bak"
+           width="600" height="600" loading="lazy" decoding="async">
+      <img src="bilder/galleri-17mai.jpg" alt="Tonje i bunad og Alexander i dress på 17. mai"
+           width="600" height="600" loading="lazy" decoding="async">
+      <img src="bilder/galleri-kandid.jpg" alt="Tonje i grønn kjole og Alexander i dress, i et selskap"
+           width="600" height="600" loading="lazy" decoding="async">
+      <img src="bilder/galleri-fjellet.jpg" alt="Tonje med fiskestang ved et fjellvann"
+           width="600" height="600" loading="lazy" decoding="async">
+      <img src="bilder/galleri-roma.jpg" alt="Alexander og Tonje foran Colosseum i Roma"
+           width="600" height="600" loading="lazy" decoding="async">
+      <img src="bilder/galleri-fomle.jpg" alt="Tonje og Alexander hjemme med hunden Fomle"
+           width="600" height="600" loading="lazy" decoding="async">
+      <img src="bilder/galleri-17mai-balkong.jpg" alt="Tonje og Alexander på balkongen 17. mai, med flagget heist"
+           width="600" height="600" loading="lazy" decoding="async">
+    </div>
+  </div>
 </section>
 
-<section id="dagen" data-reveal>
-  <div class="wrap">
-    <div class="eyebrow">Programmet</div>
-    <h2>Dagen</h2>
-    <p class="lede">Et foreløpig program — detaljer og klokkeslett oppdateres etter hvert.</p>
-
+<section id="dagen" class="sec dagen">
+  <div class="sec__inner">
+    <div class="sec__head">
+      <span class="eyebrow">Programmet</span>
+      <h2 class="sec__title">Dagen</h2>
+      <p class="sec__lede" style="max-width:520px">Et foreløpig program. Klokkeslett kan bli justert — endelig plan kommer i invitasjonen.</p>
+    </div>
+    <!-- TEKST: klokkeslettene under er antatt. Bekreft før publisering. -->
     <div class="program">
-      <div class="program-item">
-        <div class="time">15:00</div>
-        <div class="what">Vielse ved vannet, Huser Gård</div>
+      <div class="program__row">
+        <div class="program__time">14:30</div><div class="program__line"></div>
+        <div class="program__body"><div class="program__what">Ankomst</div><div class="program__desc">Vi tar imot med noe kaldt i glasset.</div></div>
       </div>
-      <div class="program-item">
-        <div class="time">16:00</div>
-        <div class="what">Mingling og velkomstdrikke i hagen</div>
+      <div class="program__row">
+        <div class="program__time">15:00</div><div class="program__line"></div>
+        <div class="program__body"><div class="program__what">Vielse ved vannet</div><div class="program__desc">Seremonien holdes ute, nedenfor gården.</div></div>
       </div>
-      <div class="program-item">
-        <div class="time">18:00</div>
-        <div class="what">Middag og taler</div>
+      <div class="program__row">
+        <div class="program__time">16:00</div><div class="program__line"></div>
+        <div class="program__body"><div class="program__what">Mingling i hagen</div><div class="program__desc">Bobler, fotografering og god tid til å hilse.</div></div>
       </div>
-      <div class="program-item">
-        <div class="time">21:00</div>
-        <div class="what">Fest og dans til langt på natt</div>
+      <div class="program__row">
+        <div class="program__time">18:00</div><div class="program__line"></div>
+        <div class="program__body"><div class="program__what">Middag og taler</div><div class="program__desc">Toastmaster ønsker velkommen til bords.</div></div>
       </div>
-    </div>
-  </div>
-</section>
-
-<section id="sted" data-reveal>
-  <div class="wrap">
-    <div class="eyebrow">Stedet</div>
-    <h2>Huser Gård</h2>
-    <p class="lede">Vielsen og feiringen holdes på Huser Gård i Fenstad — en vakker gård med utsikt mot vannet.</p>
-
-    <div class="venue-card">
-      <h3>Huser Gård</h3>
-      <div class="addr">Fenstad, Norge</div>
-      <a class="btn" href="#" target="_blank" rel="noopener">Se i kart</a>
-    </div>
-
-    <div class="info-grid">
-      <div class="block">
-        <h4>Overnatting</h4>
-        <p>Vi anbefaler å bestille overnatting i god tid. Forslag til hoteller og gårder i nærheten legges ut her.</p>
+      <div class="program__row">
+        <div class="program__time">21:00</div><div class="program__line"></div>
+        <div class="program__body"><div class="program__what">Kaken og første dans</div><div class="program__desc">Vi åpner dansegulvet.</div></div>
       </div>
-      <div class="block">
-        <h4>Transport</h4>
-        <p>Det vil bli lagt til rette for felles transport fra sentrale punkter. Mer informasjon kommer.</p>
-      </div>
-      <div class="block">
-        <h4>Antrekk</h4>
-        <p>Pent antrekk / festantrekk. Gården har gressplen og grus — vi anbefaler sko du kan gå litt i.</p>
-      </div>
-      <div class="block">
-        <h4>Barn</h4>
-        <p>Vi elsker barna deres, men ønsker en voksen kveld. Ta gjerne kontakt om dere trenger barnevakt-tips.</p>
+      <div class="program__row">
+        <div class="program__time">22:00</div><div class="program__line"></div>
+        <div class="program__body"><div class="program__what">Fest til langt på natt</div><div class="program__desc">Vi danser videre.</div></div>
       </div>
     </div>
   </div>
 </section>
 
-<section id="rsvp" data-reveal>
-  <div class="wrap">
-    <div class="eyebrow">Påmelding</div>
-    <h2>RSVP</h2>
-    <p class="lede">Vi gleder oss til å feire sammen med dere. Vennligst svar innen 1. mai 2027.</p>
+<section id="stedet" class="sec stedet">
+  <div class="sec__inner">
+    <div class="sec__head">
+      <span class="eyebrow eyebrow--gold">Stedet</span>
+      <h2 class="sec__title">Huser Gård</h2>
+      <p class="sec__lede">En gammel gård i Fenstad med jorder, gamle trær og vannet rett nedenfor. Vielsen holdes ute, festen inne på gården.</p>
+    </div>
+    <div class="stedet__grid">
+      <!-- BILDE 03–05 -->
+      <div class="ph ph--dark">
+        <div class="ph__tag">Bildeplass 03</div>
+        <div class="ph__what">Hovedhuset</div>
+        <div class="ph__spec">sted-01.jpg · 900 × 1200 px</div>
+      </div>
+      <div class="ph ph--dark">
+        <div class="ph__tag">Bildeplass 04</div>
+        <div class="ph__what">Vielsesplassen ved vannet</div>
+        <div class="ph__spec">sted-02.jpg · 900 × 1200 px</div>
+      </div>
+      <div class="ph ph--dark">
+        <div class="ph__tag">Bildeplass 05</div>
+        <div class="ph__what">Hagen / låven</div>
+        <div class="ph__spec">sted-03.jpg · 900 × 1200 px</div>
+      </div>
+    </div>
+    <div class="stedet__cta">
+      <!-- TEKST: bytt til en delt Google Maps-lenke med riktig pin når adressen er avklart -->
+      <a class="btn-ghost" href="https://maps.google.com/?q=Huser+G%C3%A5rd+Fenstad" target="_blank" rel="noopener">Se i kart</a>
+    </div>
+  </div>
+</section>
 
-    <form class="rsvp-form" onsubmit="event.preventDefault(); alert('Skjemaet er ikke koblet til noe ennå — dette er et utkast.');">
-      <div class="field">
-        <label for="name">Navn</label>
-        <input type="text" id="name" placeholder="Fornavn Etternavn" required>
+<section id="gaver" class="sec gaver">
+  <div class="sec__inner">
+    <div class="sec__head">
+      <span class="eyebrow">Gaver</span>
+      <h2 class="sec__title">Ønskeliste</h2>
+      <p class="sec__lede">Det viktigste for oss er at dere er der. Ønsker dere likevel å gi noe, finner dere alt dere trenger her.</p>
+    </div>
+
+    <!-- Kortene under fylles fra KONFIG nederst i filen. Et kort uten verdi vises ikke. -->
+    <div class="gaver__grid" id="gaver-grid" hidden>
+      <a class="gavekort" id="gave-onskeliste" href="#" target="_blank" rel="noopener" hidden>
+        <span class="gavekort__tag">Ønskeliste</span>
+        <span class="gavekort__verdi" id="gave-onskeliste-navn">Ønskelisten vår</span>
+        <span class="gavekort__hjelp">Åpnes i et nytt vindu</span>
+        <span class="btn-line">Se listen</span>
+      </a>
+      <div class="gavekort" id="gave-vipps" hidden>
+        <span class="gavekort__tag">Vipps</span>
+        <span class="gavekort__verdi" id="gave-vipps-nr"></span>
+        <span class="gavekort__hjelp">Merk gjerne med navnet ditt</span>
+        <button class="kopier" type="button" data-kopier="gave-vipps-nr">Kopier nummer</button>
       </div>
-      <div class="field">
-        <label for="attending">Kommer du?</label>
-        <select id="attending">
-          <option>Ja, jeg gleder meg!</option>
-          <option>Dessverre ikke</option>
-        </select>
+      <div class="gavekort" id="gave-konto" hidden>
+        <span class="gavekort__tag">Bankkonto</span>
+        <span class="gavekort__verdi" id="gave-konto-nr"></span>
+        <span class="gavekort__hjelp">Merk gjerne med navnet ditt</span>
+        <button class="kopier" type="button" data-kopier="gave-konto-nr">Kopier kontonummer</button>
       </div>
-      <div class="field">
-        <label for="guests">Antall gjester (inkl. deg selv)</label>
-        <input type="number" id="guests" min="1" value="1">
+    </div>
+
+    <p class="gaver__tom" id="gaver-tom">Vi legger ut ønskeliste og betalingsinfo her når vi nærmer oss.</p>
+  </div>
+</section>
+
+<section id="praktisk" class="sec praktisk">
+  <div class="sec__inner">
+    <div class="sec__head">
+      <span class="eyebrow">Godt å vite</span>
+      <h2 class="sec__title">Praktisk</h2>
+    </div>
+    <!-- TEKST: innholdet i kortene er hentet fra den forrige versjonen av siden.
+         Alt som ikke er avklart står som «kommer» — ikke fyll inn tider eller
+         priser her før de faktisk er bestemt. -->
+    <div class="cards">
+      <div class="card">
+        <div class="card__tag">Kleskode</div>
+        <div class="card__title">Pent antrekk</div>
+        <div class="card__body">Festantrekk. Gården har gressplen og grus — ta gjerne med et par sko du kan gå og danse i.</div>
       </div>
-      <div class="field">
-        <label for="diet">Allergier / matpreferanser</label>
-        <textarea id="diet" rows="3" placeholder="Skriv gjerne her..."></textarea>
+      <div class="card">
+        <div class="card__tag">Overnatting</div>
+        <div class="card__title">Bestill i god tid</div>
+        <div class="card__body">Vi legger ut forslag til hoteller og gårder i nærheten her. Vi anbefaler å bestille tidlig.</div>
       </div>
-      <button class="rsvp-submit" type="submit">Send svar</button>
+      <div class="card">
+        <div class="card__tag">Transport</div>
+        <div class="card__title">Felles transport</div>
+        <div class="card__body">Vi legger til rette for felles transport fra sentrale punkter. Tider og påmelding kommer her.</div>
+      </div>
+      <div class="card">
+        <div class="card__tag">Gaver</div>
+        <div class="card__title">Deres nærvær</div>
+        <div class="card__body">Det viktigste for oss er at dere er der. Ønsker dere likevel å gi noe, ligger <a href="#gaver">ønskelisten lenger opp på siden</a>.</div>
+      </div>
+      <div class="card">
+        <div class="card__tag">Barn</div>
+        <div class="card__title">Voksen kveld</div>
+        <div class="card__body">Vi elsker barna deres, men ønsker en voksen kveld. Ta gjerne kontakt om dere trenger tips til barnevakt.</div>
+      </div>
+      <div class="card">
+        <div class="card__tag">Kontakt</div>
+        <div class="card__title">Spørsmål?</div>
+        <div class="card__body">Send oss en melding — kontaktinfo til toastmaster legges ut her når vi nærmer oss.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="rsvp" class="sec">
+  <div class="rsvp__inner">
+    <span class="eyebrow">Påmelding</span>
+    <h2 class="sec__title">RSVP</h2>
+    <p class="sec__lede rsvp__lede">Vi gleder oss til å feire sammen med dere. Svar innen <b>1. mai 2027</b>.</p>
+
+    <form class="form" id="rsvp-form" novalidate>
+      <label class="field">
+        <span>Navn</span>
+        <input type="text" name="navn" autocomplete="name" placeholder="Fornavn og etternavn" required>
+      </label>
+      <label class="field">
+        <span>E-post</span>
+        <input type="email" name="epost" autocomplete="email" placeholder="navn@epost.no" required>
+      </label>
+      <fieldset class="field">
+        <legend>Kommer du?</legend>
+        <div class="chips" id="chips">
+          <button type="button" class="chip" data-val="ja" aria-pressed="false">Ja, jeg gleder meg!</button>
+          <button type="button" class="chip" data-val="nei" aria-pressed="false">Dessverre ikke</button>
+        </div>
+      </fieldset>
+      <label class="field kun-hvis-kommer">
+        <span>Antall gjester (inkl. deg selv)</span>
+        <input type="number" name="antall" inputmode="numeric" min="1" max="10" value="1">
+      </label>
+      <fieldset class="field kun-hvis-kommer">
+        <legend>Felles transport</legend>
+        <div class="chips">
+          <button type="button" class="chip" id="chip-transport" aria-pressed="false">Ja takk, jeg trenger skyss</button>
+        </div>
+      </fieldset>
+      <label class="field kun-hvis-kommer">
+        <span>Allergier / matpreferanser</span>
+        <textarea name="allergier" rows="3" placeholder="Skriv gjerne her"></textarea>
+      </label>
+      <button class="submit" type="submit">Send svar</button>
+      <p class="form__error" id="rsvp-error" role="alert" hidden></p>
+      <p class="form__note" id="rsvp-note">Påmeldingen åpner når invitasjonene sendes ut. Skjemaet er foreløpig ikke koblet til noe lagringssted.</p>
     </form>
-    <div class="form-note">Skjemaet er foreløpig ikke koblet til noe lagringssted — sier fra når vi skal koble det til noe.</div>
+
+    <div class="thanks" id="rsvp-thanks" tabindex="-1" hidden>
+      <div class="thanks__h">Tusen takk</div>
+      <p class="thanks__p" id="rsvp-thanks-tekst">Vi har notert svaret ditt og gleder oss til å se deg.</p>
+    </div>
   </div>
 </section>
 
-<footer>
-  <div class="display">Vi gleder oss!</div>
-  <div class="fine">Alexander &amp; Tonje · 28. august 2027 · Huser Gård, Fenstad</div>
+<footer class="foot">
+  <div class="foot__script">Vi gleder oss</div>
+  <div class="foot__fine">Alexander &amp; Tonje · 28. august 2027<br>Huser Gård, Fenstad</div>
 </footer>
 
 <script>
-  // Countdown
-  const weddingDate = new Date('2027-08-28T15:00:00');
-  function tick(){
-    const now = new Date();
-    let diff = weddingDate - now;
-    if(diff < 0) diff = 0;
-    const d = Math.floor(diff / (1000*60*60*24));
-    const h = Math.floor((diff / (1000*60*60)) % 24);
-    const m = Math.floor((diff / (1000*60)) % 60);
-    const s = Math.floor((diff / 1000) % 60);
-    document.getElementById('cd-days').textContent = d;
-    document.getElementById('cd-hours').textContent = String(h).padStart(2,'0');
-    document.getElementById('cd-min').textContent = String(m).padStart(2,'0');
-    document.getElementById('cd-sec').textContent = String(s).padStart(2,'0');
-  }
-  tick();
-  setInterval(tick, 1000);
+  /* Nedtelling — 28. august 2027, 15:00 norsk sommertid.
+     Eksplisitt +02:00 så tallene blir like uansett hvilken tidssone gjesten sitter i. */
+  (function(){
+    var target = new Date('2027-08-28T15:00:00+02:00').getTime();
+    var el = {
+      d: document.getElementById('cd-d'), h: document.getElementById('cd-h'),
+      m: document.getElementById('cd-m'), s: document.getElementById('cd-s')
+    };
+    function pad(n){ return String(n).padStart(2,'0'); }
+    function tick(){
+      var diff = Math.max(0, target - Date.now());
+      el.d.textContent = String(Math.floor(diff / 86400000));
+      el.h.textContent = pad(Math.floor(diff / 3600000) % 24);
+      el.m.textContent = pad(Math.floor(diff / 60000) % 60);
+      el.s.textContent = pad(Math.floor(diff / 1000) % 60);
+      if(diff === 0) clearInterval(timer);
+    }
+    tick();
+    var timer = setInterval(tick, 1000);
+  })();
 
-  // Reveal on scroll
-  const revealEls = document.querySelectorAll('[data-reveal]');
-  const io = new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
-  }, { threshold: 0.12 });
-  revealEls.forEach(el => io.observe(el));
+  /* ═══════════════════════════════════════════════════════════════
+     OPPSETT — dette er de eneste verdiene som må fylles inn.
+     Resten av siden retter seg etter dem.
+     ═══════════════════════════════════════════════════════════════ */
+  var KONFIG = {
+
+    /* RSVP — hvor svarene skal.
+       Fyll inn ÉN av de to. Endepunktet vinner hvis begge er satt.
+
+       rsvpEndepunkt: URL som tar imot POST med JSON-kroppen
+         { navn, epost, kommer, antall, transport, allergier }.
+         Fungerer med Formspree, Formspark, Supabase REST, egen
+         Vercel-funksjon — alt som svarer 2xx. Se README.
+
+       rsvpEpost: e-postadressen svarene skal til. Krever ingen
+         backend: skjemaet åpner gjestens e-postklient med hele
+         svaret ferdig utfylt, gjesten trykker send.
+
+       Er begge tomme, sier skjemaet fra at påmeldingen ikke er
+       åpen ennå — det viser aldri en takkeskjerm uten at svaret
+       faktisk er på vei et sted. */
+    rsvpEndepunkt:  '',
+    rsvpEpost:      '',
+
+    /* Gaver — hvert felt gir ett kort. Tomt felt = kortet vises ikke.
+       Er alle tomme, står det at ønskelisten kommer senere. */
+    onskelisteUrl:  '',
+    onskelisteNavn: 'Ønskelisten vår',
+    vipps:          '',
+    kontonummer:    ''
+  };
+
+  /* Gaveseksjonen — bygges av KONFIG over. */
+  (function(){
+    var grid = document.getElementById('gaver-grid');
+    var tom  = document.getElementById('gaver-tom');
+    var noe  = false;
+
+    if(KONFIG.onskelisteUrl){
+      var lenke = document.getElementById('gave-onskeliste');
+      lenke.href = KONFIG.onskelisteUrl;
+      document.getElementById('gave-onskeliste-navn').textContent = KONFIG.onskelisteNavn || 'Ønskelisten vår';
+      lenke.hidden = false; noe = true;
+    }
+    if(KONFIG.vipps){
+      document.getElementById('gave-vipps-nr').textContent = KONFIG.vipps;
+      document.getElementById('gave-vipps').hidden = false; noe = true;
+    }
+    if(KONFIG.kontonummer){
+      document.getElementById('gave-konto-nr').textContent = KONFIG.kontonummer;
+      document.getElementById('gave-konto').hidden = false; noe = true;
+    }
+
+    grid.hidden = !noe;
+    tom.hidden  = noe;
+
+    /* Kopier-knappene. navigator.clipboard finnes ikke overalt
+       (bl.a. ikke på usikre opphav), derfor reserveløsningen. */
+    function kopier(tekst){
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        return navigator.clipboard.writeText(tekst);
+      }
+      return new Promise(function(ok, feil){
+        var ta = document.createElement('textarea');
+        ta.value = tekst;
+        ta.setAttribute('readonly', '');
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        var klarte = false;
+        try{ klarte = document.execCommand('copy'); }catch(e){}
+        document.body.removeChild(ta);
+        klarte ? ok() : feil();
+      });
+    }
+
+    document.querySelectorAll('.kopier').forEach(function(knapp){
+      var opprinnelig = knapp.textContent;
+      knapp.addEventListener('click', function(){
+        var verdi = document.getElementById(knapp.dataset.kopier).textContent;
+        kopier(verdi).then(function(){
+          knapp.textContent = 'Kopiert';
+          knapp.dataset.kopiert = 'ja';
+        }).catch(function(){
+          knapp.textContent = 'Kopier manuelt';
+        }).then(function(){
+          setTimeout(function(){
+            knapp.textContent = opprinnelig;
+            delete knapp.dataset.kopiert;
+          }, 2200);
+        });
+      });
+    });
+  })();
+
+  /* RSVP. */
+  (function(){
+    var form      = document.getElementById('rsvp-form');
+    var err       = document.getElementById('rsvp-error');
+    var note      = document.getElementById('rsvp-note');
+    var thanks    = document.getElementById('rsvp-thanks');
+    var thanksTxt = document.getElementById('rsvp-thanks-tekst');
+    var submit    = form.querySelector('.submit');
+    var kunHvisKommer = document.querySelectorAll('.kun-hvis-kommer');
+
+    var kommer = null;
+    var chips  = document.querySelectorAll('#chips .chip');
+    chips.forEach(function(c){
+      c.addEventListener('click', function(){
+        kommer = c.dataset.val;
+        chips.forEach(function(o){ o.setAttribute('aria-pressed', String(o === c)); });
+        /* antall, transport og allergier gir bare mening for dem som kommer */
+        kunHvisKommer.forEach(function(f){ f.hidden = (kommer === 'nei'); });
+      });
+    });
+
+    var transportChip = document.getElementById('chip-transport');
+    transportChip.addEventListener('click', function(){
+      var på = transportChip.getAttribute('aria-pressed') === 'true';
+      transportChip.setAttribute('aria-pressed', String(!på));
+    });
+
+    /* Åpen påmelding betyr: svaret har et sted å gå. */
+    var harEndepunkt = !!KONFIG.rsvpEndepunkt;
+    var harEpost     = !!KONFIG.rsvpEpost;
+    if(harEndepunkt || harEpost) note.hidden = true;
+
+    function fail(msg){
+      err.textContent = msg;
+      err.hidden = false;
+    }
+
+    function takk(tekst){
+      thanksTxt.textContent = tekst;
+      form.hidden = true;
+      thanks.hidden = false;
+      thanks.focus();
+    }
+
+    function somEpost(d){
+      return [
+        'Navn: ' + d.navn,
+        'E-post: ' + d.epost,
+        'Kommer: ' + (d.kommer ? 'Ja' : 'Nei'),
+        'Antall gjester: ' + (d.kommer ? d.antall : 0),
+        'Trenger felles transport: ' + (d.kommer && d.transport ? 'Ja' : 'Nei'),
+        'Allergier / matpreferanser: ' + (d.allergier || 'ingen')
+      ].join('\n');
+    }
+
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      err.hidden = true;
+
+      var f     = new FormData(form);
+      var navn  = (f.get('navn')  || '').trim();
+      var epost = (f.get('epost') || '').trim();
+      if(!navn)   return fail('Vi trenger navnet ditt.');
+      if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(epost)) return fail('Sjekk e-postadressen.');
+      if(!kommer) return fail('Si fra om du kommer.');
+
+      var svarerJa = kommer === 'ja';
+      var antall   = Math.max(1, Math.min(10, Number(f.get('antall')) || 1));
+      var payload  = {
+        navn:      navn,
+        epost:     epost,
+        kommer:    svarerJa,
+        antall:    svarerJa ? antall : 0,
+        transport: svarerJa && transportChip.getAttribute('aria-pressed') === 'true',
+        allergier: svarerJa ? (f.get('allergier') || '').trim() : ''
+      };
+
+      /* 1. Endepunkt satt — send svaret dit. */
+      if(harEndepunkt){
+        submit.disabled = true;
+        submit.textContent = 'Sender …';
+        fetch(KONFIG.rsvpEndepunkt, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(payload)
+        }).then(function(res){
+          if(!res.ok) throw new Error(res.status);
+          takk('Vi har notert svaret ditt og gleder oss til å se deg.');
+        }).catch(function(){
+          submit.disabled = false;
+          submit.textContent = 'Send svar';
+          fail('Noe gikk galt underveis. Prøv igjen, eller send oss en melding.');
+        });
+        return;
+      }
+
+      /* 2. Ingen backend, men e-postadresse — åpne ferdig utfylt e-post. */
+      if(harEpost){
+        /* Lenkeklikk framfor location.href: mailto via location blir
+           blokkert i en del innebygde nettlesere (Messenger, Instagram). */
+        var a = document.createElement('a');
+        a.href = 'mailto:' + KONFIG.rsvpEpost
+          + '?subject=' + encodeURIComponent('RSVP – ' + navn)
+          + '&body='    + encodeURIComponent(somEpost(payload));
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        takk('Vi har åpnet en ferdig utfylt e-post til deg — trykk send, så er svaret registrert.');
+        return;
+      }
+
+      /* 3. Ingen av delene — vær ærlig om det. */
+      fail('Påmeldingen er ikke åpen ennå, så svaret ditt blir ikke lagret. Vi sender lenke sammen med invitasjonen.');
+    });
+  })();
+
 </script>
 
 </body>
