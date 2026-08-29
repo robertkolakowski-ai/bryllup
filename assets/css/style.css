@@ -222,32 +222,54 @@ section.tint-deep{ background: var(--cream-deep); }
 }
 
 /* ---------- 6. Hero ---------- */
+/* Forsiden gjentar oppbygningen fra save the date-kortet:
+   tekst på creme øverst, akvarellen som et bånd under. */
 .hero{
   min-height: calc(100svh - var(--header-h));
-  display:flex; flex-direction:column; align-items:center; justify-content:center;
-  text-align:center; position:relative;
-  padding: 48px 28px 92px;
+  display:flex; flex-direction:column;
+  position:relative;
+  padding: 0;
   background:
     radial-gradient(ellipse 70% 55% at 50% 0%, rgba(124,138,110,0.13), transparent 70%),
-    radial-gradient(ellipse 60% 40% at 50% 100%, rgba(176,141,87,0.10), transparent 70%),
     var(--cream);
 }
+.hero-inner{
+  flex: 1 1 auto;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  text-align:center;
+  padding: 40px 28px 36px;
+}
+.hero-art{
+  flex: 0 0 auto;
+  height: clamp(190px, 34svh, 440px);
+  overflow: hidden;
+}
+.hero-art img{
+  width:100%; height:100%;
+  object-fit: cover;
+  object-position: 50% 42%;
+}
 .hero .eyebrow{ margin-bottom: 20px; }
+.hero .date-line{ font-variant-numeric: lining-nums; }
 .hero h1{
-  font-size: clamp(3.2rem, 11vw, 6.2rem);
-  line-height: 0.95;
-  font-weight: 400;
+  font-size: clamp(1.85rem, 6.4vw, 4.1rem);
+  line-height: 1.16;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  max-width: 15em;
 }
 .hero h1 .amp{
-  display:block; font-style: italic; font-weight: 400;
-  font-size: 0.4em; color: var(--sage-deep); margin: 8px 0;
+  font-style: normal;
+  color: var(--gold);
+  padding: 0 0.12em;
 }
 .hero .date-line{ margin-top: 28px; font-size: 1.3rem; letter-spacing: 0.09em; }
 .hero .place-line{ font-style: italic; color: var(--sage-deep); margin-top: 4px; font-size: 1.12rem; }
 .hero .hero-actions{ margin-top: 34px; display:flex; gap: 14px; flex-wrap:wrap; justify-content:center; }
 
 .scroll-hint{
-  position:absolute; bottom: 30px; left:50%; transform: translateX(-50%);
+  margin-top: 30px;
   font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase;
   color: var(--sage-deep); opacity: 0.75;
 }
@@ -824,3 +846,16 @@ html[data-lang="en"] .no{ display: none !important; }
 .site-footer .lang-switch button[aria-pressed="true"]{ background: var(--cream); color: var(--ink); }
 
 @media print{ .lang-switch{ display:none !important; } }
+
+
+/* =========================================================
+   24. Save the date-kortet
+   ========================================================= */
+.card-showcase{
+  max-width: 480px; margin: 0 auto;
+  background: var(--white);
+  padding: 14px;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-lift);
+}
+.card-showcase img{ width:100%; height:auto; }

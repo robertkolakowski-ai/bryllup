@@ -12,7 +12,6 @@
 <meta property="og:site_name" content="Alexander &amp; Tonje">
 <meta property="og:title" content="Alexander &amp; Tonje — 28. august 2027">
 <meta property="og:description" content="Alexander og Tonje gifter seg 28. august 2027 på Huser Gård — WonderInn Riverside i Fenstad. Program, praktisk informasjon og påmelding.">
-<!-- TODO: legg inn delebilde 1200×630 px som assets/img/og-image.jpg -->
 <meta property="og:image" content="assets/img/og-image.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
@@ -59,24 +58,33 @@
 
 <main id="main">
 <section class="hero">
-  <p class="eyebrow"><span class="no">Vi gifter oss</span><span class="en">We are getting married</span></p>
-  <h1>Alexander<span class="amp">&amp;</span>Tonje</h1>
-  <p class="date-line"><span class="no">28. august 2027</span><span class="en">28 August 2027</span></p>
-  <p class="place-line">Huser Gård — WonderInn Riverside, Fenstad</p>
+  <div class="hero-inner">
+    <p class="eyebrow"><span class="no">For å feire</span><span class="en">Celebrating</span></p>
+    <h1>Alexander <span class="amp">&amp;</span> Tonje</h1>
+    <p class="date-line"><span class="no">28. august 2027</span><span class="en">28 August 2027</span></p>
+    <p class="place-line">Huser Gård, Fenstad</p>
 
-  <div class="countdown" id="countdown" data-no-label="Nedtelling til bryllupsdagen" data-en-label="Countdown to the wedding day" aria-label="Nedtelling til bryllupsdagen">
-    <div><div class="num" id="cd-days">–</div><div class="lab"><span class="no">Dager</span><span class="en">Days</span></div></div>
-    <div><div class="num" id="cd-hours">–</div><div class="lab"><span class="no">Timer</span><span class="en">Hours</span></div></div>
-    <div><div class="num" id="cd-min">–</div><div class="lab"><span class="no">Minutter</span><span class="en">Minutes</span></div></div>
-    <div><div class="num" id="cd-sec">–</div><div class="lab"><span class="no">Sekunder</span><span class="en">Seconds</span></div></div>
+    <div class="countdown" id="countdown" data-no-label="Nedtelling til bryllupsdagen" data-en-label="Countdown to the wedding day" aria-label="Nedtelling til bryllupsdagen">
+      <div><div class="num" id="cd-days">–</div><div class="lab"><span class="no">Dager</span><span class="en">Days</span></div></div>
+      <div><div class="num" id="cd-hours">–</div><div class="lab"><span class="no">Timer</span><span class="en">Hours</span></div></div>
+      <div><div class="num" id="cd-min">–</div><div class="lab"><span class="no">Minutter</span><span class="en">Minutes</span></div></div>
+      <div><div class="num" id="cd-sec">–</div><div class="lab"><span class="no">Sekunder</span><span class="en">Seconds</span></div></div>
+    </div>
+
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="rsvp.html"><span class="no">Gi oss beskjed</span><span class="en">RSVP</span></a>
+      <a class="btn" href="#" data-calendar><span class="no">Legg i kalenderen</span><span class="en">Add to calendar</span></a>
+    </div>
+
+    <div class="scroll-hint"><span class="no">Bla ned</span><span class="en">Scroll</span><span class="arrow">↓</span></div>
   </div>
 
-  <div class="hero-actions">
-    <a class="btn btn-primary" href="rsvp.html"><span class="no">Gi oss beskjed</span><span class="en">RSVP</span></a>
-    <a class="btn" href="#" data-calendar><span class="no">Legg i kalenderen</span><span class="en">Add to calendar</span></a>
+  <div class="hero-art">
+    <img src="assets/img/landskap.jpg" width="1077" height="749" fetchpriority="high"
+         data-no-label="Akvarell av Huser Gård med vielsen nede ved vannet"
+         data-en-label="Watercolour of Huser Gård with the ceremony down by the water"
+         alt="Akvarell av Huser Gård med vielsen nede ved vannet">
   </div>
-
-  <div class="scroll-hint"><span class="no">Bla ned</span><span class="en">Scroll</span><span class="arrow">↓</span></div>
 </section>
 
 <section id="velkommen">
@@ -106,20 +114,22 @@
   </div>
 </section>
 
-<section class="tint" id="bilde">
-  <div class="wrap-wide" data-reveal>
-    <figure class="ph ph-21x9">
-      <div class="ph__inner">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true">
-          <rect x="3" y="5" width="18" height="14" rx="1"/><circle cx="8.5" cy="10" r="1.6"/>
-          <path d="M3 16l5-4 4 3 3-2 6 5"/>
-        </svg>
-        <span class="ph__label"><span class="no">Forsidebilde av brudeparet</span><span class="en">Cover photograph of the couple</span></span>
-        <span class="ph__spec">
-          <span class="no">Bredt format · anbefalt 2400 × 1030 px<br>Legges inn som assets/img/hero.jpg</span>
-          <span class="en">Wide format · recommended 2400 × 1030 px<br>Save as assets/img/hero.jpg</span>
-        </span>
-      </div>
+<section class="tint" id="save-the-date">
+  <div class="wrap" data-reveal>
+    <div class="section-head">
+      <p class="eyebrow"><span class="no">Invitasjonen</span><span class="en">The invitation</span></p>
+      <h2>Save the date</h2>
+      <p class="lede no">Kortet dere allerede har fått i posten eller på telefonen — her ligger det
+        trygt, om dere skulle trenge datoen én gang til.</p>
+      <p class="lede en" lang="en">The card you have already received by post or on your phone — kept
+        here safely, should you need the date once more.</p>
+    </div>
+
+    <figure class="card-showcase">
+      <img src="assets/img/save-the-date.jpg" width="1077" height="1519" loading="lazy"
+           data-no-label="Save the date-kort for Alexander og Tonje, 28. august 2027 på Huser Gård i Fenstad"
+           data-en-label="Save the date card for Alexander and Tonje, 28 August 2027 at Huser Gård in Fenstad"
+           alt="Save the date-kort for Alexander og Tonje, 28. august 2027 på Huser Gård i Fenstad">
     </figure>
   </div>
 </section>
@@ -234,17 +244,12 @@
         </p>
       </div>
       <div class="split-media">
-        <figure class="ph ph-4x5">
-          <div class="ph__inner">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true">
-              <path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/>
-            </svg>
-            <span class="ph__label"><span class="no">Bilde av gården</span><span class="en">Photograph of the farm</span></span>
-            <span class="ph__spec">
-              <span class="no">Stående format · 1200 × 1500 px<br>assets/img/gaarden.jpg</span>
-              <span class="en">Portrait · 1200 × 1500 px<br>assets/img/gaarden.jpg</span>
-            </span>
-          </div>
+        <figure style="margin:0">
+          <img src="assets/img/gaarden.jpg" width="460" height="575" loading="lazy"
+               style="width:100%; height:auto;"
+               data-no-label="Vielsen på bryggen nedenfor hovedhuset på Huser Gård"
+               data-en-label="The ceremony on the jetty below the main house at Huser Gård"
+               alt="Vielsen på bryggen nedenfor hovedhuset på Huser Gård">
         </figure>
       </div>
     </div>

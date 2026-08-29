@@ -162,7 +162,10 @@
       el.setAttribute('placeholder', el.getAttribute('data-' + lang + '-placeholder'));
     });
     document.querySelectorAll('[data-' + lang + '-label]').forEach(function (el) {
-      el.setAttribute('aria-label', el.getAttribute('data-' + lang + '-label'));
+      var text = el.getAttribute('data-' + lang + '-label');
+      // Bilder trenger alt-tekst; alt annet trenger aria-label.
+      if (el.tagName === 'IMG') el.setAttribute('alt', text);
+      else el.setAttribute('aria-label', text);
     });
     document.querySelectorAll('[data-' + lang + '-text]').forEach(function (el) {
       el.textContent = el.getAttribute('data-' + lang + '-text');

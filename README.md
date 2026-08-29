@@ -29,8 +29,11 @@ assets/
   css/style.css     Hele designsystemet — farger, typografi, komponenter
   js/config.js      All konfigurasjon (navn, dato, adresse, e-post, skjema)
   js/main.js        Språkbytte, nedtelling, meny, galleri, skjemainnsending
-  img/favicon.svg   Faviconet
-  img/              Her legges bildene
+  img/favicon.svg      Faviconet
+  img/save-the-date.jpg  Kortet som ble sendt ut
+  img/landskap.jpg       Akvarellen alene — brukt som bånd på forsiden
+  img/gaarden.jpg        Utsnitt av gården og vielsen
+  img/og-image.jpg       Vises når lenken deles (1200 × 630)
 ```
 
 ---
@@ -101,6 +104,17 @@ dem inn — 300–500 kB per bilde holder i massevis.
 
 Bilder fra WonderInn må avklares med dem før bruk.
 
+### Bildene som allerede ligger inne
+
+Akvarellen fra save the date-kortet er klippet ut og brukt fire steder:
+som bånd under forsidens tittel, som selve kortet i «Save the date»-seksjonen,
+som utsnitt ved omtalen av gården, og som delebilde når lenken sendes videre.
+
+Utsnittene er hentet fra kortet slik det ble mottatt på telefon, altså
+1077 piksler bredt. Det holder fint på mobil og godt nok på skjerm, men blir
+litt mykt på store skjermer. **Har dere originalfilen fra den som tegnet
+kortet, bytt den inn** — da blir forsidebåndet skarpt hele veien.
+
 ---
 
 ## Gjenstår å fylle inn
@@ -121,8 +135,7 @@ Bilder fra WonderInn må avklares med dem før bruk.
 
 ### Bør på plass etter hvert
 
-- [ ] Forsidebilde (`assets/img/hero.jpg`) og delebilde
-      (`assets/img/og-image.jpg`, 1200 × 630 px — vises når lenken deles).
+- [ ] Originalfilen av akvarellen i full oppløsning, om den finnes — se over.
 - [ ] Bilder til galleriet, brudefølget og kontaktsiden.
 - [ ] Bekreft busselskap, oppmøtested i Oslo og avgangstider (`praktisk.html`).
 - [ ] Bekreft om fredagen blir noe av, og hvem som inviteres (`programmet.html`).
