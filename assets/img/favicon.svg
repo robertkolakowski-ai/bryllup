@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" fill="#F7F2E7"/>
+  <path d="M12 46h40" stroke="#B08D57" stroke-width="1.5" fill="none"/>
+  <text x="32" y="40" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif"
+        font-size="30" font-style="italic" fill="#2B3327">A&amp;T</text>
+</svg>

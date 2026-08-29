@@ -1,0 +1,826 @@
+/* =========================================================
+   Alexander & Tonje — 28. august 2027
+   Felles designsystem for hele nettstedet.
+   ========================================================= */
+
+/* ---------- 1. Tokens ---------- */
+:root{
+  --cream:       #F7F2E7;
+  --cream-deep:  #EFE7D6;
+  --cream-warm:  #F2EADA;
+  --ink:         #2B3327;
+  --ink-soft:    #4A5443;
+  --sage:        #7C8A6E;
+  --sage-deep:   #5C6B52;
+  --sage-mist:   rgba(124,138,110,0.12);
+  --gold:        #B08D57;
+  --gold-soft:   rgba(176,141,87,0.22);
+  --line:        rgba(43,51,39,0.16);
+  --line-strong: rgba(43,51,39,0.32);
+  --white:       #FFFDF8;
+
+  --serif-display: 'Cormorant Garamond', 'Times New Roman', serif;
+  --serif-body:    'EB Garamond', 'Times New Roman', serif;
+
+  --header-h: 68px;
+  --wrap: 760px;
+  --wrap-wide: 1080px;
+
+  --shadow-soft: 0 1px 2px rgba(43,51,39,0.04), 0 8px 28px rgba(43,51,39,0.06);
+  --shadow-lift: 0 2px 6px rgba(43,51,39,0.06), 0 18px 48px rgba(43,51,39,0.10);
+}
+
+/* ---------- 2. Base ---------- */
+*{ box-sizing: border-box; }
+html{ scroll-behavior: smooth; scroll-padding-top: calc(var(--header-h) + 20px); }
+
+body{
+  margin:0;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--serif-body);
+  font-size: 18px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+h1,h2,h3,h4,.display{
+  font-family: var(--serif-display);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  margin: 0;
+  line-height: 1.15;
+}
+
+p{ margin: 0 0 1em; }
+p:last-child{ margin-bottom: 0; }
+
+a{ color: var(--sage-deep); text-underline-offset: 3px; text-decoration-thickness: 1px; }
+a:hover{ color: var(--gold); }
+
+img{ max-width: 100%; display:block; }
+[hidden]{ display: none !important; }
+
+::selection{ background: var(--gold-soft); }
+
+:focus-visible{
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.skip-link{
+  position:absolute; left:-9999px; top:0;
+  background: var(--ink); color: var(--white);
+  padding: 12px 20px; z-index: 999;
+  font-size: 0.9rem; letter-spacing: 0.08em;
+}
+.skip-link:focus{ left: 12px; top: 12px; }
+
+.sr-only{
+  position:absolute; width:1px; height:1px; padding:0; margin:-1px;
+  overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0;
+}
+
+/* ---------- 3. Layout ---------- */
+.wrap{ max-width: var(--wrap); margin: 0 auto; padding: 0 28px; }
+.wrap-wide{ max-width: var(--wrap-wide); margin: 0 auto; padding: 0 28px; }
+
+section{ padding: clamp(64px, 9vw, 104px) 0; }
+section + section{ border-top: 1px solid var(--line); }
+section.tint{ background: var(--cream-warm); }
+section.tint-deep{ background: var(--cream-deep); }
+
+.eyebrow{
+  font-family: var(--serif-body);
+  font-size: 0.74rem;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: var(--sage-deep);
+}
+
+.section-head{ text-align:center; margin-bottom: clamp(38px, 6vw, 60px); }
+.section-head .eyebrow{ display:block; margin-bottom: 12px; }
+.section-head h2{
+  font-size: clamp(2.1rem, 5.4vw, 3rem);
+  font-style: italic;
+  font-weight: 400;
+}
+.section-head .lede{
+  max-width: 520px;
+  margin: 16px auto 0;
+  color: var(--ink-soft);
+  font-size: 1.05rem;
+}
+
+.center{ text-align:center; }
+.mt-l{ margin-top: 44px; }
+.mt-m{ margin-top: 28px; }
+
+/* ---------- 4. Ornament ---------- */
+.divider{
+  display:flex; align-items:center; justify-content:center;
+  gap: 14px; margin: 30px 0; color: var(--sage);
+}
+.divider::before, .divider::after{
+  content:""; width: clamp(40px, 12vw, 90px); height:1px;
+  background: linear-gradient(to right, transparent, var(--line-strong), transparent);
+}
+.divider .dot{ width:5px; height:5px; border-radius:50%; background: var(--gold); }
+.divider svg{ width: 54px; height: 16px; flex: none; }
+
+/* ---------- 5. Header / nav ---------- */
+.site-header{
+  position: sticky; top: 0; z-index: 60;
+  height: var(--header-h);
+  display:flex; align-items:center;
+  background: transparent;
+  border-bottom: 1px solid transparent;
+  transition: background 0.3s ease, border-color 0.3s ease, backdrop-filter 0.3s ease;
+}
+.site-header.is-solid{
+  background: rgba(247,242,231,0.92);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom-color: var(--line);
+}
+.site-header .bar{
+  max-width: var(--wrap-wide);
+  width:100%; margin: 0 auto; padding: 0 24px;
+  display:flex; align-items:center; justify-content: space-between; gap: 20px;
+}
+.brand{
+  font-family: var(--serif-display);
+  font-size: 1.25rem;
+  letter-spacing: 0.18em;
+  text-decoration:none;
+  color: var(--ink);
+  white-space: nowrap;
+}
+.brand .amp{ color: var(--gold); font-style: italic; padding: 0 2px; }
+
+.nav{ display:flex; align-items:center; gap: clamp(14px, 2vw, 28px); }
+.nav a{
+  font-size: 0.82rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration:none;
+  color: var(--ink-soft);
+  padding: 4px 0;
+  border-bottom: 1px solid transparent;
+  white-space: nowrap;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.nav a:hover{ color: var(--ink); border-bottom-color: var(--gold); }
+.nav a[aria-current="page"]{ color: var(--ink); border-bottom-color: var(--gold); }
+.nav a.nav-cta{
+  border: 1px solid var(--ink);
+  border-radius: 999px;
+  padding: 7px 18px;
+  color: var(--ink);
+}
+.nav a.nav-cta:hover{ background: var(--ink); color: var(--white); border-color: var(--ink); }
+
+.nav-toggle{
+  display:none;
+  background: none; border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  padding: 8px 16px;
+  font-family: var(--serif-body);
+  font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--ink); cursor: pointer;
+}
+
+@media (max-width: 900px){
+  .nav-toggle{ display:inline-block; }
+  .nav{
+    position: fixed; inset: var(--header-h) 0 auto 0;
+    flex-direction: column; align-items: stretch;
+    gap: 0;
+    background: var(--cream);
+    border-bottom: 1px solid var(--line);
+    padding: 8px 24px 26px;
+    box-shadow: var(--shadow-lift);
+    transform: translateY(-8px);
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.22s ease, transform 0.22s ease;
+    max-height: calc(100svh - var(--header-h));
+    overflow-y: auto;
+  }
+  .nav.is-open{ opacity:1; transform:none; pointer-events:auto; }
+  .nav a{
+    padding: 15px 0;
+    border-bottom: 1px solid var(--line);
+    font-size: 0.9rem;
+  }
+  .nav a.nav-cta{
+    margin-top: 18px; text-align:center; border: 1px solid var(--ink);
+    padding: 14px 18px;
+  }
+}
+
+/* ---------- 6. Hero ---------- */
+.hero{
+  min-height: calc(100svh - var(--header-h));
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  text-align:center; position:relative;
+  padding: 48px 28px 92px;
+  background:
+    radial-gradient(ellipse 70% 55% at 50% 0%, rgba(124,138,110,0.13), transparent 70%),
+    radial-gradient(ellipse 60% 40% at 50% 100%, rgba(176,141,87,0.10), transparent 70%),
+    var(--cream);
+}
+.hero .eyebrow{ margin-bottom: 20px; }
+.hero h1{
+  font-size: clamp(3.2rem, 11vw, 6.2rem);
+  line-height: 0.95;
+  font-weight: 400;
+}
+.hero h1 .amp{
+  display:block; font-style: italic; font-weight: 400;
+  font-size: 0.4em; color: var(--sage-deep); margin: 8px 0;
+}
+.hero .date-line{ margin-top: 28px; font-size: 1.3rem; letter-spacing: 0.09em; }
+.hero .place-line{ font-style: italic; color: var(--sage-deep); margin-top: 4px; font-size: 1.12rem; }
+.hero .hero-actions{ margin-top: 34px; display:flex; gap: 14px; flex-wrap:wrap; justify-content:center; }
+
+.scroll-hint{
+  position:absolute; bottom: 30px; left:50%; transform: translateX(-50%);
+  font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--sage-deep); opacity: 0.75;
+}
+.scroll-hint .arrow{ display:block; margin-top: 8px; animation: nudge 2.4s ease-in-out infinite; }
+@keyframes nudge{ 0%,100%{ transform: translateY(0); opacity:.75 } 50%{ transform: translateY(5px); opacity:1 } }
+
+/* Countdown */
+.countdown{ display:flex; gap: clamp(16px, 5vw, 48px); margin-top: 46px; }
+.countdown div{ text-align:center; }
+.countdown .num{
+  font-family: var(--serif-display);
+  font-size: clamp(1.9rem, 5.5vw, 2.8rem);
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+.countdown .lab{
+  font-size: 0.66rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--sage-deep);
+}
+
+/* ---------- 7. Page head (undersider) ---------- */
+.page-head{
+  text-align:center;
+  padding: clamp(56px, 8vw, 88px) 28px clamp(48px, 7vw, 72px);
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(124,138,110,0.10), transparent 70%),
+    var(--cream);
+  border-bottom: 1px solid var(--line);
+}
+.page-head .eyebrow{ display:block; margin-bottom: 14px; }
+.page-head h1{
+  font-size: clamp(2.6rem, 7vw, 4rem);
+  font-style: italic; font-weight: 400;
+}
+.page-head .lede{
+  max-width: 560px; margin: 20px auto 0;
+  color: var(--ink-soft); font-size: 1.06rem;
+}
+
+/* ---------- 8. Knapper ---------- */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap: 10px;
+  padding: 13px 30px;
+  border: 1px solid var(--ink);
+  background: transparent;
+  color: var(--ink);
+  text-decoration:none;
+  font-family: var(--serif-body);
+  font-size: 0.82rem; letter-spacing: 0.14em; text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.22s ease, color 0.22s ease, border-color 0.22s ease;
+}
+.btn:hover{ background: var(--ink); color: var(--white); }
+.btn-primary{ background: var(--sage-deep); border-color: var(--sage-deep); color: var(--white); }
+.btn-primary:hover{ background: var(--ink); border-color: var(--ink); color: var(--white); }
+.btn-ghost{ border-color: var(--line-strong); color: var(--ink-soft); }
+.btn-ghost:hover{ background: var(--ink); border-color: var(--ink); color: var(--white); }
+.btn-sm{ padding: 9px 18px; font-size: 0.74rem; }
+
+/* ---------- 9. Kort & grid ---------- */
+.card{
+  background: var(--white);
+  border: 1px solid var(--line);
+  padding: clamp(26px, 4vw, 38px);
+  box-shadow: var(--shadow-soft);
+}
+.card h3{
+  font-size: 1.55rem; font-style: italic; font-weight: 400;
+  margin-bottom: 8px;
+}
+.card .card-meta{
+  font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--sage-deep); margin-bottom: 14px;
+}
+
+.grid{ display:grid; gap: clamp(20px, 3vw, 30px); }
+.grid-2{ grid-template-columns: repeat(2, minmax(0,1fr)); }
+.grid-3{ grid-template-columns: repeat(3, minmax(0,1fr)); }
+.grid-4{ grid-template-columns: repeat(4, minmax(0,1fr)); }
+@media (max-width: 860px){
+  .grid-3, .grid-4{ grid-template-columns: repeat(2, minmax(0,1fr)); }
+}
+@media (max-width: 560px){
+  .grid-2, .grid-3, .grid-4{ grid-template-columns: 1fr; }
+}
+
+/* Info-blokk (uten kortramme) */
+.info-grid{ display:grid; grid-template-columns: 1fr 1fr; gap: 34px 40px; }
+.info-grid .block h4{
+  font-family: var(--serif-display);
+  font-style: italic; font-weight: 500; font-size: 1.32rem;
+  margin-bottom: 8px; color: var(--sage-deep);
+}
+.info-grid .block p{ font-size: 0.98rem; }
+@media (max-width: 620px){ .info-grid{ grid-template-columns: 1fr; } }
+
+/* Split: tekst + bilde */
+.split{
+  display:grid; grid-template-columns: 1fr 1fr;
+  gap: clamp(28px, 5vw, 56px); align-items:center;
+}
+.split.reverse .split-media{ order: -1; }
+@media (max-width: 780px){
+  .split{ grid-template-columns: 1fr; }
+  .split.reverse .split-media{ order: 0; }
+}
+
+/* ---------- 10. Bildeplassholdere ---------- */
+/* Brukes overalt hvor et ekte foto skal inn. Se README.md. */
+.ph{
+  margin: 0;
+  position: relative;
+  background:
+    repeating-linear-gradient(135deg,
+      rgba(124,138,110,0.05) 0 12px,
+      rgba(124,138,110,0.10) 12px 24px);
+  border: 1px solid var(--line);
+  display:flex; align-items:center; justify-content:center;
+  overflow:hidden;
+}
+.ph::after{
+  content:"";
+  position:absolute; inset: 10px;
+  border: 1px dashed var(--gold-soft);
+  pointer-events:none;
+}
+.ph__inner{
+  text-align:center; padding: 22px; color: var(--sage-deep); max-width: 90%;
+}
+.ph__inner svg{ width: 34px; height: 34px; margin: 0 auto 12px; opacity: 0.55; display:block; }
+.ph__label{
+  display:block;
+  font-family: var(--serif-display);
+  font-style: italic; font-size: 1.12rem; color: var(--ink-soft);
+}
+.ph__spec{
+  display:block; margin-top: 7px;
+  font-size: 0.68rem; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--sage); line-height: 1.5;
+}
+.ph-1x1{ aspect-ratio: 1 / 1; }
+.ph-4x5{ aspect-ratio: 4 / 5; }
+.ph-3x2{ aspect-ratio: 3 / 2; }
+.ph-16x9{ aspect-ratio: 16 / 9; }
+.ph-21x9{ aspect-ratio: 21 / 9; }
+.ph-round{ border-radius: 50%; }
+.ph-round::after{ border-radius: 50%; }
+
+/* Liten merkelapp for «må fylles inn» */
+.todo-note{
+  display:flex; gap: 12px; align-items:flex-start;
+  background: rgba(176,141,87,0.09);
+  border-left: 2px solid var(--gold);
+  padding: 14px 18px;
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+  margin: 26px 0 0;
+}
+.todo-note strong{
+  font-family: var(--serif-display); font-style: italic; font-weight: 600;
+  color: var(--sage-deep);
+}
+
+/* ---------- 11. Program / tidslinje ---------- */
+.program{ position:relative; padding-left: 30px; max-width: 540px; margin: 0 auto; }
+.program::before{
+  content:""; position:absolute; left: 4px; top: 8px; bottom: 8px;
+  width: 1px; background: var(--line-strong);
+}
+.program-item{ position:relative; padding-bottom: 42px; }
+.program-item:last-child{ padding-bottom: 0; }
+.program-item::before{
+  content:""; position:absolute; left: -30px; top: 9px;
+  width: 9px; height: 9px; border-radius: 50%;
+  background: var(--cream); border: 1.5px solid var(--gold);
+}
+.program-item.is-key::before{ background: var(--gold); }
+.program-item .time{
+  font-family: var(--serif-display);
+  font-size: 1.5rem; color: var(--sage-deep);
+  font-variant-numeric: tabular-nums;
+}
+.program-item .what{ font-size: 1.1rem; margin-top: 2px; }
+.program-item .detail{ font-size: 0.94rem; color: var(--ink-soft); margin-top: 5px; }
+
+/* Dag-bolker */
+.day-block + .day-block{ margin-top: 62px; padding-top: 54px; border-top: 1px solid var(--line); }
+.day-block > h3{
+  text-align:center; font-size: 1.9rem; font-style: italic; font-weight: 400; margin-bottom: 6px;
+}
+.day-block > .day-sub{
+  text-align:center; color: var(--sage-deep); font-size: 0.95rem; margin-bottom: 36px;
+}
+
+/* ---------- 12. Vår historie ---------- */
+.story-item{
+  display:grid; grid-template-columns: 130px 1fr;
+  gap: clamp(20px, 4vw, 44px);
+  padding: 34px 0;
+  border-bottom: 1px solid var(--line);
+}
+.story-item:last-child{ border-bottom: none; }
+.story-item .year{
+  font-family: var(--serif-display);
+  font-size: 1.7rem; color: var(--gold); font-style: italic;
+  line-height: 1.2; padding-top: 2px;
+}
+.story-item h3{ font-size: 1.4rem; font-style: italic; font-weight: 400; margin-bottom: 8px; }
+@media (max-width: 620px){
+  .story-item{ grid-template-columns: 1fr; gap: 8px; }
+}
+
+/* Brudefølge */
+.person{ text-align:center; }
+.person .ph{ margin-bottom: 16px; }
+.person h4{ font-size: 1.25rem; font-style: italic; font-weight: 500; }
+.person .role{
+  font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--sage-deep); margin-top: 5px;
+}
+.person p{ font-size: 0.93rem; color: var(--ink-soft); margin-top: 10px; }
+
+/* ---------- 13. Galleri ---------- */
+.gallery{
+  display:grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 16px;
+}
+.gallery .tile{ position:relative; }
+.gallery .tile.span-2{ grid-column: span 2; }
+@media (max-width: 560px){ .gallery .tile.span-2{ grid-column: span 1; } }
+.gallery figure{ margin: 0; height: 100%; }
+.gallery button.tile-btn{
+  display:block; width:100%; padding:0; border:none; background:none; cursor: zoom-in;
+}
+
+/* Lightbox */
+.lightbox{
+  position: fixed; inset: 0; z-index: 200;
+  background: rgba(30,36,27,0.94);
+  display:none; align-items:center; justify-content:center;
+  padding: 40px 24px;
+}
+.lightbox.is-open{ display:flex; }
+.lightbox img, .lightbox .lb-ph{
+  max-width: min(1000px, 92vw); max-height: 84svh; width: auto;
+}
+.lightbox .lb-ph{
+  width: min(700px, 88vw); aspect-ratio: 3/2;
+  background: rgba(247,242,231,0.06);
+  border: 1px dashed rgba(247,242,231,0.4);
+  display:flex; align-items:center; justify-content:center;
+  color: var(--cream); text-align:center; padding: 30px;
+  font-family: var(--serif-display); font-style: italic; font-size: 1.2rem;
+}
+.lightbox .lb-close{
+  position:absolute; top: 20px; right: 22px;
+  background:none; border: 1px solid rgba(247,242,231,0.45);
+  color: var(--cream); border-radius: 999px;
+  width: 44px; height: 44px; font-size: 1.2rem; cursor:pointer;
+}
+.lightbox .lb-caption{
+  position:absolute; bottom: 26px; left:0; right:0; text-align:center;
+  color: rgba(247,242,231,0.85); font-size: 0.9rem; letter-spacing: 0.06em;
+}
+
+/* ---------- 14. FAQ / accordion ---------- */
+.faq{ max-width: 640px; margin: 0 auto; }
+.faq details{
+  border-bottom: 1px solid var(--line);
+  padding: 4px 0;
+}
+.faq summary{
+  list-style: none;
+  cursor: pointer;
+  padding: 20px 34px 20px 0;
+  position: relative;
+  font-family: var(--serif-display);
+  font-size: 1.24rem;
+  font-style: italic;
+  color: var(--ink);
+}
+.faq summary::-webkit-details-marker{ display:none; }
+.faq summary::after{
+  content:"+";
+  position:absolute; right: 4px; top: 50%; transform: translateY(-50%);
+  font-family: var(--serif-body); font-size: 1.3rem; color: var(--gold);
+  transition: transform 0.2s ease;
+}
+.faq details[open] summary::after{ content:"–"; }
+.faq .answer{ padding: 0 12px 22px 0; color: var(--ink-soft); font-size: 0.99rem; }
+
+/* ---------- 15. Skjema ---------- */
+.form{
+  max-width: 520px; margin: 0 auto;
+  display:flex; flex-direction:column; gap: 22px;
+}
+.form-row{ display:grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+@media (max-width: 560px){ .form-row{ grid-template-columns: 1fr; } }
+
+.field{ display:flex; flex-direction:column; gap: 7px; }
+.field > label, .fieldset-label{
+  font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--sage-deep);
+}
+.field .hint{ font-size: 0.85rem; color: var(--ink-soft); opacity: 0.85; }
+.field input, .field select, .field textarea{
+  font-family: var(--serif-body);
+  font-size: 1.04rem;
+  background: var(--white);
+  border: 1px solid var(--line);
+  padding: 13px 15px;
+  color: var(--ink);
+  width: 100%;
+  border-radius: 0;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.field textarea{ resize: vertical; min-height: 96px; }
+.field input:focus, .field select:focus, .field textarea:focus{
+  outline: none; border-color: var(--gold); box-shadow: 0 0 0 3px var(--gold-soft);
+}
+.field input:invalid:not(:placeholder-shown){ border-color: rgba(160,70,60,0.5); }
+
+fieldset{ border: none; margin: 0; padding: 0; display:flex; flex-direction:column; gap: 10px; }
+.choice{
+  display:flex; align-items:flex-start; gap: 12px;
+  border: 1px solid var(--line); background: var(--white);
+  padding: 14px 16px; cursor:pointer;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+.choice:hover{ border-color: var(--sage); }
+.choice input{ margin-top: 5px; accent-color: var(--sage-deep); flex: none; }
+.choice .choice-text{ font-size: 1rem; }
+.choice .choice-text small{ display:block; color: var(--ink-soft); font-size: 0.86rem; }
+.choice:has(input:checked){ border-color: var(--gold); background: rgba(176,141,87,0.06); }
+
+.guest-list{ display:flex; flex-direction:column; gap: 10px; }
+.guest-row{ display:flex; gap: 10px; align-items:center; }
+.guest-row input{ flex: 1; }
+.guest-row .remove{
+  border: 1px solid var(--line); background: var(--white); color: var(--ink-soft);
+  width: 42px; height: 42px; flex: none; cursor: pointer; font-size: 1.1rem;
+}
+.guest-row .remove:hover{ border-color: var(--ink); color: var(--ink); }
+
+.form-status{
+  border: 1px solid var(--line);
+  background: var(--white);
+  padding: 22px 24px;
+  text-align:center;
+}
+.form-status.is-ok{ border-color: var(--sage); background: rgba(124,138,110,0.08); }
+.form-status.is-warn{ border-color: var(--gold); background: rgba(176,141,87,0.08); }
+.form-status h3{ font-size: 1.4rem; font-style: italic; font-weight: 400; margin-bottom: 8px; }
+.form-status p{ font-size: 0.96rem; color: var(--ink-soft); }
+
+.form-note{
+  text-align:center; font-size: 0.88rem; color: var(--sage-deep);
+  margin-top: 20px; max-width: 520px; margin-left:auto; margin-right:auto;
+}
+
+/* Honningkrukke mot spam */
+.hp-field{ position:absolute; left:-9999px; opacity:0; height:0; overflow:hidden; }
+
+/* ---------- 16. Ønskeliste ---------- */
+.gift-card{ display:flex; flex-direction:column; height: 100%; }
+.gift-card .amount{
+  font-family: var(--serif-display); font-size: 1.9rem; color: var(--gold);
+  font-style: italic; margin-bottom: 4px;
+}
+.gift-card p{ font-size: 0.96rem; color: var(--ink-soft); }
+.gift-card .btn{ margin-top: auto; align-self: flex-start; }
+
+.pay-details{
+  display:grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+  gap: 22px; margin-top: 30px;
+}
+.pay-details .pay{
+  border: 1px solid var(--line); background: var(--white); padding: 22px 24px; text-align:center;
+}
+.pay-details .pay .k{
+  font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--sage-deep);
+}
+.pay-details .pay .v{
+  font-family: var(--serif-display); font-size: 1.5rem; margin-top: 8px; letter-spacing: 0.04em;
+}
+
+/* ---------- 17. Kart / sted ---------- */
+.map-frame{
+  border: 1px solid var(--line);
+  background: var(--white);
+  padding: 8px;
+  box-shadow: var(--shadow-soft);
+}
+.map-frame .ph{ border: none; }
+
+.venue-facts{
+  display:grid; grid-template-columns: repeat(auto-fit, minmax(180px,1fr));
+  gap: 1px; background: var(--line); border: 1px solid var(--line); margin-top: 34px;
+}
+.venue-facts .fact{ background: var(--white); padding: 22px 20px; text-align:center; }
+.venue-facts .fact .k{
+  font-size: 0.66rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--sage-deep);
+}
+.venue-facts .fact .v{ font-family: var(--serif-display); font-size: 1.3rem; margin-top: 6px; }
+
+/* Overnatting-liste */
+.stay{
+  display:grid; grid-template-columns: 1fr auto; gap: 20px; align-items: start;
+  padding: 26px 0; border-bottom: 1px solid var(--line);
+}
+.stay:last-child{ border-bottom:none; }
+.stay h4{ font-size: 1.3rem; font-style: italic; font-weight: 500; }
+.stay .meta{
+  font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--sage-deep); margin: 6px 0 10px;
+}
+.stay p{ font-size: 0.95rem; color: var(--ink-soft); }
+@media (max-width: 620px){
+  .stay{ grid-template-columns: 1fr; }
+}
+
+/* ---------- 18. Kontaktkort ---------- */
+.contact-card{ text-align:center; }
+.contact-card .ph{ width: 128px; margin: 0 auto 18px; }
+.contact-card h4{ font-size: 1.3rem; font-style: italic; font-weight: 500; }
+.contact-card .role{
+  font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--sage-deep); margin: 6px 0 12px;
+}
+.contact-card a{ font-size: 0.95rem; display:block; }
+
+/* ---------- 19. CTA-bånd ---------- */
+.cta-band{
+  background: var(--cream-deep);
+  text-align:center;
+  padding: clamp(56px, 8vw, 84px) 28px;
+  border-top: 1px solid var(--line);
+}
+.cta-band h2{
+  font-size: clamp(1.9rem, 5vw, 2.6rem); font-style: italic; font-weight: 400; margin-bottom: 12px;
+}
+.cta-band p{ color: var(--ink-soft); max-width: 480px; margin: 0 auto 26px; }
+
+/* Snarveier på forsiden */
+.shortcuts{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); }
+@media (max-width: 780px){ .shortcuts{ grid-template-columns: 1fr; } }
+.shortcuts a{
+  background: var(--cream);
+  padding: 38px 28px; text-decoration:none; color: var(--ink);
+  display:flex; flex-direction:column; gap: 8px;
+  transition: background 0.25s ease;
+}
+.shortcuts a:hover{ background: var(--white); }
+.shortcuts a .k{
+  font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--sage-deep);
+}
+.shortcuts a .t{ font-family: var(--serif-display); font-size: 1.6rem; font-style: italic; }
+.shortcuts a .d{ font-size: 0.94rem; color: var(--ink-soft); }
+.shortcuts a .go{
+  margin-top: 8px; font-size: 0.74rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold);
+}
+
+/* Sitat */
+.quote{
+  text-align:center; max-width: 620px; margin: 0 auto;
+  font-family: var(--serif-display); font-style: italic;
+  font-size: clamp(1.4rem, 3.4vw, 1.9rem); line-height: 1.45; color: var(--ink);
+}
+.quote cite{
+  display:block; margin-top: 18px;
+  font-family: var(--serif-body); font-style: normal;
+  font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--sage-deep);
+}
+
+/* ---------- 20. Footer ---------- */
+.site-footer{
+  background: var(--ink);
+  color: rgba(247,242,231,0.78);
+  padding: clamp(52px, 7vw, 76px) 28px 44px;
+}
+.site-footer a{ color: rgba(247,242,231,0.78); text-decoration:none; }
+.site-footer a:hover{ color: var(--gold); }
+.footer-top{
+  max-width: var(--wrap-wide); margin: 0 auto;
+  display:grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 40px;
+  padding-bottom: 40px; border-bottom: 1px solid rgba(247,242,231,0.16);
+}
+@media (max-width: 780px){ .footer-top{ grid-template-columns: 1fr; gap: 30px; } }
+.footer-top h3{
+  font-family: var(--serif-display); font-size: 1.9rem; font-style: italic;
+  color: var(--cream); font-weight: 400; margin-bottom: 10px;
+}
+.footer-top .col-title{
+  font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase;
+  color: rgba(247,242,231,0.55); margin-bottom: 14px;
+}
+.footer-top ul{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap: 9px; }
+.footer-top ul li{ font-size: 0.95rem; }
+.footer-bottom{
+  max-width: var(--wrap-wide); margin: 0 auto; padding-top: 26px;
+  display:flex; justify-content:space-between; gap: 16px; flex-wrap:wrap;
+  font-size: 0.82rem; color: rgba(247,242,231,0.55);
+}
+
+/* ---------- 21. Animasjon ---------- */
+[data-reveal]{
+  opacity: 0; transform: translateY(16px);
+  transition: opacity 0.75s ease, transform 0.75s ease;
+}
+[data-reveal].in{ opacity: 1; transform: none; }
+[data-reveal][data-delay="1"]{ transition-delay: 0.09s; }
+[data-reveal][data-delay="2"]{ transition-delay: 0.18s; }
+[data-reveal][data-delay="3"]{ transition-delay: 0.27s; }
+
+@media (prefers-reduced-motion: reduce){
+  [data-reveal]{ opacity:1; transform:none; transition:none; }
+  html{ scroll-behavior: auto; }
+  .scroll-hint .arrow{ animation: none; }
+}
+
+/* ---------- 22. Utskrift ---------- */
+@media print{
+  .site-header, .site-footer, .scroll-hint, .cta-band, .nav-toggle,
+  .countdown, .hero-actions{ display:none !important; }
+  body{ background:#fff; color:#000; font-size: 12pt; }
+  section{ padding: 18pt 0; border-top: none; page-break-inside: avoid; }
+  .ph{ border: 1px solid #999; }
+  a{ color:#000; text-decoration: none; }
+  a[href^="http"]::after{ content:" (" attr(href) ")"; font-size: 9pt; color:#555; }
+  [data-reveal]{ opacity:1 !important; transform:none !important; }
+}
+
+/* =========================================================
+   23. Tospråklighet (norsk / engelsk)
+   Standard er norsk. Uten JavaScript vises kun norsk tekst.
+   ========================================================= */
+/* Skjuler språket som ikke er valgt. Vi setter ALDRI display på det
+   språket som skal vises — da beholder elementet sin egen visning,
+   og ingen andre regler kan komme i veien. */
+html[data-lang="no"] .en,
+html[data-lang="en"] .no{ display: none !important; }
+
+/* Språkvelger i toppen */
+.lang-switch{
+  display:inline-flex; align-items:center;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  overflow: hidden;
+  flex: none;
+}
+.lang-switch button{
+  background: none; border: none; cursor: pointer;
+  font-family: var(--serif-body);
+  font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--ink-soft);
+  padding: 7px 13px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.lang-switch button + button{ border-left: 1px solid var(--line); }
+.lang-switch button[aria-pressed="true"]{ background: var(--ink); color: var(--white); }
+.lang-switch button:hover[aria-pressed="false"]{ background: var(--sage-mist); color: var(--ink); }
+
+@media (max-width: 900px){
+  .nav .lang-switch{
+    align-self: flex-start;
+    margin-top: 18px;
+  }
+  .nav .lang-switch button{ padding: 10px 18px; font-size: 0.78rem; }
+}
+
+/* Språkvelger i bunnen */
+.site-footer .lang-switch{ border-color: rgba(247,242,231,0.3); }
+.site-footer .lang-switch button{ color: rgba(247,242,231,0.75); }
+.site-footer .lang-switch button + button{ border-left-color: rgba(247,242,231,0.2); }
+.site-footer .lang-switch button[aria-pressed="true"]{ background: var(--cream); color: var(--ink); }
+
+@media print{ .lang-switch{ display:none !important; } }

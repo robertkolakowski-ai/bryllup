@@ -1,458 +1,326 @@
 <!DOCTYPE html>
-<html lang="no">
+<html lang="no" data-lang="no" data-title-no="Alexander &amp; Tonje — 28. august 2027" data-title-en="Alexander &amp; Tonje — 28 August 2027">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Alexander &amp; Tonje — 28. august 2027</title>
+<meta name="description" content="Alexander og Tonje gifter seg 28. august 2027 på Huser Gård — WonderInn Riverside i Fenstad. Program, praktisk informasjon og påmelding.">
+<meta name="theme-color" content="#F7F2E7">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="nb_NO">
+<meta property="og:locale:alternate" content="en_GB">
+<meta property="og:site_name" content="Alexander &amp; Tonje">
+<meta property="og:title" content="Alexander &amp; Tonje — 28. august 2027">
+<meta property="og:description" content="Alexander og Tonje gifter seg 28. august 2027 på Huser Gård — WonderInn Riverside i Fenstad. Program, praktisk informasjon og påmelding.">
+<!-- TODO: legg inn delebilde 1200×630 px som assets/img/og-image.jpg -->
+<meta property="og:image" content="assets/img/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --cream: #F7F2E7;
-    --cream-deep: #EFE7D6;
-    --ink: #2B3327;
-    --sage: #7C8A6E;
-    --sage-deep: #5C6B52;
-    --gold: #B08D57;
-    --line: rgba(43,51,39,0.18);
-    --white: #FFFDF8;
-  }
-
-  *{ box-sizing: border-box; }
-  html{ scroll-behavior: smooth; }
-  body{
-    margin:0;
-    background: var(--cream);
-    color: var(--ink);
-    font-family: 'EB Garamond', serif;
-    font-size: 18px;
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-  }
-
-  h1,h2,h3,.display{
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: 500;
-    letter-spacing: 0.02em;
-    margin: 0;
-  }
-
-  .eyebrow{
-    font-family: 'EB Garamond', serif;
-    font-size: 0.78rem;
-    letter-spacing: 0.35em;
-    text-transform: uppercase;
-    color: var(--sage-deep);
-  }
-
-  a{ color: var(--sage-deep); }
-
-  .wrap{
-    max-width: 720px;
-    margin: 0 auto;
-    padding: 0 28px;
-  }
-
-  /* Ornamental divider — simple hand-drawn style branch, echoes the watercolor motif */
-  .divider{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:14px;
-    margin: 28px 0;
-    color: var(--sage);
-  }
-  .divider svg{ width: 60px; height: 14px; }
-  .divider .dot{ width:5px; height:5px; border-radius:50%; background: var(--gold); }
-
-  /* HERO */
-  .hero{
-    min-height: 100svh;
-    display:flex;
-    flex-direction: column;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    position: relative;
-    padding: 60px 28px 80px;
-    background:
-      radial-gradient(ellipse at 50% 0%, rgba(124,138,110,0.10), transparent 60%),
-      var(--cream);
-  }
-  .hero .eyebrow{ margin-bottom: 18px; }
-  .hero h1{
-    font-size: clamp(3.6rem, 12vw, 6.4rem);
-    line-height: 0.95;
-  }
-  .hero h1 .amp{
-    display:block;
-    font-style: italic;
-    font-weight: 400;
-    font-size: 0.42em;
-    color: var(--sage-deep);
-    margin: 6px 0;
-  }
-  .hero .date-line{
-    margin-top: 26px;
-    font-size: 1.3rem;
-    letter-spacing: 0.08em;
-  }
-  .hero .place-line{
-    font-style: italic;
-    color: var(--sage-deep);
-    margin-top: 4px;
-    font-size: 1.15rem;
-  }
-
-  .countdown{
-    display:flex;
-    gap: clamp(18px, 5vw, 44px);
-    margin-top: 46px;
-  }
-  .countdown div{ text-align:center; }
-  .countdown .num{
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(1.8rem, 5vw, 2.6rem);
-    color: var(--ink);
-  }
-  .countdown .lab{
-    font-size: 0.68rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--sage-deep);
-  }
-
-  .scroll-hint{
-    position:absolute;
-    bottom: 34px;
-    font-size: 0.72rem;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--sage-deep);
-    opacity: 0.7;
-  }
-
-  /* SECTIONS */
-  section{
-    padding: 92px 0;
-    border-top: 1px solid var(--line);
-  }
-  section .eyebrow{ display:block; text-align:center; margin-bottom: 10px; }
-  section h2{
-    text-align:center;
-    font-size: clamp(2.2rem, 6vw, 3rem);
-    font-style: italic;
-    font-weight: 400;
-    margin-bottom: 12px;
-  }
-  section .lede{
-    text-align:center;
-    max-width: 480px;
-    margin: 0 auto 52px;
-    color: var(--sage-deep);
-    font-size: 1.05rem;
-  }
-
-  /* PROGRAM / TIMELINE — order is real here, so a vertical line + time markers is earned */
-  .program{
-    position:relative;
-    padding-left: 26px;
-  }
-  .program::before{
-    content:"";
-    position:absolute;
-    left: 4px; top: 6px; bottom: 6px;
-    width: 1px;
-    background: var(--line);
-  }
-  .program-item{
-    position:relative;
-    padding-bottom: 40px;
-  }
-  .program-item:last-child{ padding-bottom: 0; }
-  .program-item::before{
-    content:"";
-    position:absolute;
-    left: -26px; top: 6px;
-    width: 9px; height:9px;
-    border-radius:50%;
-    background: var(--white);
-    border: 1.5px solid var(--gold);
-  }
-  .program-item .time{
-    font-family:'Cormorant Garamond', serif;
-    font-size: 1.5rem;
-    color: var(--sage-deep);
-  }
-  .program-item .what{ font-size: 1.08rem; margin-top: 2px; }
-
-  /* VENUE CARD */
-  .venue-card{
-    background: var(--white);
-    border: 1px solid var(--line);
-    padding: 44px 40px;
-    text-align:center;
-  }
-  .venue-card h3{
-    font-size: 1.9rem;
-    font-style: italic;
-    font-weight: 400;
-    margin-bottom: 6px;
-  }
-  .venue-card .addr{ color: var(--sage-deep); margin-bottom: 20px; }
-  .venue-card .btn{
-    display:inline-block;
-    margin-top: 6px;
-    padding: 11px 26px;
-    border: 1px solid var(--ink);
-    text-decoration:none;
-    color: var(--ink);
-    font-size: 0.85rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    transition: background 0.2s ease, color 0.2s ease;
-  }
-  .venue-card .btn:hover{ background: var(--ink); color: var(--white); }
-
-  .info-grid{
-    display:grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 36px;
-    margin-top: 48px;
-  }
-  .info-grid .block h4{
-    font-family:'Cormorant Garamond', serif;
-    font-style: italic;
-    font-weight: 500;
-    font-size: 1.3rem;
-    margin-bottom: 8px;
-    color: var(--sage-deep);
-  }
-  .info-grid .block p{ margin:0; font-size: 0.98rem; }
-
-  /* RSVP */
-  .rsvp-form{
-    max-width: 460px;
-    margin: 0 auto;
-    display:flex;
-    flex-direction:column;
-    gap: 20px;
-  }
-  .field{ display:flex; flex-direction:column; gap:6px; }
-  .field label{
-    font-size: 0.72rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--sage-deep);
-  }
-  .field input, .field select, .field textarea{
-    font-family: 'EB Garamond', serif;
-    font-size: 1.05rem;
-    background: var(--white);
-    border: 1px solid var(--line);
-    padding: 12px 14px;
-    color: var(--ink);
-  }
-  .field input:focus, .field select:focus, .field textarea:focus{
-    outline: none;
-    border-color: var(--gold);
-  }
-  .rsvp-submit{
-    margin-top: 8px;
-    padding: 14px;
-    background: var(--sage-deep);
-    color: var(--white);
-    border: none;
-    font-family: 'EB Garamond', serif;
-    font-size: 1rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: background 0.2s ease;
-  }
-  .rsvp-submit:hover{ background: var(--ink); }
-  .form-note{
-    text-align:center;
-    font-size: 0.85rem;
-    color: var(--sage-deep);
-    margin-top: 14px;
-  }
-
-  footer{
-    text-align:center;
-    padding: 56px 28px 70px;
-    color: var(--sage-deep);
-  }
-  footer .display{
-    font-style: italic;
-    font-size: 1.6rem;
-    margin-bottom: 6px;
-  }
-  footer .fine{ font-size: 0.85rem; opacity: 0.8; }
-
-  @media (max-width: 560px){
-    .info-grid{ grid-template-columns: 1fr; }
-    .countdown{ gap: 20px; }
-    section{ padding: 70px 0; }
-  }
-
-  [data-reveal]{
-    opacity: 0;
-    transform: translateY(14px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-  }
-  [data-reveal].in{
-    opacity: 1;
-    transform: none;
-  }
-  @media (prefers-reduced-motion: reduce){
-    [data-reveal]{ opacity:1; transform:none; transition:none; }
-    html{ scroll-behavior: auto; }
-  }
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+<script>
+  // Setter språk før siden tegnes, så det ikke blinker.
+  (function () {
+    try {
+      var l = localStorage.getItem('bryllup-lang');
+      if (l === 'en') {
+        document.documentElement.setAttribute('data-lang', 'en');
+        document.documentElement.setAttribute('lang', 'en');
+      }
+    } catch (e) {}
+  })();
+</script>
 </head>
 <body>
 
-<section class="hero">
-  <div class="eyebrow">Vi gifter oss</div>
-  <h1>Alexander<span class="amp">&amp;</span>Tonje</h1>
-  <div class="date-line">28. august 2027</div>
-  <div class="place-line">Huser Gård, Fenstad</div>
+<a class="skip-link" href="#main"><span class="no">Hopp til innhold</span><span class="en">Skip to content</span></a>
 
-  <div class="countdown" id="countdown">
-    <div><div class="num" id="cd-days">–</div><div class="lab">Dager</div></div>
-    <div><div class="num" id="cd-hours">–</div><div class="lab">Timer</div></div>
-    <div><div class="num" id="cd-min">–</div><div class="lab">Minutter</div></div>
-    <div><div class="num" id="cd-sec">–</div><div class="lab">Sekunder</div></div>
+<header class="site-header">
+  <div class="bar">
+    <a class="brand" href="index.html">A <span class="amp">&amp;</span> T</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="hovedmeny">Meny</button>
+    <nav class="nav" id="hovedmeny" data-no-label="Hovedmeny" data-en-label="Main menu" aria-label="Hovedmeny">
+      <a href="index.html"><span class="no">Hjem</span><span class="en">Home</span></a>
+      <a href="historien.html"><span class="no">Historien</span><span class="en">Our story</span></a>
+      <a href="programmet.html"><span class="no">Programmet</span><span class="en">The day</span></a>
+      <a href="praktisk.html"><span class="no">Praktisk</span><span class="en">Practical</span></a>
+      <a href="galleri.html"><span class="no">Galleri</span><span class="en">Gallery</span></a>
+      <a href="onskeliste.html"><span class="no">Ønskeliste</span><span class="en">Gifts</span></a>
+      <a class="nav-cta" href="rsvp.html"><span class="no">Gi beskjed</span><span class="en">RSVP</span></a>
+      <div class="lang-switch" role="group" data-no-label="Velg språk" data-en-label="Choose language" aria-label="Velg språk">
+        <button type="button" data-lang="no" aria-pressed="true">NO</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<section class="hero">
+  <p class="eyebrow"><span class="no">Vi gifter oss</span><span class="en">We are getting married</span></p>
+  <h1>Alexander<span class="amp">&amp;</span>Tonje</h1>
+  <p class="date-line"><span class="no">28. august 2027</span><span class="en">28 August 2027</span></p>
+  <p class="place-line">Huser Gård — WonderInn Riverside, Fenstad</p>
+
+  <div class="countdown" id="countdown" data-no-label="Nedtelling til bryllupsdagen" data-en-label="Countdown to the wedding day" aria-label="Nedtelling til bryllupsdagen">
+    <div><div class="num" id="cd-days">–</div><div class="lab"><span class="no">Dager</span><span class="en">Days</span></div></div>
+    <div><div class="num" id="cd-hours">–</div><div class="lab"><span class="no">Timer</span><span class="en">Hours</span></div></div>
+    <div><div class="num" id="cd-min">–</div><div class="lab"><span class="no">Minutter</span><span class="en">Minutes</span></div></div>
+    <div><div class="num" id="cd-sec">–</div><div class="lab"><span class="no">Sekunder</span><span class="en">Seconds</span></div></div>
   </div>
 
-  <div class="scroll-hint">Bla ned ↓</div>
+  <div class="hero-actions">
+    <a class="btn btn-primary" href="rsvp.html"><span class="no">Gi oss beskjed</span><span class="en">RSVP</span></a>
+    <a class="btn" href="#" data-calendar><span class="no">Legg i kalenderen</span><span class="en">Add to calendar</span></a>
+  </div>
+
+  <div class="scroll-hint"><span class="no">Bla ned</span><span class="en">Scroll</span><span class="arrow">↓</span></div>
 </section>
 
-<section id="dagen" data-reveal>
-  <div class="wrap">
-    <div class="eyebrow">Programmet</div>
-    <h2>Dagen</h2>
-    <p class="lede">Et foreløpig program — detaljer og klokkeslett oppdateres etter hvert.</p>
+<section id="velkommen">
+  <div class="wrap center" data-reveal>
+    <p class="eyebrow"><span class="no">Velkommen</span><span class="en">Welcome</span></p>
+    <div class="divider" aria-hidden="true"><span class="dot"></span></div>
 
-    <div class="program">
-      <div class="program-item">
+    <p class="quote no" style="margin-bottom:26px">
+      Etter mange år sammen, utallige turer og én uventet kveld på kne,
+      sier vi endelig ja til hverandre.
+    </p>
+    <p class="quote en" lang="en" style="margin-bottom:26px">
+      After many years together, countless journeys and one unexpected evening on one knee,
+      we are finally saying yes to each other.
+    </p>
+
+    <p class="no" style="max-width:580px; margin:0 auto; color:var(--ink-soft);">
+      Vi ønsker å feire dagen med menneskene som betyr mest for oss. Her finner dere alt dere
+      trenger å vite — program, veibeskrivelse, overnatting, antrekk og hvordan dere melder
+      dere på. Siden oppdateres fram mot dagen, så ta gjerne en titt innimellom.
+    </p>
+    <p class="en" lang="en" style="max-width:580px; margin:0 auto; color:var(--ink-soft);">
+      We want to celebrate with the people who mean the most to us. Here you will find
+      everything you need — the programme, directions, accommodation, dress code and how to
+      let us know you are coming. We keep this site updated, so do check back now and then.
+    </p>
+  </div>
+</section>
+
+<section class="tint" id="bilde">
+  <div class="wrap-wide" data-reveal>
+    <figure class="ph ph-21x9">
+      <div class="ph__inner">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true">
+          <rect x="3" y="5" width="18" height="14" rx="1"/><circle cx="8.5" cy="10" r="1.6"/>
+          <path d="M3 16l5-4 4 3 3-2 6 5"/>
+        </svg>
+        <span class="ph__label"><span class="no">Forsidebilde av brudeparet</span><span class="en">Cover photograph of the couple</span></span>
+        <span class="ph__spec">
+          <span class="no">Bredt format · anbefalt 2400 × 1030 px<br>Legges inn som assets/img/hero.jpg</span>
+          <span class="en">Wide format · recommended 2400 × 1030 px<br>Save as assets/img/hero.jpg</span>
+        </span>
+      </div>
+    </figure>
+  </div>
+</section>
+
+<section id="dagen-kort">
+  <div class="wrap">
+    <div class="section-head" data-reveal>
+      <p class="eyebrow"><span class="no">Kort fortalt</span><span class="en">In brief</span></p>
+      <h2><span class="no">Dagen</span><span class="en">The day</span></h2>
+      <p class="lede no">Hovedpunktene for lørdag 28. august. Hele programmet — også fredagen
+        og søndagen — finner dere på egen side.</p>
+      <p class="lede en" lang="en">The main moments of Saturday 28 August. The full programme —
+        including Friday and Sunday — has its own page.</p>
+    </div>
+
+    <div class="program" data-reveal>
+      <div class="program-item is-key">
+        <div class="time">14:30</div>
+        <div class="what"><span class="no">Gjestene ankommer</span><span class="en">Guests arrive</span></div>
+        <div class="detail"><span class="no">Vi ber alle være på plass i god tid før vielsen.</span><span class="en">Please be seated well before the ceremony begins.</span></div>
+      </div>
+      <div class="program-item is-key">
         <div class="time">15:00</div>
-        <div class="what">Vielse ved vannet, Huser Gård</div>
+        <div class="what"><span class="no">Vielse nede ved Vorma</span><span class="en">Ceremony down by the Vorma river</span></div>
+        <div class="detail"><span class="no">Utendørs seremoni på gårdstunet — med regnplan innendørs.</span><span class="en">An outdoor ceremony on the farm — with an indoor plan if it rains.</span></div>
       </div>
       <div class="program-item">
         <div class="time">16:00</div>
-        <div class="what">Mingling og velkomstdrikke i hagen</div>
+        <div class="what"><span class="no">Gratulasjoner og velkomstdrikke i hagen</span><span class="en">Congratulations and welcome drinks in the garden</span></div>
       </div>
       <div class="program-item">
         <div class="time">18:00</div>
-        <div class="what">Middag og taler</div>
+        <div class="what"><span class="no">Middag og taler i låven</span><span class="en">Dinner and speeches in the barn</span></div>
       </div>
       <div class="program-item">
         <div class="time">21:00</div>
-        <div class="what">Fest og dans til langt på natt</div>
+        <div class="what"><span class="no">Kaken, brudevalsen og fest</span><span class="en">Cake, first dance and dancing</span></div>
+      </div>
+    </div>
+
+    <p class="center mt-l" data-reveal>
+      <a class="btn" href="programmet.html"><span class="no">Se hele programmet</span><span class="en">See the full programme</span></a>
+    </p>
+  </div>
+</section>
+
+<section class="tint" id="snarveier" style="padding-left:0;padding-right:0;">
+  <div class="wrap-wide">
+    <div class="section-head" data-reveal>
+      <p class="eyebrow"><span class="no">Alt dere trenger</span><span class="en">Everything you need</span></p>
+      <h2><span class="no">Godt å vite</span><span class="en">Good to know</span></h2>
+    </div>
+  </div>
+  <div class="shortcuts" data-reveal>
+    <a href="praktisk.html#sted">
+      <span class="k"><span class="no">Stedet</span><span class="en">The venue</span></span>
+      <span class="t">Huser Gård</span>
+      <span class="d"><span class="no">Veibeskrivelse, parkering og felles transport til og fra gården.</span><span class="en">Directions, parking and shared transport to and from the farm.</span></span>
+      <span class="go"><span class="no">Se veien dit →</span><span class="en">Find your way →</span></span>
+    </a>
+    <a href="praktisk.html#overnatting">
+      <span class="k"><span class="no">Overnatting</span><span class="en">Where to stay</span></span>
+      <span class="t"><span class="no">Bli natten over</span><span class="en">Stay the night</span></span>
+      <span class="d"><span class="no">Speilhytter på gården og hoteller i nærheten — book tidlig.</span><span class="en">Mirror cabins on the farm and hotels nearby — book early.</span></span>
+      <span class="go"><span class="no">Se alternativer →</span><span class="en">See the options →</span></span>
+    </a>
+    <a href="praktisk.html#antrekk">
+      <span class="k"><span class="no">Antrekk</span><span class="en">Dress code</span></span>
+      <span class="t"><span class="no">Hva tar vi på?</span><span class="en">What to wear</span></span>
+      <span class="d"><span class="no">Mørk dress og lang eller kort kjole — og et lite tips om skoene.</span><span class="en">Dark suit and a long or short dress — plus a word about shoes.</span></span>
+      <span class="go"><span class="no">Les mer →</span><span class="en">Read more →</span></span>
+    </a>
+    <a href="onskeliste.html">
+      <span class="k"><span class="no">Gaver</span><span class="en">Gifts</span></span>
+      <span class="t"><span class="no">Ønskeliste</span><span class="en">Gift list</span></span>
+      <span class="d"><span class="no">Det viktigste er at dere kommer — men vil dere gi noe, står det her.</span><span class="en">Your presence matters most — but if you would like to give, look here.</span></span>
+      <span class="go"><span class="no">Se ønskene →</span><span class="en">See the list →</span></span>
+    </a>
+    <a href="tale.html">
+      <span class="k"><span class="no">Toastmaster</span><span class="en">Toastmaster</span></span>
+      <span class="t"><span class="no">Tale eller innslag</span><span class="en">Speech or surprise</span></span>
+      <span class="d"><span class="no">Har du noe på hjertet? Meld det inn, så settes det opp i programmet.</span><span class="en">Something to say? Let us know and it goes into the programme.</span></span>
+      <span class="go"><span class="no">Meld fra →</span><span class="en">Tell us →</span></span>
+    </a>
+    <a href="praktisk.html#faq">
+      <span class="k"><span class="no">Spørsmål</span><span class="en">Questions</span></span>
+      <span class="t"><span class="no">Ofte spurt</span><span class="en">Frequently asked</span></span>
+      <span class="d"><span class="no">Barn, allergier, overnatting og alt det andre dere lurer på.</span><span class="en">Children, allergies, accommodation and everything else.</span></span>
+      <span class="go"><span class="no">Finn svaret →</span><span class="en">Find the answer →</span></span>
+    </a>
+  </div>
+</section>
+
+<section id="stedet-kort">
+  <div class="wrap-wide">
+    <div class="split" data-reveal>
+      <div>
+        <p class="eyebrow"><span class="no">Stedet</span><span class="en">The venue</span></p>
+        <h2 style="font-size:clamp(2rem,5vw,2.8rem); font-style:italic; font-weight:400; margin:12px 0 18px;">
+          Huser Gård<br><span style="font-size:0.62em; color:var(--sage-deep);">WonderInn Riverside</span>
+        </h2>
+        <p class="no">Vi feirer på en gård fra 1760 ved bredden av Vorma i Fenstad — tjue minutter
+          fra Oslo lufthavn og under en time fra Oslo sentrum. Her er det låve til middag og fest,
+          plass til seremoni nede ved elva, alpakkaer på jordet og speilhytter å sove i.</p>
+        <p class="en" lang="en">We are celebrating at a farm from 1760 on the banks of the Vorma river
+          in Fenstad — twenty minutes from Oslo Airport and under an hour from central Oslo. There is
+          a barn for dinner and dancing, a ceremony spot down by the river, alpacas in the field and
+          mirrored cabins to sleep in.</p>
+        <p style="margin-top:24px; display:flex; gap:12px; flex-wrap:wrap;">
+          <a class="btn btn-sm" href="praktisk.html#sted"><span class="no">Praktisk om stedet</span><span class="en">Venue details</span></a>
+          <a class="btn btn-sm btn-ghost" href="#" data-map-link><span class="no">Åpne i kart</span><span class="en">Open in maps</span></a>
+        </p>
+      </div>
+      <div class="split-media">
+        <figure class="ph ph-4x5">
+          <div class="ph__inner">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true">
+              <path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/>
+            </svg>
+            <span class="ph__label"><span class="no">Bilde av gården</span><span class="en">Photograph of the farm</span></span>
+            <span class="ph__spec">
+              <span class="no">Stående format · 1200 × 1500 px<br>assets/img/gaarden.jpg</span>
+              <span class="en">Portrait · 1200 × 1500 px<br>assets/img/gaarden.jpg</span>
+            </span>
+          </div>
+        </figure>
       </div>
     </div>
   </div>
 </section>
 
-<section id="sted" data-reveal>
-  <div class="wrap">
-    <div class="eyebrow">Stedet</div>
-    <h2>Huser Gård</h2>
-    <p class="lede">Vielsen og feiringen holdes på Huser Gård i Fenstad — en vakker gård med utsikt mot vannet.</p>
-
-    <div class="venue-card">
-      <h3>Huser Gård</h3>
-      <div class="addr">Fenstad, Norge</div>
-      <a class="btn" href="#" target="_blank" rel="noopener">Se i kart</a>
-    </div>
-
-    <div class="info-grid">
-      <div class="block">
-        <h4>Overnatting</h4>
-        <p>Vi anbefaler å bestille overnatting i god tid. Forslag til hoteller og gårder i nærheten legges ut her.</p>
-      </div>
-      <div class="block">
-        <h4>Transport</h4>
-        <p>Det vil bli lagt til rette for felles transport fra sentrale punkter. Mer informasjon kommer.</p>
-      </div>
-      <div class="block">
-        <h4>Antrekk</h4>
-        <p>Pent antrekk / festantrekk. Gården har gressplen og grus — vi anbefaler sko du kan gå litt i.</p>
-      </div>
-      <div class="block">
-        <h4>Barn</h4>
-        <p>Vi elsker barna deres, men ønsker en voksen kveld. Ta gjerne kontakt om dere trenger barnevakt-tips.</p>
-      </div>
-    </div>
+<section id="sitat" class="tint">
+  <div class="wrap" data-reveal>
+    <blockquote class="quote">
+      <span class="no">«Å elske er ikke å se på hverandre, men å se sammen i samme retning.»</span>
+      <span class="en" lang="en">“Love does not consist of gazing at each other, but in looking outward together in the same direction.”</span>
+      <cite>Antoine de Saint-Exupéry</cite>
+    </blockquote>
   </div>
 </section>
 
-<section id="rsvp" data-reveal>
-  <div class="wrap">
-    <div class="eyebrow">Påmelding</div>
-    <h2>RSVP</h2>
-    <p class="lede">Vi gleder oss til å feire sammen med dere. Vennligst svar innen 1. mai 2027.</p>
+<div class="cta-band">
+  <h2><span class="no">Kommer dere?</span><span class="en">Will you be there?</span></h2>
+  <p class="no">Vi trenger svar innen <span data-cfg="rsvpDeadline">1. mai 2027</span> for å få alt på
+    plass — bordkart, mat og alt det andre som skal til for en god kveld.</p>
+  <p class="en" lang="en">We need your answer by <span data-cfg="rsvpDeadline">1 May 2027</span> so we can
+    plan the seating, the food and everything else that makes a good evening.</p>
+  <a class="btn btn-primary" href="rsvp.html"><span class="no">Gi oss beskjed</span><span class="en">RSVP now</span></a>
+</div>
+</main>
 
-    <form class="rsvp-form" onsubmit="event.preventDefault(); alert('Skjemaet er ikke koblet til noe ennå — dette er et utkast.');">
-      <div class="field">
-        <label for="name">Navn</label>
-        <input type="text" id="name" placeholder="Fornavn Etternavn" required>
-      </div>
-      <div class="field">
-        <label for="attending">Kommer du?</label>
-        <select id="attending">
-          <option>Ja, jeg gleder meg!</option>
-          <option>Dessverre ikke</option>
-        </select>
-      </div>
-      <div class="field">
-        <label for="guests">Antall gjester (inkl. deg selv)</label>
-        <input type="number" id="guests" min="1" value="1">
-      </div>
-      <div class="field">
-        <label for="diet">Allergier / matpreferanser</label>
-        <textarea id="diet" rows="3" placeholder="Skriv gjerne her..."></textarea>
-      </div>
-      <button class="rsvp-submit" type="submit">Send svar</button>
-    </form>
-    <div class="form-note">Skjemaet er foreløpig ikke koblet til noe lagringssted — sier fra når vi skal koble det til noe.</div>
+<footer class="site-footer">
+  <div class="footer-top">
+    <div>
+      <h3>Alexander &amp; Tonje</h3>
+      <p class="no">28. august 2027 · Huser Gård — WonderInn Riverside, Fenstad</p>
+      <p class="en" lang="en">28 August 2027 · Huser Gård — WonderInn Riverside, Fenstad, Norway</p>
+      <p style="margin-top:16px">
+        <a class="btn btn-sm" href="#" data-calendar>
+          <span class="no">Legg i kalenderen</span><span class="en">Add to calendar</span>
+        </a>
+      </p>
+    </div>
+    <div>
+      <div class="col-title"><span class="no">Snarveier</span><span class="en">Shortcuts</span></div>
+      <ul>
+        <li><a href="historien.html"><span class="no">Vår historie</span><span class="en">Our story</span></a></li>
+        <li><a href="programmet.html"><span class="no">Programmet</span><span class="en">The programme</span></a></li>
+        <li><a href="praktisk.html"><span class="no">Praktisk informasjon</span><span class="en">Practical information</span></a></li>
+        <li><a href="galleri.html"><span class="no">Galleri</span><span class="en">Gallery</span></a></li>
+        <li><a href="onskeliste.html"><span class="no">Ønskeliste</span><span class="en">Gift list</span></a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="col-title"><span class="no">Si ifra</span><span class="en">Get in touch</span></div>
+      <ul>
+        <li><a href="rsvp.html"><span class="no">Meld deg på</span><span class="en">RSVP</span></a></li>
+        <li><a href="tale.html"><span class="no">Meld tale eller innslag</span><span class="en">Speeches &amp; surprises</span></a></li>
+        <li><a href="kontakt.html"><span class="no">Kontakt oss</span><span class="en">Contact us</span></a></li>
+        <li><a href="praktisk.html#faq"><span class="no">Ofte stilte spørsmål</span><span class="en">Frequently asked questions</span></a></li>
+      </ul>
+    </div>
   </div>
-</section>
-
-<footer>
-  <div class="display">Vi gleder oss!</div>
-  <div class="fine">Alexander &amp; Tonje · 28. august 2027 · Huser Gård, Fenstad</div>
+  <div class="footer-bottom">
+    <div>
+      <span class="no">Svarfrist: </span><span class="en">RSVP by </span>
+      <span data-cfg="rsvpDeadline">1. mai 2027</span>
+    </div>
+    <div class="lang-switch" role="group" data-no-label="Velg språk" data-en-label="Choose language" aria-label="Velg språk">
+      <button type="button" data-lang="no" aria-pressed="true">Norsk</button>
+      <button type="button" data-lang="en" aria-pressed="false">English</button>
+    </div>
+    <div>
+      <span class="no">Laget med glede for dagen vår.</span>
+      <span class="en">Made with joy for our day.</span>
+    </div>
+  </div>
 </footer>
 
-<script>
-  // Countdown
-  const weddingDate = new Date('2027-08-28T15:00:00');
-  function tick(){
-    const now = new Date();
-    let diff = weddingDate - now;
-    if(diff < 0) diff = 0;
-    const d = Math.floor(diff / (1000*60*60*24));
-    const h = Math.floor((diff / (1000*60*60)) % 24);
-    const m = Math.floor((diff / (1000*60)) % 60);
-    const s = Math.floor((diff / 1000) % 60);
-    document.getElementById('cd-days').textContent = d;
-    document.getElementById('cd-hours').textContent = String(h).padStart(2,'0');
-    document.getElementById('cd-min').textContent = String(m).padStart(2,'0');
-    document.getElementById('cd-sec').textContent = String(s).padStart(2,'0');
-  }
-  tick();
-  setInterval(tick, 1000);
-
-  // Reveal on scroll
-  const revealEls = document.querySelectorAll('[data-reveal]');
-  const io = new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
-  }, { threshold: 0.12 });
-  revealEls.forEach(el => io.observe(el));
-</script>
+<script src="assets/js/config.js"></script>
+<script src="assets/js/main.js"></script>
 
 </body>
 </html>

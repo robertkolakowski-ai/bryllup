@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="no" data-lang="no" data-title-no="Påmelding — Alexander &amp; Tonje" data-title-en="RSVP — Alexander &amp; Tonje">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Påmelding — Alexander &amp; Tonje</title>
+<meta name="description" content="Meld deg på bryllupet til Alexander og Tonje. Svarfrist 1. mai 2027.">
+<meta name="theme-color" content="#F7F2E7">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="nb_NO">
+<meta property="og:locale:alternate" content="en_GB">
+<meta property="og:site_name" content="Alexander &amp; Tonje">
+<meta property="og:title" content="Påmelding — Alexander &amp; Tonje">
+<meta property="og:description" content="Meld deg på bryllupet til Alexander og Tonje. Svarfrist 1. mai 2027.">
+<!-- TODO: legg inn delebilde 1200×630 px som assets/img/og-image.jpg -->
+<meta property="og:image" content="assets/img/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+<script>
+  // Setter språk før siden tegnes, så det ikke blinker.
+  (function () {
+    try {
+      var l = localStorage.getItem('bryllup-lang');
+      if (l === 'en') {
+        document.documentElement.setAttribute('data-lang', 'en');
+        document.documentElement.setAttribute('lang', 'en');
+      }
+    } catch (e) {}
+  })();
+</script>
+</head>
+<body>
+
+<a class="skip-link" href="#main"><span class="no">Hopp til innhold</span><span class="en">Skip to content</span></a>
+
+<header class="site-header">
+  <div class="bar">
+    <a class="brand" href="index.html">A <span class="amp">&amp;</span> T</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="hovedmeny">Meny</button>
+    <nav class="nav" id="hovedmeny" data-no-label="Hovedmeny" data-en-label="Main menu" aria-label="Hovedmeny">
+      <a href="index.html"><span class="no">Hjem</span><span class="en">Home</span></a>
+      <a href="historien.html"><span class="no">Historien</span><span class="en">Our story</span></a>
+      <a href="programmet.html"><span class="no">Programmet</span><span class="en">The day</span></a>
+      <a href="praktisk.html"><span class="no">Praktisk</span><span class="en">Practical</span></a>
+      <a href="galleri.html"><span class="no">Galleri</span><span class="en">Gallery</span></a>
+      <a href="onskeliste.html"><span class="no">Ønskeliste</span><span class="en">Gifts</span></a>
+      <a class="nav-cta" href="rsvp.html"><span class="no">Gi beskjed</span><span class="en">RSVP</span></a>
+      <div class="lang-switch" role="group" data-no-label="Velg språk" data-en-label="Choose language" aria-label="Velg språk">
+        <button type="button" data-lang="no" aria-pressed="true">NO</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<div class="page-head">
+  <p class="eyebrow"><span class="no">Påmelding</span><span class="en">RSVP</span></p>
+  <h1>RSVP</h1>
+  <p class="lede no">Vi gleder oss til å feire sammen med dere. Svar gjerne så snart dere vet —
+    og senest innen <strong data-cfg="rsvpDeadline">1. mai 2027</strong>.</p>
+  <p class="lede en" lang="en">We are looking forward to celebrating with you. Please reply as soon as
+    you know — and by <strong data-cfg="rsvpDeadline">1 May 2027</strong> at the latest.</p>
+</div>
+
+<section id="skjema">
+  <div class="wrap">
+
+    <div class="form-status" data-form-status hidden></div>
+
+    <form class="form" data-form data-subject="RSVP" method="post" action="#">
+      <!-- Spamfelle: skal stå tom -->
+      <div class="hp-field" aria-hidden="true">
+        <label for="_gotcha">La dette feltet stå tomt</label>
+        <input type="text" id="_gotcha" name="_gotcha" tabindex="-1" autocomplete="off">
+      </div>
+
+      <div class="field">
+        <label for="navn"><span class="no">Navn</span><span class="en">Name</span></label>
+        <input type="text" id="navn" name="navn" required
+               placeholder="Fornavn Etternavn"
+               data-no-placeholder="Fornavn Etternavn" data-en-placeholder="First name Last name">
+      </div>
+
+      <div class="form-row">
+        <div class="field">
+          <label for="epost"><span class="no">E-post</span><span class="en">Email</span></label>
+          <input type="email" id="epost" name="epost" required
+                 placeholder="navn@epost.no"
+                 data-no-placeholder="navn@epost.no" data-en-placeholder="name@email.com">
+        </div>
+        <div class="field">
+          <label for="telefon"><span class="no">Telefon</span><span class="en">Phone</span></label>
+          <input type="tel" id="telefon" name="telefon"
+                 placeholder="Valgfritt"
+                 data-no-placeholder="Valgfritt" data-en-placeholder="Optional">
+        </div>
+      </div>
+
+      <fieldset>
+        <legend class="fieldset-label">
+          <span class="no">Kommer du?</span><span class="en">Are you coming?</span>
+        </legend>
+        <label class="choice">
+          <input type="radio" name="kommer" value="ja" required checked data-toggle-target="#kommer-felter">
+          <span class="choice-text">
+            <span class="no">Ja, jeg gleder meg!</span><span class="en">Yes, I would love to!</span>
+            <small>
+              <span class="no">Vi setter av plass til deg.</span>
+              <span class="en">We will save you a seat.</span>
+            </small>
+          </span>
+        </label>
+        <label class="choice">
+          <input type="radio" name="kommer" value="nei" data-toggle-target="#kommer-felter">
+          <span class="choice-text">
+            <span class="no">Dessverre ikke</span><span class="en">Sadly not</span>
+            <small>
+              <span class="no">Vi savner deg, men forstår godt.</span>
+              <span class="en">We will miss you, but we understand.</span>
+            </small>
+          </span>
+        </label>
+      </fieldset>
+
+      <div id="kommer-felter" style="display:flex; flex-direction:column; gap:22px;">
+
+        <div class="field">
+          <span class="fieldset-label">
+            <span class="no">Hvem kommer du sammen med?</span><span class="en">Who is coming with you?</span>
+          </span>
+          <p class="hint no">Skriv navnet på følget ditt slik det står på invitasjonen.
+            Er du alene, kan du hoppe over dette.</p>
+          <p class="hint en" lang="en">Add the name of your plus one as it appears on the invitation.
+            If you are coming alone, you can skip this.</p>
+          <div class="guest-list" data-guest-list></div>
+          <p style="margin-top:12px">
+            <button type="button" class="btn btn-sm btn-ghost" data-add-guest>
+              <span class="no">+ Legg til gjest</span><span class="en">+ Add a guest</span>
+            </button>
+          </p>
+        </div>
+
+        <div class="field">
+          <label for="allergier">
+            <span class="no">Allergier eller matpreferanser</span>
+            <span class="en">Allergies or dietary preferences</span>
+          </label>
+          <textarea id="allergier" name="allergier" rows="3"
+                    placeholder="For eksempel: nøtteallergi, vegetar, glutenfri …"
+                    data-no-placeholder="For eksempel: nøtteallergi, vegetar, glutenfri …"
+                    data-en-placeholder="For example: nut allergy, vegetarian, gluten free …"></textarea>
+          <p class="hint no">Gjelder også for følget ditt — skriv gjerne hvem det gjelder.</p>
+          <p class="hint en" lang="en">This covers your plus one too — do say who it applies to.</p>
+        </div>
+
+        <fieldset>
+          <legend class="fieldset-label">
+            <span class="no">Ønsker du plass på bussen fra Oslo?</span>
+            <span class="en">Would you like a seat on the coach from Oslo?</span>
+          </legend>
+          <label class="choice">
+            <input type="radio" name="buss" value="ja-begge-veier" checked>
+            <span class="choice-text"><span class="no">Ja, begge veier</span><span class="en">Yes, both ways</span></span>
+          </label>
+          <label class="choice">
+            <input type="radio" name="buss" value="bare-dit">
+            <span class="choice-text"><span class="no">Bare dit</span><span class="en">Only there</span></span>
+          </label>
+          <label class="choice">
+            <input type="radio" name="buss" value="bare-hjem">
+            <span class="choice-text"><span class="no">Bare hjem</span><span class="en">Only back</span></span>
+          </label>
+          <label class="choice">
+            <input type="radio" name="buss" value="nei">
+            <span class="choice-text"><span class="no">Nei takk, jeg ordner meg selv</span><span class="en">No thank you, I will make my own way</span></span>
+          </label>
+        </fieldset>
+
+        <fieldset>
+          <legend class="fieldset-label">
+            <span class="no">Blir du med på grillkvelden fredag?</span>
+            <span class="en">Will you join the barbecue on Friday?</span>
+          </legend>
+          <label class="choice">
+            <input type="radio" name="fredag" value="ja">
+            <span class="choice-text"><span class="no">Ja, gjerne</span><span class="en">Yes, please</span></span>
+          </label>
+          <label class="choice">
+            <input type="radio" name="fredag" value="nei" checked>
+            <span class="choice-text"><span class="no">Nei, jeg kommer lørdag</span><span class="en">No, I will come on Saturday</span></span>
+          </label>
+          <label class="choice">
+            <input type="radio" name="fredag" value="vet-ikke">
+            <span class="choice-text"><span class="no">Vet ikke ennå</span><span class="en">Not sure yet</span></span>
+          </label>
+        </fieldset>
+
+        <div class="field">
+          <label for="overnatting">
+            <span class="no">Overnatting</span><span class="en">Accommodation</span>
+          </label>
+          <select id="overnatting" name="overnatting">
+            <option value="ikke-bestemt" data-no-text="Ikke bestemt ennå" data-en-text="Not decided yet">Ikke bestemt ennå</option>
+            <option value="pa-garden" data-no-text="Jeg sover på gården" data-en-text="I am staying at the farm">Jeg sover på gården</option>
+            <option value="hotell" data-no-text="Jeg bor på hotell i nærheten" data-en-text="I am staying at a hotel nearby">Jeg bor på hotell i nærheten</option>
+            <option value="reiser-hjem" data-no-text="Jeg reiser hjem samme kveld" data-en-text="I am travelling home the same evening">Jeg reiser hjem samme kveld</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="sang">
+            <span class="no">En sang du må ha på dansegulvet</span>
+            <span class="en">A song you need on the dance floor</span>
+          </label>
+          <input type="text" id="sang" name="sang"
+                 placeholder="Artist – låt"
+                 data-no-placeholder="Artist – låt" data-en-placeholder="Artist – track">
+          <p class="hint no">Vi lover ingenting, men vi lover å vurdere det.</p>
+          <p class="hint en" lang="en">We promise nothing, but we promise to consider it.</p>
+        </div>
+
+      </div>
+
+      <div class="field">
+        <label for="hilsen">
+          <span class="no">En hilsen til oss</span><span class="en">A message to us</span>
+        </label>
+        <textarea id="hilsen" name="hilsen" rows="4"
+                  placeholder="Skriv gjerne noen ord …"
+                  data-no-placeholder="Skriv gjerne noen ord …"
+                  data-en-placeholder="Write us a few words …"></textarea>
+      </div>
+
+      <button class="btn btn-primary rsvp-submit" type="submit" style="padding:16px">
+        <span class="no">Send svaret mitt</span><span class="en">Send my reply</span>
+      </button>
+    </form>
+
+    <p class="form-note no">
+      Ett svar per person eller par. Har du meldt deg på og noe endrer seg, er det bare å
+      <a href="kontakt.html">si ifra</a> — det er helt greit.
+    </p>
+    <p class="form-note en" lang="en">
+      One reply per person or couple. If something changes after you have replied, just
+      <a href="kontakt.html">let us know</a> — that is entirely fine.
+    </p>
+
+    <div class="todo-note" style="max-width:520px; margin-left:auto; margin-right:auto;" data-reveal>
+      <div>
+        <strong><span class="no">Til oppsett:</span><span class="en">Setup needed:</span></strong>
+        <span class="no"> skjemaet lagrer ingenting ennå. Lim inn et endepunkt i
+          <code>rsvpEndpoint</code> i <code>assets/js/config.js</code> (for eksempel fra Formspree
+          eller Google Forms). Til det er gjort, sendes svaret som ferdig utfylt e-post i stedet.</span>
+        <span class="en"> the form does not store anything yet. Paste an endpoint into
+          <code>rsvpEndpoint</code> in <code>assets/js/config.js</code> (from Formspree or Google
+          Forms, for instance). Until then, replies are sent as a pre-filled email instead.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="tint" id="etterpaa">
+  <div class="wrap">
+    <div class="section-head" data-reveal>
+      <p class="eyebrow"><span class="no">Etter at du har svart</span><span class="en">Once you have replied</span></p>
+      <h2><span class="no">Hva skjer nå?</span><span class="en">What happens next?</span></h2>
+    </div>
+    <div class="info-grid" data-reveal>
+      <div class="block">
+        <h4><span class="no">Du hører fra oss</span><span class="en">You will hear from us</span></h4>
+        <p class="no">Vi sender en bekreftelse, og tar kontakt igjen med detaljene noen uker før dagen.</p>
+        <p class="en" lang="en">We will send a confirmation and get back in touch with the details a
+          few weeks before the day.</p>
+      </div>
+      <div class="block">
+        <h4><span class="no">Vil du holde tale?</span><span class="en">Want to give a speech?</span></h4>
+        <p class="no">Meld det til toastmaster <a href="tale.html">på egen side</a>, så settes det opp
+          i programmet.</p>
+        <p class="en" lang="en">Register it with the toastmaster <a href="tale.html">on its own page</a>
+          and it goes into the programme.</p>
+      </div>
+      <div class="block">
+        <h4><span class="no">Book overnatting</span><span class="en">Book somewhere to stay</span></h4>
+        <p class="no">Rommene på gården er få. <a href="praktisk.html#overnatting">Se alternativene</a>
+          og bestill i god tid.</p>
+        <p class="en" lang="en">There are few rooms at the farm.
+          <a href="praktisk.html#overnatting">See the options</a> and book early.</p>
+      </div>
+      <div class="block">
+        <h4><span class="no">Legg dagen i kalenderen</span><span class="en">Put the day in your calendar</span></h4>
+        <p class="no">Ett trykk, så ligger den der: <a href="#" data-calendar>legg til 28. august</a>.</p>
+        <p class="en" lang="en">One tap and it is in there: <a href="#" data-calendar>add 28 August</a>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-top">
+    <div>
+      <h3>Alexander &amp; Tonje</h3>
+      <p class="no">28. august 2027 · Huser Gård — WonderInn Riverside, Fenstad</p>
+      <p class="en" lang="en">28 August 2027 · Huser Gård — WonderInn Riverside, Fenstad, Norway</p>
+      <p style="margin-top:16px">
+        <a class="btn btn-sm" href="#" data-calendar>
+          <span class="no">Legg i kalenderen</span><span class="en">Add to calendar</span>
+        </a>
+      </p>
+    </div>
+    <div>
+      <div class="col-title"><span class="no">Snarveier</span><span class="en">Shortcuts</span></div>
+      <ul>
+        <li><a href="historien.html"><span class="no">Vår historie</span><span class="en">Our story</span></a></li>
+        <li><a href="programmet.html"><span class="no">Programmet</span><span class="en">The programme</span></a></li>
+        <li><a href="praktisk.html"><span class="no">Praktisk informasjon</span><span class="en">Practical information</span></a></li>
+        <li><a href="galleri.html"><span class="no">Galleri</span><span class="en">Gallery</span></a></li>
+        <li><a href="onskeliste.html"><span class="no">Ønskeliste</span><span class="en">Gift list</span></a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="col-title"><span class="no">Si ifra</span><span class="en">Get in touch</span></div>
+      <ul>
+        <li><a href="rsvp.html"><span class="no">Meld deg på</span><span class="en">RSVP</span></a></li>
+        <li><a href="tale.html"><span class="no">Meld tale eller innslag</span><span class="en">Speeches &amp; surprises</span></a></li>
+        <li><a href="kontakt.html"><span class="no">Kontakt oss</span><span class="en">Contact us</span></a></li>
+        <li><a href="praktisk.html#faq"><span class="no">Ofte stilte spørsmål</span><span class="en">Frequently asked questions</span></a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div>
+      <span class="no">Svarfrist: </span><span class="en">RSVP by </span>
+      <span data-cfg="rsvpDeadline">1. mai 2027</span>
+    </div>
+    <div class="lang-switch" role="group" data-no-label="Velg språk" data-en-label="Choose language" aria-label="Velg språk">
+      <button type="button" data-lang="no" aria-pressed="true">Norsk</button>
+      <button type="button" data-lang="en" aria-pressed="false">English</button>
+    </div>
+    <div>
+      <span class="no">Laget med glede for dagen vår.</span>
+      <span class="en">Made with joy for our day.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/config.js"></script>
+<script src="assets/js/main.js"></script>
+
+</body>
+</html>

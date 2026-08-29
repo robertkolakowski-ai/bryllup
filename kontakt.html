@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="no" data-lang="no" data-title-no="Kontakt — Alexander &amp; Tonje" data-title-en="Contact — Alexander &amp; Tonje">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kontakt — Alexander &amp; Tonje</title>
+<meta name="description" content="Ta kontakt med brudeparet, forloverne eller toastmasteren.">
+<meta name="theme-color" content="#F7F2E7">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="nb_NO">
+<meta property="og:locale:alternate" content="en_GB">
+<meta property="og:site_name" content="Alexander &amp; Tonje">
+<meta property="og:title" content="Kontakt — Alexander &amp; Tonje">
+<meta property="og:description" content="Ta kontakt med brudeparet, forloverne eller toastmasteren.">
+<!-- TODO: legg inn delebilde 1200×630 px som assets/img/og-image.jpg -->
+<meta property="og:image" content="assets/img/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+<script>
+  // Setter språk før siden tegnes, så det ikke blinker.
+  (function () {
+    try {
+      var l = localStorage.getItem('bryllup-lang');
+      if (l === 'en') {
+        document.documentElement.setAttribute('data-lang', 'en');
+        document.documentElement.setAttribute('lang', 'en');
+      }
+    } catch (e) {}
+  })();
+</script>
+</head>
+<body>
+
+<a class="skip-link" href="#main"><span class="no">Hopp til innhold</span><span class="en">Skip to content</span></a>
+
+<header class="site-header">
+  <div class="bar">
+    <a class="brand" href="index.html">A <span class="amp">&amp;</span> T</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="hovedmeny">Meny</button>
+    <nav class="nav" id="hovedmeny" data-no-label="Hovedmeny" data-en-label="Main menu" aria-label="Hovedmeny">
+      <a href="index.html"><span class="no">Hjem</span><span class="en">Home</span></a>
+      <a href="historien.html"><span class="no">Historien</span><span class="en">Our story</span></a>
+      <a href="programmet.html"><span class="no">Programmet</span><span class="en">The day</span></a>
+      <a href="praktisk.html"><span class="no">Praktisk</span><span class="en">Practical</span></a>
+      <a href="galleri.html"><span class="no">Galleri</span><span class="en">Gallery</span></a>
+      <a href="onskeliste.html"><span class="no">Ønskeliste</span><span class="en">Gifts</span></a>
+      <a class="nav-cta" href="rsvp.html"><span class="no">Gi beskjed</span><span class="en">RSVP</span></a>
+      <div class="lang-switch" role="group" data-no-label="Velg språk" data-en-label="Choose language" aria-label="Velg språk">
+        <button type="button" data-lang="no" aria-pressed="true">NO</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<div class="page-head">
+  <p class="eyebrow"><span class="no">Spør oss</span><span class="en">Ask us</span></p>
+  <h1><span class="no">Kontakt</span><span class="en">Contact</span></h1>
+  <p class="lede no">Lurer dere på noe som ikke står her på sidene, er det bare å ta kontakt.
+    Ingen spørsmål er for små.</p>
+  <p class="lede en" lang="en">If you are wondering about something that is not on these pages, just
+    get in touch. No question is too small.</p>
+</div>
+
+<section id="hvem">
+  <div class="wrap-wide">
+    <div class="section-head" data-reveal>
+      <p class="eyebrow"><span class="no">Hvem spør du om hva</span><span class="en">Who to ask about what</span></p>
+      <h2><span class="no">Ta kontakt</span><span class="en">Get in touch</span></h2>
+    </div>
+
+    <div class="grid grid-3" data-reveal>
+      <div class="card contact-card">
+        <figure class="ph ph-1x1 ph-round">
+          <div class="ph__inner"><span class="ph__spec">800 × 800</span></div>
+        </figure>
+        <h4>Tonje</h4>
+        <p class="role"><span class="no">Bruden</span><span class="en">The bride</span></p>
+        <p style="font-size:0.93rem; color:var(--ink-soft); margin-bottom:12px;">
+          <span class="no">Alt om dagen, gjestelisten og det praktiske.</span>
+          <span class="en">Anything about the day, the guest list and the practicalities.</span>
+        </p>
+        <a data-cfg-mailto="contactEmail" href="mailto:post@example.com">post@example.com</a>
+      </div>
+
+      <div class="card contact-card">
+        <figure class="ph ph-1x1 ph-round">
+          <div class="ph__inner"><span class="ph__spec">800 × 800</span></div>
+        </figure>
+        <h4>Alexander</h4>
+        <p class="role"><span class="no">Brudgommen</span><span class="en">The groom</span></p>
+        <p style="font-size:0.93rem; color:var(--ink-soft); margin-bottom:12px;">
+          <span class="no">Transport, overnatting og veien dit.</span>
+          <span class="en">Transport, accommodation and getting there.</span>
+        </p>
+        <a data-cfg-mailto="contactEmail" href="mailto:post@example.com">post@example.com</a>
+      </div>
+
+      <div class="card contact-card">
+        <figure class="ph ph-1x1 ph-round">
+          <div class="ph__inner"><span class="ph__spec">800 × 800</span></div>
+        </figure>
+        <h4 data-cfg="toastmaster.name">Toastmaster</h4>
+        <p class="role"><span class="no">Toastmaster</span><span class="en">Toastmaster</span></p>
+        <p style="font-size:0.93rem; color:var(--ink-soft); margin-bottom:12px;">
+          <span class="no">Taler, innslag, overraskelser og alt som skal skje under middagen.</span>
+          <span class="en">Speeches, performances, surprises and everything happening at dinner.</span>
+        </p>
+        <a data-cfg-mailto="toastmaster.email" href="mailto:post@example.com">post@example.com</a>
+      </div>
+    </div>
+
+    <div class="todo-note" data-reveal>
+      <div>
+        <strong><span class="no">Til utfylling:</span><span class="en">To fill in:</span></strong>
+        <span class="no"> e-postadresser, telefonnumre, navn på toastmaster og portrettbilder.
+          Adressene hentes fra <code>assets/js/config.js</code>.</span>
+        <span class="en"> email addresses, phone numbers, the toastmaster’s name and portraits.
+          Addresses are pulled from <code>assets/js/config.js</code>.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="tint" id="skriv">
+  <div class="wrap">
+    <div class="section-head" data-reveal>
+      <p class="eyebrow"><span class="no">Eller bare skriv</span><span class="en">Or simply write</span></p>
+      <h2><span class="no">Send oss en melding</span><span class="en">Send us a message</span></h2>
+      <p class="lede no">Vi svarer så fort vi kan — vanligvis innen et par dager.</p>
+      <p class="lede en" lang="en">We reply as quickly as we can — usually within a couple of days.</p>
+    </div>
+
+    <div class="form-status" data-form-status hidden></div>
+
+    <form class="form" data-form data-subject="Melding fra nettsiden" method="post" action="#">
+      <div class="hp-field" aria-hidden="true">
+        <label for="_gotcha3">La dette feltet stå tomt</label>
+        <input type="text" id="_gotcha3" name="_gotcha" tabindex="-1" autocomplete="off">
+      </div>
+      <div class="form-row">
+        <div class="field">
+          <label for="k-navn"><span class="no">Navn</span><span class="en">Name</span></label>
+          <input type="text" id="k-navn" name="navn" required
+                 placeholder="Fornavn Etternavn"
+                 data-no-placeholder="Fornavn Etternavn" data-en-placeholder="First name Last name">
+        </div>
+        <div class="field">
+          <label for="k-epost"><span class="no">E-post</span><span class="en">Email</span></label>
+          <input type="email" id="k-epost" name="epost" required
+                 placeholder="navn@epost.no"
+                 data-no-placeholder="navn@epost.no" data-en-placeholder="name@email.com">
+        </div>
+      </div>
+      <div class="field">
+        <label for="k-melding"><span class="no">Melding</span><span class="en">Message</span></label>
+        <textarea id="k-melding" name="melding" rows="5" required
+                  placeholder="Hva lurer du på?"
+                  data-no-placeholder="Hva lurer du på?"
+                  data-en-placeholder="What would you like to know?"></textarea>
+      </div>
+      <button class="btn btn-primary" type="submit" style="padding:16px">
+        <span class="no">Send melding</span><span class="en">Send message</span>
+      </button>
+    </form>
+  </div>
+</section>
+
+<section id="stedet-kontakt">
+  <div class="wrap center" data-reveal>
+    <p class="eyebrow"><span class="no">Stedet</span><span class="en">The venue</span></p>
+    <h2 style="font-size:clamp(1.8rem,4.6vw,2.4rem); font-style:italic; font-weight:400; margin:12px 0 14px;">
+      Huser Gård — WonderInn Riverside
+    </h2>
+    <p style="color:var(--ink-soft)">
+      <span data-cfg="venueStreet">Huservegen 128</span>,
+      <span data-cfg="venuePostal">2170 Fenstad</span><br>
+      <span data-cfg="venueRegion">Nes kommune, Akershus</span>
+    </p>
+    <p class="mt-m" style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
+      <a class="btn btn-sm" href="#" data-map-link><span class="no">Åpne i kart</span><span class="en">Open in maps</span></a>
+      <a class="btn btn-sm btn-ghost" data-cfg-href="venueSite" href="https://wonderinn.no/no/riverside/" target="_blank" rel="noopener">
+        <span class="no">Om stedet</span><span class="en">About the venue</span>
+      </a>
+    </p>
+    <p class="form-note no" style="margin-top:26px">
+      Spørsmål om overnatting på gården rettes direkte til WonderInn — de har full oversikt over
+      ledige hytter.
+    </p>
+    <p class="form-note en" lang="en" style="margin-top:26px">
+      For questions about staying at the farm, contact WonderInn directly — they have the full
+      overview of available cabins.
+    </p>
+  </div>
+</section>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-top">
+    <div>
+      <h3>Alexander &amp; Tonje</h3>
+      <p class="no">28. august 2027 · Huser Gård — WonderInn Riverside, Fenstad</p>
+      <p class="en" lang="en">28 August 2027 · Huser Gård — WonderInn Riverside, Fenstad, Norway</p>
+      <p style="margin-top:16px">
+        <a class="btn btn-sm" href="#" data-calendar>
+          <span class="no">Legg i kalenderen</span><span class="en">Add to calendar</span>
+        </a>
+      </p>
+    </div>
+    <div>
+      <div class="col-title"><span class="no">Snarveier</span><span class="en">Shortcuts</span></div>
+      <ul>
+        <li><a href="historien.html"><span class="no">Vår historie</span><span class="en">Our story</span></a></li>
+        <li><a href="programmet.html"><span class="no">Programmet</span><span class="en">The programme</span></a></li>
+        <li><a href="praktisk.html"><span class="no">Praktisk informasjon</span><span class="en">Practical information</span></a></li>
+        <li><a href="galleri.html"><span class="no">Galleri</span><span class="en">Gallery</span></a></li>
+        <li><a href="onskeliste.html"><span class="no">Ønskeliste</span><span class="en">Gift list</span></a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="col-title"><span class="no">Si ifra</span><span class="en">Get in touch</span></div>
+      <ul>
+        <li><a href="rsvp.html"><span class="no">Meld deg på</span><span class="en">RSVP</span></a></li>
+        <li><a href="tale.html"><span class="no">Meld tale eller innslag</span><span class="en">Speeches &amp; surprises</span></a></li>
+        <li><a href="kontakt.html"><span class="no">Kontakt oss</span><span class="en">Contact us</span></a></li>
+        <li><a href="praktisk.html#faq"><span class="no">Ofte stilte spørsmål</span><span class="en">Frequently asked questions</span></a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div>
+      <span class="no">Svarfrist: </span><span class="en">RSVP by </span>
+      <span data-cfg="rsvpDeadline">1. mai 2027</span>
+    </div>
+    <div class="lang-switch" role="group" data-no-label="Velg språk" data-en-label="Choose language" aria-label="Velg språk">
+      <button type="button" data-lang="no" aria-pressed="true">Norsk</button>
+      <button type="button" data-lang="en" aria-pressed="false">English</button>
+    </div>
+    <div>
+      <span class="no">Laget med glede for dagen vår.</span>
+      <span class="en">Made with joy for our day.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/config.js"></script>
+<script src="assets/js/main.js"></script>
+
+</body>
+</html>
