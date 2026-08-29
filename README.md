@@ -15,13 +15,39 @@ Alt som må fylles inn ligger i `KONFIG` nederst i `index.html`:
 
 ```js
 var KONFIG = {
-  rsvpEndepunkt:  '',            // URL som tar imot POST med JSON
-  rsvpEpost:      '',            // e-postadresse — alternativ til endepunkt
-  onskelisteUrl:  '',            // lenke til ønskelisten
-  onskelisteNavn: 'Ønskelisten vår',
-  vipps:          '',            // f.eks. '123 45'
-  kontonummer:    ''             // f.eks. '1234.56.78901'
+  rsvpEndepunkt:    '',   // URL som tar imot POST med JSON
+  rsvpEpost:        '',   // e-postadresse — alternativ til endepunkt
+
+  onskelisteUrl:    '',   // lenke til ønskelisten
+  onskelisteNavn:   '',   // tom → «Ønskelisten vår»
+  vipps:            '',   // f.eks. '12 34 56'
+  vippsLenke:       '',   // valgfritt: qr.vipps.no-lenke gir en knapp i tillegg
+  kontonummer:      '',   // f.eks. '1234.56.78901'
+
+  kartLenke:        '',   // delt kartlenke med riktig pin
+  toastmasterNavn:  '',
+  toastmasterTlf:   '',   // f.eks. '900 00 000'
+  toastmasterEpost: ''
 };
+```
+
+Alt er valgfritt og feiler pent. Et gavekort uten verdi vises ikke; er alle
+tomme, står det at ønskelisten kommer. Uten `kartLenke` brukes et Google-søk.
+Uten toastmaster-verdier står det at kontaktinfo kommer. RSVP-en velger
+leveringsmåte etter hva som er satt, og sier ærlig fra hvis ingenting er satt.
+
+### Oppsettsjekk
+
+Åpne siden med **`?oppsett`** i adressen — eller kjør den lokalt — så lister
+konsollen opp nøyaktig hva som fortsatt mangler i `KONFIG`. Gjestene ser den
+aldri. Praktisk når resten skal fylles inn:
+
+```
+Oppsett — dette gjenstår i KONFIG:
+  · rsvpEndepunkt ELLER rsvpEpost — RSVP lagrer ingenting
+  · vipps
+  · kontonummer
+  …
 ```
 
 Siden retter seg etter verdiene: et gavekort uten verdi vises ikke, og
@@ -34,8 +60,6 @@ I tillegg gjenstår disse tekstene — søk på ordet i kolonnen «Søk på»:
 | Historien i «Oss» + sitatet | `TEKST` | Tre–fire korte avsnitt kler spalten |
 | Klokkeslettene i programmet | `TEKST` | Antatt, ikke bekreftet |
 | Overnatting og transport | `TEKST` | Står som «kommer» — fyll inn først når det er bestemt |
-| Kontaktinfo til toastmaster | `TEKST` | Ingen telefonnummer i filen nå |
-| Kart-lenken | `Se i kart` | Peker på et Google Maps-**søk**, ikke en delt pin |
 | Tre bilder av gården | `BILDE` | Se tabellen under |
 
 ## Tospråklig
@@ -141,30 +165,30 @@ feil variant.
 
 ## Monogrammet
 
-Merket **T & A** ligger som rene vektorbaner i tre filer:
+Merket **T & A** finnes i tre nivåer, alle som rene vektorbaner:
 
 | Fil | Bruk |
 |---|---|
-| `bilder/monogram.svg` | Det frie merket — trykk, servietter, skilt, lakksegl |
-| `bilder/monogram-bue.svg` | I bue — større flater, forsiden, programark |
-| `bilder/favicon.svg` | Fanen i nettleseren, strammere sperring så det leser på 16 px |
+| `bilder/monogram-krans.svg` | Krans med dobbel ramme og dato — store flater, hero, trykk |
+| `bilder/monogram-bue.svg` | Bue med dobbel ramme, uten dato — mellomstore flater |
+| `bilder/monogram.svg` | Frie bokstaver — bunnlinje, servietter, lakksegl |
+| `bilder/favicon.svg` | Nettleserfanen, strammere sperring så det leser på 16 px |
 
-Bokstavene er **konvertert til baner**, ikke tekst. Det betyr at merket ser
-likt ut overalt — i Illustrator, Canva, hos et trykkeri, på en gravør — uten
-at noen trenger å ha en bestemt font installert.
+Bokstaver **og tall** er konvertert til baner, ikke satt som tekst. Merket ser
+derfor likt ut overalt — hos et trykkeri, en gravør, i Canva — uten at noen
+trenger å ha en bestemt font installert.
 
 Buen er den samme formen som går igjen på siden: hero-portrettet, portrettet i
 «Oss» og det midterste bildet i mosaikken. Den er elliptisk, ikke halvsirkel —
 akkurat som `border-radius: 999px` gir på et stående bilde.
 
-På siden ligger merket tre steder: i nettleserfanen, over «vi gifter oss» i
-hero, og i bunnlinjen. På nettsiden er de innebygd i HTML-en med
-`fill="currentColor"` på bokstavene, slik at det samme merket virker både på
-creme og mot den mørke bunnen. Buen og ampersanden er alltid gull.
+På siden ligger merket i fanen, som krans over «vi gifter oss», og som frie
+bokstaver i bunnlinjen. Bokstavene bruker `fill="currentColor"`, så samme merke
+virker både på creme og mot den mørke flaten. Ramme, ampersand og dato er gull.
 
-Vil dere ha det i en annen farge, endre `#C8A96A` (gull) og `#2C2F28` (blekk)
-i SVG-filene. Trenger dere PNG, åpne SVG-en i nettleseren og eksporter — den
-er vektor, så den tåler hvilken som helst størrelse.
+Andre farger: bytt `#C8A96A` (gull) og `#2C2F28` (blekk) i SVG-filene.
+Trenger dere PNG, åpne SVG-en i nettleseren og eksporter — den er vektor og
+tåler hvilken som helst størrelse.
 
 **Merk rekkefølgen:** monogrammet står som *T & A* (Tonje først), mens teksten
 på siden gjennomgående sier *Alexander & Tonje*. Begge deler er vanlig, men
