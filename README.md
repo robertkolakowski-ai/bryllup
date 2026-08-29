@@ -171,6 +171,32 @@ kortet, bytt den inn** — da blir forsidebåndet skarpt hele veien.
 
 ---
 
+## Adressen til nettstedet
+
+Nettstedet ligger på **https://tonjeogalexander.vercel.app** og publiseres
+automatisk av Vercel ved hver push.
+
+`og:url`, `og:image` og `canonical` i hver HTML-fil er **absolutte adresser**.
+Det må de være — med relativ sti vises ikke delingsbildet når lenken sendes i
+Messenger, iMessage eller Facebook.
+
+Får dere eget domene (for eksempel `tonjeogalexander.no`), er det ett søk og
+erstatt over alle HTML-filene:
+
+```
+grep -rl "tonjeogalexander.vercel.app" *.html \
+  | xargs sed -i 's|https://tonjeogalexander.vercel.app|https://tonjeogalexander.no|g'
+```
+
+### Skal siden være søkbar?
+
+Siden er i dag åpen for Google. Vil dere at bare de som har fått lenken skal
+finne den, legg denne linjen i `<head>` på alle sidene:
+
+```html
+<meta name="robots" content="noindex, nofollow">
+```
+
 ## Publisering
 
 **GitHub Pages:** slå på Pages for repoet under Settings → Pages, med `main`
