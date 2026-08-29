@@ -106,6 +106,42 @@ kortet, bytt den inn**. Da blir maleriet skarpt på store skjermer.
 
 `bilder/save-the-date.jpg` er hele kortet, tatt vare på for senere bruk.
 
+### Responsive bilder
+
+De tre store bildene har `srcset`, så mobil slipper å laste desktop-versjonen:
+
+| Bilde | Varianter | `sizes` |
+|---|---|---|
+| Hero | 600 / 864 | `min(74vw, 430px)` |
+| Oss-portrett | 600 / 800 / 1200 | `(max-width: 810px) calc(100vw - 80px), 460px` |
+| Akvarellen | 900 / 1600 | `(max-width: 940px) calc(100vw - 68px), 880px` |
+
+Det sparer rundt 380 kB på en telefon. Endrer du bredden på et av disse
+elementene i CSS, må `sizes` oppdateres tilsvarende — ellers velger nettleseren
+feil variant.
+
+## Bevegelse og navigasjon
+
+**Scroll-reveal.** Elementer med `data-reveal` stiger 12 px og toner inn når de
+kommer til syne. `data-forsink="1"`–`"5"` forskyver dem i tid, slik at
+programrader og polaroider kommer etter hverandre i stedet for samtidig.
+
+To ting å vite:
+
+- Skjulingen ligger bak `.js`, en klasse som settes av inline-skriptet i `<head>`.
+  Uten JavaScript vises alt med én gang — siden blir aldri stående tom.
+- **Ikke sett `data-reveal` på noe som starter `hidden`.** IntersectionObserver
+  utløser aldri for `display:none`, så elementet ville blitt stående usynlig når
+  det omsider vises. Derfor har ikke `#gaver-grid` reveal.
+
+`prefers-reduced-motion` nullstiller både opasitet og forskyvning.
+
+**Aktiv seksjon i menyen.** Lenken til seksjonen du er i får `aria-current="true"`
+og en gullstrek under. Den leser posisjon direkte ved scroll (rAF-throttlet) i
+stedet for å samle observer-treff: seksjonene ligger etter hverandre uten
+overlapp, så nøyaktig én krysser en tenkt linje 35 % ned i vinduet — det gir ett
+entydig svar. Over den første seksjonen er ingen lenke aktiv.
+
 ### Om `height`-attributtet på `<img>`
 
 Alle `<img>` har `width` og `height` for å unngå layoutskift. Da må CSS ha

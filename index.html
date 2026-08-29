@@ -29,6 +29,9 @@
 <script>
   /* Setter språk før siden tegnes, så det ikke blinker. */
   (function(){
+    /* .js settes med én gang: scroll-reveal skjuler bare innhold når
+       JavaScript faktisk kjører, ellers ville siden stått tom. */
+    document.documentElement.classList.add('js');
     try{
       if(localStorage.getItem('bryllup-sprak') === 'en'){
         document.documentElement.setAttribute('data-lang','en');
@@ -391,6 +394,33 @@
   .foot .sprak button + button{ border-left-color:rgba(200,169,106,.35); }
   .foot .sprak button[aria-pressed="true"]{ background:var(--cream); color:var(--ink); }
 
+
+  /* ── Scroll-reveal ──────────────────────────────────────
+     Innholdet stiger 12 px og toner inn når det kommer til syne.
+     Bare når JavaScript kjører (.js), og aldri ved reduced-motion. */
+  .js [data-reveal]{
+    opacity:0; transform:translateY(12px);
+    transition:opacity .7s cubic-bezier(.22,.61,.36,1), transform .7s cubic-bezier(.22,.61,.36,1);
+  }
+  .js [data-reveal].vist{ opacity:1; transform:none; }
+  .js [data-reveal][data-forsink="1"]{ transition-delay:.07s; }
+  .js [data-reveal][data-forsink="2"]{ transition-delay:.14s; }
+  .js [data-reveal][data-forsink="3"]{ transition-delay:.21s; }
+  .js [data-reveal][data-forsink="4"]{ transition-delay:.28s; }
+  .js [data-reveal][data-forsink="5"]{ transition-delay:.35s; }
+
+  /* ── Aktiv seksjon i menyen ── */
+  .nav a[aria-current="true"]{ color: var(--ink); }
+  .nav a:not(.nav__rsvp){ position:relative; padding-bottom:3px; }
+  .nav a:not(.nav__rsvp)::after{
+    content:""; position:absolute; left:0; right:0; bottom:0; height:1px;
+    background: var(--gold); transform:scaleX(0); transform-origin:center;
+    transition: transform .3s cubic-bezier(.22,.61,.36,1);
+  }
+  .nav a:not(.nav__rsvp):hover::after,
+  .nav a:not(.nav__rsvp)[aria-current="true"]::after{ transform:scaleX(1); }
+  .nav__rsvp[aria-current="true"]{ background: var(--sage); color: var(--cream); }
+
   @keyframes omFade{ from{ opacity:0; transform:translateY(20px); } to{ opacity:1; transform:none; } }
 
   @media (max-width: 620px){
@@ -404,6 +434,8 @@
   @media (prefers-reduced-motion: reduce){
     html{ scroll-behavior:auto; }
     *{ animation:none !important; transition:none !important; }
+    /* Uten dette ville scroll-reveal latt innholdet stå på opacity:0 */
+    .js [data-reveal]{ opacity:1 !important; transform:none !important; }
   }
   @media print{
     .nav, .sprak, .strip__hint, .stedet__cta, .form, .hero__count{ display:none !important; }
@@ -441,6 +473,8 @@
     <div class="portal">
       <div class="portal__frame">
         <img src="bilder/hero-portal.jpg" width="864" height="1152" fetchpriority="high"
+             srcset="bilder/hero-portal-600.jpg 600w, bilder/hero-portal.jpg 864w"
+             sizes="min(74vw, 430px)"
              alt="Alexander og Tonje ved vannet en sommerkveld"
              data-alt-no="Alexander og Tonje ved vannet en sommerkveld"
              data-alt-en="Alexander and Tonje by the water on a summer evening">
@@ -462,8 +496,10 @@
 
 <section id="oss" class="sec">
   <div class="sec__inner oss">
-    <div class="oss__media">
+    <div class="oss__media" data-reveal>
       <img class="oss__portrett" src="bilder/oss-portrett.jpg" width="1200" height="1500" loading="lazy"
+           srcset="bilder/oss-portrett-600.jpg 600w, bilder/oss-portrett-800.jpg 800w, bilder/oss-portrett.jpg 1200w"
+           sizes="(max-width: 810px) calc(100vw - 80px), 460px"
            alt="Tonje og Alexander sammen"
            data-alt-no="Tonje og Alexander sammen"
            data-alt-en="Tonje and Alexander together">
@@ -478,7 +514,7 @@
       </div>
     </div>
 
-    <div>
+    <div data-reveal data-forsink="1">
       <div class="eyebrow"><span class="no">Oss to</span><span class="en">The two of us</span></div>
       <h2 class="oss__title">
         <span class="no">Fra første kaffe<br>til Huser Gård</span>
@@ -498,7 +534,7 @@
 
 <section id="dagen" class="sec dagen">
   <div class="sec__inner">
-    <div class="sec__head">
+    <div class="sec__head" data-reveal>
       <div class="eyebrow"><span class="no">Programmet</span><span class="en">The programme</span></div>
       <h2 class="sec__title"><span class="no">Dagen</span><span class="en">The day</span></h2>
       <p class="sec__lede no">Et foreløpig program. Klokkeslett kan bli justert — endelig plan kommer i invitasjonen.</p>
@@ -508,39 +544,39 @@
     <div class="dagen__split">
       <div>
         <!-- TEKST: klokkeslettene er antatt og må bekreftes -->
-        <div class="program__row"><div class="program__time">14:30</div><div class="program__line"></div>
+        <div class="program__row" data-reveal data-forsink="1"><div class="program__time">14:30</div><div class="program__line"></div>
           <div class="program__body">
             <div class="program__what"><span class="no">Ankomst</span><span class="en">Arrival</span></div>
             <div class="program__desc"><span class="no">Vi tar imot med noe kaldt i glasset ved låven.</span><span class="en">We welcome you with something cold in the glass by the barn.</span></div>
           </div></div>
-        <div class="program__row"><div class="program__time">15:00</div><div class="program__line"></div>
+        <div class="program__row" data-reveal data-forsink="2"><div class="program__time">15:00</div><div class="program__line"></div>
           <div class="program__body">
             <div class="program__what"><span class="no">Vielse ved vannet</span><span class="en">Ceremony by the water</span></div>
             <div class="program__desc"><span class="no">Seremoni på bryggen nedenfor gården.</span><span class="en">The ceremony is held on the jetty below the farm.</span></div>
           </div></div>
-        <div class="program__row"><div class="program__time">16:00</div><div class="program__line"></div>
+        <div class="program__row" data-reveal data-forsink="3"><div class="program__time">16:00</div><div class="program__line"></div>
           <div class="program__body">
             <div class="program__what"><span class="no">Mingling i hagen</span><span class="en">Drinks in the garden</span></div>
             <div class="program__desc"><span class="no">Bobler, fotografering og god tid til å hilse.</span><span class="en">Bubbles, photographs and time to greet one another.</span></div>
           </div></div>
-        <div class="program__row"><div class="program__time">18:00</div><div class="program__line"></div>
+        <div class="program__row" data-reveal data-forsink="4"><div class="program__time">18:00</div><div class="program__line"></div>
           <div class="program__body">
             <div class="program__what"><span class="no">Middag og taler</span><span class="en">Dinner and speeches</span></div>
             <div class="program__desc"><span class="no">Toastmaster ønsker velkommen til bords.</span><span class="en">The toastmaster calls everyone to the table.</span></div>
           </div></div>
-        <div class="program__row"><div class="program__time">21:00</div><div class="program__line"></div>
+        <div class="program__row" data-reveal data-forsink="5"><div class="program__time">21:00</div><div class="program__line"></div>
           <div class="program__body">
             <div class="program__what"><span class="no">Kaken og første dans</span><span class="en">Cake and the first dance</span></div>
             <div class="program__desc"><span class="no">Vi åpner dansegulvet.</span><span class="en">We open the dance floor.</span></div>
           </div></div>
-        <div class="program__row"><div class="program__time">22:00</div><div class="program__line"></div>
+        <div class="program__row" data-reveal data-forsink="5"><div class="program__time">22:00</div><div class="program__line"></div>
           <div class="program__body">
             <div class="program__what"><span class="no">Fest til langt på natt</span><span class="en">Dancing into the night</span></div>
             <div class="program__desc"><span class="no">Nattmat serveres ved midnatt.</span><span class="en">Late-night food is served at midnight.</span></div>
           </div></div>
       </div>
 
-      <div class="dagen__aside">
+      <div class="dagen__aside" data-reveal data-forsink="2">
         <figure class="art art--arch">
           <img src="bilder/dagen-akvarell.jpg" width="760" height="1013" loading="lazy"
                alt="Akvarell av gjestene samlet foran hovedhuset på Huser Gård"
@@ -557,7 +593,7 @@
 
 <section id="stedet" class="sec stedet">
   <div class="stedet__inner">
-    <div class="stedet__head">
+    <div class="stedet__head" data-reveal>
       <div>
         <div class="eyebrow eyebrow--gold"><span class="no">Stedet</span><span class="en">The place</span></div>
         <h2>Huser Gård</h2>
@@ -569,8 +605,10 @@
     </div>
 
     <!-- Akvarellen fra save the date-kortet -->
-    <figure class="akvarell art">
+    <figure class="akvarell art" data-reveal data-forsink="1">
       <img src="bilder/akvarell-gaarden.jpg" width="1600" height="1113" loading="lazy"
+           srcset="bilder/akvarell-gaarden-900.jpg 900w, bilder/akvarell-gaarden.jpg 1600w"
+           sizes="(max-width: 940px) calc(100vw - 68px), 880px"
            alt="Akvarell av Huser Gård med vielsen på bryggen nede ved vannet"
            data-alt-no="Akvarell av Huser Gård med vielsen på bryggen nede ved vannet"
            data-alt-en="Watercolour of Huser Gård with the ceremony on the jetty down by the water">
@@ -582,7 +620,7 @@
     </figure>
 
     <div class="mosaic">
-      <div class="mosaic__col">
+      <div data-reveal data-forsink="1" class="mosaic__col">
         <figure class="art">
           <img src="bilder/sted-akvarell-hus.jpg" width="800" height="1000" loading="lazy"
                alt="Hovedhuset på Huser Gård, malt i akvarell"
@@ -597,7 +635,7 @@
         </div>
       </div>
 
-      <div class="mosaic__col mosaic__col--offset">
+      <div data-reveal data-forsink="2" class="mosaic__col mosaic__col--offset">
         <figure class="art art--arch">
           <img src="bilder/sted-akvarell-bryggen.jpg" width="780" height="1041" loading="lazy"
                alt="Bryggen der vielsen holdes, malt i akvarell"
@@ -609,7 +647,7 @@
         </div>
       </div>
 
-      <div class="mosaic__col">
+      <div data-reveal data-forsink="3" class="mosaic__col">
         <!-- BILDE: ekte foto av låven / festlokalet -->
         <div class="ph ph--dark r-1x1">
           <div class="ph__tag"><span class="no">Bildeplass</span><span class="en">Photo slot</span></div>
@@ -625,7 +663,7 @@
       </div>
     </div>
 
-    <div class="stedet__cta">
+    <div class="stedet__cta" data-reveal>
       <!-- TEKST: bytt til delt kartlenke med riktig pin -->
       <a class="btn-ghost" href="https://maps.google.com/?q=Huser+G%C3%A5rd+Fenstad" target="_blank" rel="noopener">
         <span class="no">Se veien hit</span><span class="en">Find your way here</span>
@@ -635,7 +673,7 @@
 </section>
 
 <section id="oyeblikk" class="sec" style="padding-left:0;padding-right:0;overflow:hidden">
-  <div class="sec__head" style="padding:0 24px;margin-bottom:clamp(46px,6vw,72px)">
+  <div class="sec__head" data-reveal style="padding:0 24px;margin-bottom:clamp(46px,6vw,72px)">
     <div class="eyebrow"><span class="no">Underveis</span><span class="en">Along the way</span></div>
     <h2 class="sec__title"><span class="no">Øyeblikk</span><span class="en">Moments</span></h2>
     <p class="sec__lede no">Noen bilder fra årene før. Etter bryllupet legger vi ut gjestenes bilder her.</p>
@@ -643,27 +681,27 @@
   </div>
 
   <div class="strip">
-    <div class="polaroid" style="transform:rotate(-3deg)">
+    <div class="polaroid" data-reveal data-forsink="1" style="transform:rotate(-3deg)">
       <img src="bilder/oyeblikk-01.jpg" width="600" height="600" loading="lazy"
            alt="På fjellet" data-alt-no="På fjellet" data-alt-en="Up in the mountains">
       <div class="polaroid__cap"><span class="no">på tur, som alltid</span><span class="en">hiking, as always</span></div>
     </div>
-    <div class="polaroid" style="transform:rotate(2deg)">
+    <div class="polaroid" data-reveal data-forsink="2" style="transform:rotate(2deg)">
       <img src="bilder/oyeblikk-02.jpg" width="600" height="600" loading="lazy"
            alt="I Roma" data-alt-no="I Roma" data-alt-en="In Rome">
       <div class="polaroid__cap"><span class="no">byen vi kom tilbake til</span><span class="en">the city we went back to</span></div>
     </div>
-    <div class="polaroid" style="transform:rotate(-1.5deg)">
+    <div class="polaroid" data-reveal data-forsink="3" style="transform:rotate(-1.5deg)">
       <img src="bilder/oyeblikk-03.jpg" width="600" height="600" loading="lazy"
            alt="Et kandid øyeblikk" data-alt-no="Et kandid øyeblikk" data-alt-en="A candid moment">
       <div class="polaroid__cap"><span class="no">helt vanlig lørdag</span><span class="en">an ordinary Saturday</span></div>
     </div>
-    <div class="polaroid" style="transform:rotate(3deg)">
+    <div class="polaroid" data-reveal data-forsink="4" style="transform:rotate(3deg)">
       <img src="bilder/oyeblikk-04.jpg" width="600" height="600" loading="lazy"
            alt="17. mai" data-alt-no="17. mai" data-alt-en="Norway’s national day">
       <div class="polaroid__cap"><span class="no">syttende mai</span><span class="en">the seventeenth of May</span></div>
     </div>
-    <div class="polaroid" style="transform:rotate(-2deg)">
+    <div class="polaroid" data-reveal data-forsink="5" style="transform:rotate(-2deg)">
       <img src="bilder/oyeblikk-05.jpg" width="600" height="600" loading="lazy"
            alt="To i hvite gensere" data-alt-no="To i hvite gensere" data-alt-en="The two of us in white jumpers">
       <div class="polaroid__cap"><span class="no">vi kler oss likt</span><span class="en">we dress the same</span></div>
@@ -675,7 +713,7 @@
 
 <section id="gaver" class="sec gaver">
   <div class="sec__inner">
-    <div class="sec__head">
+    <div class="sec__head" data-reveal>
       <span class="eyebrow"><span class="no">Gaver</span><span class="en">Gifts</span></span>
       <h2 class="sec__title"><span class="no">Ønskeliste</span><span class="en">Gift list</span></h2>
       <p class="sec__lede no">Det viktigste for oss er at dere er der. Ønsker dere likevel å gi noe, finner dere alt dere trenger her.</p>
@@ -715,11 +753,11 @@
 
 <section id="praktisk" class="sec praktisk">
   <div class="sec__inner">
-    <div class="sec__head">
+    <div class="sec__head" data-reveal>
       <div class="eyebrow"><span class="no">Godt å vite</span><span class="en">Good to know</span></div>
       <h2 class="sec__title"><span class="no">Praktisk</span><span class="en">Details</span></h2>
     </div>
-    <div class="cards">
+    <div class="cards" data-reveal>
       <div class="card">
         <div class="card__tag"><span class="no">Kleskode</span><span class="en">Dress code</span></div>
         <div class="card__title"><span class="no">Pent antrekk</span><span class="en">Formal attire</span></div>
@@ -770,7 +808,7 @@
     <p class="sec__lede rsvp__lede no">Vi gleder oss til å feire sammen med dere. Svar innen <b>1. mai 2027</b>.</p>
     <p class="sec__lede rsvp__lede en">We are looking forward to celebrating with you. Please reply by <b>1 May 2027</b>.</p>
 
-    <form class="form" id="rsvp-form" novalidate>
+    <form class="form" id="rsvp-form" data-reveal novalidate>
       <label class="field">
         <span><span class="no">Navn</span><span class="en">Name</span></span>
         <input type="text" name="navn" required autocomplete="name"
@@ -1131,6 +1169,104 @@
       fail('Påmeldingen er ikke åpen ennå, så svaret ditt blir ikke lagret. Vi sender lenke sammen med invitasjonen.',
            'RSVP is not open yet, so your reply will not be saved. We will send a link with the invitation.');
     });
+  })();
+
+  /* ═══════════════════════════════════════════════════════════════
+     SCROLL-REVEAL — innholdet toner inn når det kommer til syne.
+     Hvert element avsløres én gang og slippes så av observeren.
+     ═══════════════════════════════════════════════════════════════ */
+  (function(){
+    var elementer = document.querySelectorAll('[data-reveal]');
+    if(!elementer.length) return;
+
+    var villeHaMindreBevegelse = window.matchMedia &&
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    /* Uten IntersectionObserver, eller for den som ber om mindre bevegelse:
+       vis alt med én gang. */
+    if(villeHaMindreBevegelse || !('IntersectionObserver' in window)){
+      elementer.forEach(function(el){ el.classList.add('vist'); });
+      return;
+    }
+
+    var observer = new IntersectionObserver(function(oppforinger){
+      oppforinger.forEach(function(o){
+        if(o.isIntersecting){
+          o.target.classList.add('vist');
+          observer.unobserve(o.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    elementer.forEach(function(el){ observer.observe(el); });
+
+    /* Sikkerhetsnett: er noe fortsatt skjult etter 3 sekunder — for
+       eksempel fordi det aldri kom inn i visningsfeltet — vis det. */
+    setTimeout(function(){
+      elementer.forEach(function(el){
+        if(!el.classList.contains('vist') &&
+           el.getBoundingClientRect().top < window.innerHeight){
+          el.classList.add('vist');
+        }
+      });
+    }, 3000);
+  })();
+
+  /* ═══════════════════════════════════════════════════════════════
+     AKTIV SEKSJON I MENYEN — markerer hvor på siden man er.
+
+     Vi leser posisjon direkte i stedet for å samle IntersectionObserver-
+     treff: seksjonene ligger etter hverandre uten overlapp, så nøyaktig
+     én av dem krysser en tenkt linje 35 % ned i vinduet. Det gir ett
+     entydig svar, mens en liste over «synlige» seksjoner må gjettes fra.
+     ═══════════════════════════════════════════════════════════════ */
+  (function(){
+    var lenker = Array.prototype.slice.call(document.querySelectorAll('.nav a[href^="#"]'));
+    if(!lenker.length) return;
+
+    var seksjoner = lenker.map(function(a){
+      return document.querySelector(a.getAttribute('href'));
+    });
+    var forrige;
+
+    function merk(seksjon){
+      if(seksjon === forrige) return;
+      forrige = seksjon;
+      lenker.forEach(function(a, i){
+        if(seksjon && seksjoner[i] === seksjon) a.setAttribute('aria-current','true');
+        else a.removeAttribute('aria-current');
+      });
+    }
+
+    function oppdater(){
+      /* Over den første seksjonen (hero) skal ingen lenke være aktiv. */
+      if(window.scrollY < 80) return merk(null);
+
+      var linje = window.innerHeight * 0.35;
+      var truffet = null;
+      for(var i = 0; i < seksjoner.length; i++){
+        var sek = seksjoner[i];
+        if(!sek) continue;
+        var r = sek.getBoundingClientRect();
+        if(r.top <= linje && r.bottom > linje){ truffet = sek; break; }
+      }
+      /* Nederst på siden kan linja havne forbi siste seksjon. */
+      if(!truffet && window.innerHeight + window.scrollY >= document.body.scrollHeight - 4){
+        truffet = seksjoner[seksjoner.length - 1];
+      }
+      merk(truffet);
+    }
+
+    var venter = false;
+    function planlegg(){
+      if(venter) return;
+      venter = true;
+      requestAnimationFrame(function(){ venter = false; oppdater(); });
+    }
+
+    window.addEventListener('scroll', planlegg, { passive: true });
+    window.addEventListener('resize', planlegg, { passive: true });
+    oppdater();
   })();
 
   /* Kjøres til slutt: setter språk, tittel, alt-tekster og nedtelling. */
