@@ -89,13 +89,20 @@ plassholdere igjen på siden.
 | `sted-hytta.jpg` | 900 × 900 (1:1) | Stedet — glasshytta innvendig |
 | `sted-elva.jpg` | 860 × 1146 (3:4) | Stedet — buet, brygga ved elva |
 | `sted-domen.jpg` | 880 × 1100 (4:5) | Stedet — glampingdomen |
+| `sted-laaven.jpg` | 716 × 716 (1:1) | Stedet — låven dekket til middag |
 | `og-gaarden.jpg` | 1200 × 630 | Delebilde når lenken sendes |
 
 Bildene av gården er beskåret fra fotografier fra WonderInn. **Avklar bruken
 med dem** hvis det ikke allerede er gjort.
 
-Mosaikken i Stedet har fire ulike motiver med vilje — to utsnitt av samme
-flyfoto leste som en dublett, selv med ulik beskjæring.
+Mosaikken i Stedet har fem ulike motiver: to fliser i hver ytterkolonne og det
+buede sommerbildet forskjøvet i midten. Alle fem er forskjellige bilder med
+vilje — et tidligere forsøk med to utsnitt av samme flyfoto leste som en
+dublett, selv med ulik beskjæring og avstand.
+
+`sted-laaven.jpg` er oppskalert fra en kilde på 358 × 358 px med lett skarping.
+Den holder på flisestørrelse, men er mykere enn de andre. **Har dere
+originalfilen, bytt den inn** — den bør være minst 1000 px bred.
 
 Plassholderstilen (`.ph`) ligger fortsatt i CSS-en. Trenger dere en ny
 bildeplass senere, er mønsteret:
