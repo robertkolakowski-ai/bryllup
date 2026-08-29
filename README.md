@@ -6,19 +6,34 @@ Google Fonts. Vercel deployer `main` automatisk til tonjeogalexander.vercel.app.
 Åpne `index.html` direkte i nettleseren for å se endringer — det er hele
 utviklingsoppsettet.
 
-## Gjenstår før publisering
+## Oppsett
 
-Alt som mangler er markert i filen. Søk på ordet i kolonnen «Søk på».
+Alt som må fylles inn ligger i `KONFIG` nederst i `index.html`:
+
+```js
+var KONFIG = {
+  rsvpEndepunkt:  '',            // URL som tar imot POST med JSON
+  rsvpEpost:      '',            // e-postadresse — alternativ til endepunkt
+  onskelisteUrl:  '',            // lenke til ønskelisten
+  onskelisteNavn: 'Ønskelisten vår',
+  vipps:          '',            // f.eks. '123 45'
+  kontonummer:    ''             // f.eks. '1234.56.78901'
+};
+```
+
+Siden retter seg etter verdiene: et gavekort uten verdi vises ikke, og
+RSVP-en velger leveringsmåte etter hva som er satt. Ingenting annet må endres.
+
+I tillegg gjenstår disse tekstene — søk på ordet i kolonnen «Søk på»:
 
 | Hva | Søk på | Merknad |
 |---|---|---|
 | Historien i «Oss» + sitatet | `TEKST` | Tre–fire korte avsnitt kler spalten |
 | Klokkeslettene i programmet | `TEKST` | Antatt, ikke bekreftet |
-| Overnatting, transport, gaver | `TEKST` | Står som «kommer» — fyll inn først når det er bestemt |
+| Overnatting og transport | `TEKST` | Står som «kommer» — fyll inn først når det er bestemt |
 | Kontaktinfo til toastmaster | `TEKST` | Ingen telefonnummer i filen nå |
 | Kart-lenken | `Se i kart` | Peker på et Google Maps-**søk**, ikke en delt pin |
 | Fem bilder | `BILDE` | Se tabellen under |
-| RSVP-lagring | `RSVP_ENDPOINT` | Se «RSVP» under |
 
 ## Bilder
 
@@ -40,16 +55,33 @@ forhåndsvisning når lenken deles på SMS og Messenger.
 
 ## RSVP
 
-Skjemaet validerer i nettleseren og sender `POST` med JSON-kroppen
-`{ navn, epost, kommer, antall, allergier }` til URL-en i `RSVP_ENDPOINT`
-nederst i `index.html`.
+Skjemaet spør om navn, e-post, om gjesten kommer, antall, behov for felles
+transport og allergier. Velger gjesten «Dessverre ikke», skjules feltene som
+ikke lenger gir mening, og svaret sendes med `antall: 0`.
 
-Så lenge `RSVP_ENDPOINT` er tom streng **tar ikke skjemaet imot svar**: gjesten
-får beskjed om at påmeldingen ikke er åpen ennå, i stedet for en takkeskjerm.
-Det er med vilje — en takkeskjerm uten lagring gjør at gjester tror de har
-svart når de ikke har det.
+Hvor svaret havner styres av `KONFIG` — tre moduser, i denne rekkefølgen:
 
-Anbefalt backend er Supabase (samme stack som de øvrige prosjektene):
+**1. `rsvpEndepunkt` satt.** Svaret sendes som `POST` med JSON-kroppen
+`{ navn, epost, kommer, antall, transport, allergier }`. Knappen låses under
+sending; svarer serveren noe annet enn 2xx, får gjesten feilmelding og kan
+prøve igjen — takkeskjermen vises ikke. Fungerer med alt som tar imot JSON:
+
+- **Formspree / Formspark / Getform** — opprett et skjema, lim inn URL-en. Ingen kode.
+- **Supabase** — se SQL-en under.
+- **Egen Vercel-funksjon** — legg en fil i `api/rsvp.js`; Vercel bygger den av seg selv.
+
+**2. `rsvpEpost` satt (og ikke noe endepunkt).** Krever ingen backend i det hele
+tatt: skjemaet åpner gjestens e-postklient med hele svaret ferdig utfylt, og
+gjesten trykker send. Dette er den raskeste veien til en påmelding som faktisk
+virker. Ulempen er at gjesten må ha en e-postklient satt opp, og at svarene
+kommer som løs e-post i stedet for en liste.
+
+**3. Ingen av delene (slik filen ligger nå).** Skjemaet sier fra at påmeldingen
+ikke er åpen ennå. Det viser aldri en takkeskjerm uten at svaret faktisk er på
+vei et sted — en gjest som tror hun har svart, men ikke har det, er verre enn
+et skjema som sier at det ikke er klart.
+
+Supabase-oppsett hvis du vil ha svarene i en tabell:
 
 ```sql
 create table rsvp (
@@ -58,6 +90,7 @@ create table rsvp (
   epost text not null,
   kommer boolean not null,
   antall int not null default 1,
+  transport boolean not null default false,
   allergier text,
   opprettet timestamptz not null default now()
 );
@@ -66,15 +99,35 @@ create policy "anon kan svare" on rsvp for insert to anon with check (true);
 -- ingen select-policy: gjestelisten leses kun fra dashboardet
 ```
 
-Sett `RSVP_ENDPOINT` til `https://<prosjekt>.supabase.co/rest/v1/rsvp` og legg
+Sett `rsvpEndepunkt` til `https://<prosjekt>.supabase.co/rest/v1/rsvp` og legg
 til `apikey`- og `Prefer: return=minimal`-headere i `fetch`-kallet. Anon-nøkkelen
-kan ligge i klienten når RLS er satt opp som over. Alternativer uten database:
-Formspark, Netlify Forms, eller en Vercel-funksjon som skriver til et Google Sheet.
+kan ligge i klienten når RLS er satt opp som over.
+
+## Gaver
+
+Egen seksjon mellom «Stedet» og «Praktisk», bygget fra `KONFIG`. Hvert felt gir
+ett kort, og et tomt felt gir ikke noe kort:
+
+| Felt | Kort |
+|---|---|
+| `onskelisteUrl` (+ `onskelisteNavn`) | Lenke til ønskelisten, åpnes i nytt vindu |
+| `vipps` | Vipps-nummer med kopier-knapp |
+| `kontonummer` | Kontonummer med kopier-knapp |
+
+Er alle tre tomme, står det at ønskelisten kommer senere, og gitteret skjules.
+Kopier-knappene bruker `navigator.clipboard` der den finnes og faller tilbake
+på en midlertidig `textarea` ellers, så de virker også på usikre opphav og i
+eldre nettlesere.
+
+Ønskelisten kan peke hvor som helst — Prisjakt, Amazon, Norgesgruppens
+bryllupsliste, et Google Sheet. Siden bryr seg ikke om hvilken tjeneste.
 
 ## Detaljer som er lette å ødelegge
 
-- **Nav-rekkefølgen** (Dagen, Stedet, Oss, Praktisk) skiller seg bevisst fra
-  DOM-rekkefølgen der Oss kommer først. Begge er tilsiktet.
+- **Nav-rekkefølgen** (Dagen, Stedet, Oss, Gaver, Praktisk) skiller seg bevisst
+  fra DOM-rekkefølgen der Oss kommer først. Begge er tilsiktet.
+- **Seks navpunkter er så mange det er plass til** på 320px. Legger du til et
+  sjuende, brekker navet til to linjer og `scroll-margin-top` blir for liten.
 - **Praktisk-gitteret** får hairlines fra `gap: 1px` + bakgrunnsfarge på
   containeren, ikke fra borders på kortene. Endrer du `gap`, forsvinner linjene.
 - **Nedtellingen** bruker eksplisitt `+02:00` så tallene blir like i alle tidssoner.

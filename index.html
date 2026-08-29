@@ -19,13 +19,18 @@
 <!--
   ============================================================
   FØR PUBLISERING — dette må paret bekrefte eller fylle inn:
-    1. Klokkeslettene i programmet (antatt, ikke bekreftet)
-    2. Teksten i «Oss» + sitatet          — søk: TEKST
-    3. Overnatting, transport og gaver    — søk: TEKST
-    4. Kontaktinfo til toastmaster        — søk: TEKST
-    5. Kart-lenken (peker nå på et Google Maps-søk, ikke en pin)
-    6. Fem bilder                         — søk: BILDE
-    7. RSVP-endepunkt                     — søk: RSVP_ENDPOINT
+
+  I KONFIG nederst i filen (alt annet retter seg etter disse verdiene):
+    1. rsvpEpost ELLER rsvpEndepunkt — hvor RSVP-svarene skal
+    2. onskelisteUrl, vipps, kontonummer — gavekortene
+
+  I teksten:
+    3. Klokkeslettene i programmet (antatt, ikke bekreftet)
+    4. Historien i «Oss» + sitatet        — søk: TEKST
+    5. Overnatting og transport           — søk: TEKST
+    6. Kontaktinfo til toastmaster        — søk: TEKST
+    7. Kart-lenken (peker nå på et Google Maps-søk, ikke en pin)
+    8. Fem bilder                         — søk: BILDE
   ============================================================
 -->
 
@@ -286,6 +291,42 @@
   .card__title{ font-size: 27px; margin: 12px 0 10px; }
   .card__body{ font-size: 18px; line-height: 1.75; color: var(--muted); }
 
+  /* ---------- GAVER ---------- */
+  .gaver .sec__head{ margin-bottom: 56px; }
+  .gaver__grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(260px,100%),1fr));
+    gap: 18px;
+  }
+  .gavekort{
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    gap: 10px; text-align:center;
+    padding: 40px 28px;
+    background: #FDFBF4;
+    border: 1px solid var(--hairline);
+    border-radius: 6px;
+    color: var(--ink);
+  }
+  a.gavekort:hover{ border-color: var(--gold); color: var(--ink); }
+  .gavekort__tag{
+    font-family: var(--sans); font-size: 10px;
+    letter-spacing: .3em; text-transform: uppercase; color: #A6853F;
+  }
+  .gavekort__verdi{ font-size: 30px; letter-spacing: .03em; line-height: 1.2; }
+  .gavekort__hjelp{ font-style: italic; font-size: 16px; color: var(--muted); }
+  .kopier, .btn-line{
+    margin-top: 6px;
+    font-family: var(--sans); font-size: 10px;
+    letter-spacing: .24em; text-transform: uppercase;
+    color: var(--sage-dark); background: transparent;
+    border: 1px solid rgba(124,138,107,.6); border-radius: 999px;
+    padding: 11px 20px; cursor: pointer;
+    transition: background .2s ease, color .2s ease, border-color .2s ease;
+  }
+  .kopier:hover, a.gavekort:hover .btn-line{ background: var(--sage-dark); color: var(--cream); border-color: var(--sage-dark); }
+  .kopier[data-kopiert="ja"]{ background: var(--sage-dark); color: var(--cream); border-color: var(--sage-dark); }
+  .gaver__tom{ text-align:center; font-style: italic; font-size: 19px; color: var(--muted); }
+
   /* ---------- RSVP ---------- */
   .rsvp__inner{ max-width: 620px; margin: 0 auto; text-align: center; }
   .rsvp__lede{ margin: 16px 0 44px; }
@@ -320,6 +361,8 @@
   .chip[aria-pressed="true"]{
     background: var(--sage-dark); color: var(--cream); border-color: var(--sage-dark);
   }
+  /* felter som bare gir mening for dem som kommer */
+  .kun-hvis-kommer[hidden]{ display: none !important; }
   .submit{
     margin-top: 14px; justify-self: stretch;
     font-family: var(--sans); font-size: 11px;
@@ -358,14 +401,18 @@
     .program__time{ padding-right: 14px; font-size: 13px; }
     .program__body{ padding-left: 16px; }
     /* navet skal holde seg på én linje helt ned til 320px */
-    .nav{ gap: 14px; padding: 12px 14px; font-size: 10px; letter-spacing: .14em; }
-    .nav__rsvp{ padding: 6px 12px; }
+    .nav{ gap: 12px; padding: 12px 12px; font-size: 10px; letter-spacing: .12em; }
+    .nav__rsvp{ padding: 6px 11px; }
     .countdown .lab{ font-size: 8px; letter-spacing: .2em; }
     /* hero-plassholderen bruker mobilutsnittet, ellers renner teksten ut av rammen */
     .ph--hero{ aspect-ratio: 4/3; }
     .ph--hero .ph__what{ font-size: 17px; }
     .ph__spec{ font-size: 10px; }
     .stedet__grid > *:nth-child(2){ transform: none; }
+  }
+  @media (max-width: 380px){
+    .nav{ gap: 9px; font-size: 9px; letter-spacing: .08em; }
+    .nav__rsvp{ padding: 5px 9px; }
   }
   @media (max-width: 400px){
     /* plassholderteksten trenger mer høyde enn 4:3 gir på de smaleste skjermene;
@@ -387,6 +434,7 @@
   <a href="#dagen">Dagen</a>
   <a href="#stedet">Stedet</a>
   <a href="#oss">Oss</a>
+  <a href="#gaver">Gaver</a>
   <a href="#praktisk">Praktisk</a>
   <a href="#rsvp" class="nav__rsvp">RSVP</a>
 </nav>
@@ -513,6 +561,40 @@
   </div>
 </section>
 
+<section id="gaver" class="sec gaver">
+  <div class="sec__inner">
+    <div class="sec__head">
+      <span class="eyebrow">Gaver</span>
+      <h2 class="sec__title">Ønskeliste</h2>
+      <p class="sec__lede">Det viktigste for oss er at dere er der. Ønsker dere likevel å gi noe, finner dere alt dere trenger her.</p>
+    </div>
+
+    <!-- Kortene under fylles fra KONFIG nederst i filen. Et kort uten verdi vises ikke. -->
+    <div class="gaver__grid" id="gaver-grid" hidden>
+      <a class="gavekort" id="gave-onskeliste" href="#" target="_blank" rel="noopener" hidden>
+        <span class="gavekort__tag">Ønskeliste</span>
+        <span class="gavekort__verdi" id="gave-onskeliste-navn">Ønskelisten vår</span>
+        <span class="gavekort__hjelp">Åpnes i et nytt vindu</span>
+        <span class="btn-line">Se listen</span>
+      </a>
+      <div class="gavekort" id="gave-vipps" hidden>
+        <span class="gavekort__tag">Vipps</span>
+        <span class="gavekort__verdi" id="gave-vipps-nr"></span>
+        <span class="gavekort__hjelp">Merk gjerne med navnet ditt</span>
+        <button class="kopier" type="button" data-kopier="gave-vipps-nr">Kopier nummer</button>
+      </div>
+      <div class="gavekort" id="gave-konto" hidden>
+        <span class="gavekort__tag">Bankkonto</span>
+        <span class="gavekort__verdi" id="gave-konto-nr"></span>
+        <span class="gavekort__hjelp">Merk gjerne med navnet ditt</span>
+        <button class="kopier" type="button" data-kopier="gave-konto-nr">Kopier kontonummer</button>
+      </div>
+    </div>
+
+    <p class="gaver__tom" id="gaver-tom">Vi legger ut ønskeliste og betalingsinfo her når vi nærmer oss.</p>
+  </div>
+</section>
+
 <section id="praktisk" class="sec praktisk">
   <div class="sec__inner">
     <div class="sec__head">
@@ -541,7 +623,7 @@
       <div class="card">
         <div class="card__tag">Gaver</div>
         <div class="card__title">Deres nærvær</div>
-        <div class="card__body">Det viktigste for oss er at dere er der. Ønsker dere likevel å gi noe, sier vi fra her etter hvert.</div>
+        <div class="card__body">Det viktigste for oss er at dere er der. Ønsker dere likevel å gi noe, ligger <a href="#gaver">ønskelisten lenger opp på siden</a>.</div>
       </div>
       <div class="card">
         <div class="card__tag">Barn</div>
@@ -579,13 +661,19 @@
           <button type="button" class="chip" data-val="nei" aria-pressed="false">Dessverre ikke</button>
         </div>
       </fieldset>
-      <label class="field">
+      <label class="field kun-hvis-kommer">
         <span>Antall gjester (inkl. deg selv)</span>
         <input type="number" name="antall" inputmode="numeric" min="1" max="10" value="1">
       </label>
-      <label class="field">
+      <fieldset class="field kun-hvis-kommer">
+        <legend>Felles transport</legend>
+        <div class="chips">
+          <button type="button" class="chip" id="chip-transport" aria-pressed="false">Ja takk, jeg trenger skyss</button>
+        </div>
+      </fieldset>
+      <label class="field kun-hvis-kommer">
         <span>Allergier / matpreferanser</span>
-        <textarea name="allergier" rows="3" placeholder="Skriv gjerne også om du trenger transport"></textarea>
+        <textarea name="allergier" rows="3" placeholder="Skriv gjerne her"></textarea>
       </label>
       <button class="submit" type="submit">Send svar</button>
       <p class="form__error" id="rsvp-error" role="alert" hidden></p>
@@ -594,7 +682,7 @@
 
     <div class="thanks" id="rsvp-thanks" tabindex="-1" hidden>
       <div class="thanks__h">Tusen takk</div>
-      <p class="thanks__p">Vi har notert svaret ditt og gleder oss til å se deg.</p>
+      <p class="thanks__p" id="rsvp-thanks-tekst">Vi har notert svaret ditt og gleder oss til å se deg.</p>
     </div>
   </div>
 </section>
@@ -626,80 +714,218 @@
     var timer = setInterval(tick, 1000);
   })();
 
-  /* RSVP.
-     Sett RSVP_ENDPOINT til en URL som tar imot POST med JSON-kroppen
-     { navn, epost, kommer, antall, allergier }. Så lenge den er tom, tar
-     ikke skjemaet imot svar — det viser en beskjed i stedet for en
-     takkeskjerm, så ingen tror svaret er registrert når det ikke er det.
-     Se README.md for oppsett med Supabase. */
-  var RSVP_ENDPOINT = '';
+  /* ═══════════════════════════════════════════════════════════════
+     OPPSETT — dette er de eneste verdiene som må fylles inn.
+     Resten av siden retter seg etter dem.
+     ═══════════════════════════════════════════════════════════════ */
+  var KONFIG = {
 
+    /* RSVP — hvor svarene skal.
+       Fyll inn ÉN av de to. Endepunktet vinner hvis begge er satt.
+
+       rsvpEndepunkt: URL som tar imot POST med JSON-kroppen
+         { navn, epost, kommer, antall, transport, allergier }.
+         Fungerer med Formspree, Formspark, Supabase REST, egen
+         Vercel-funksjon — alt som svarer 2xx. Se README.
+
+       rsvpEpost: e-postadressen svarene skal til. Krever ingen
+         backend: skjemaet åpner gjestens e-postklient med hele
+         svaret ferdig utfylt, gjesten trykker send.
+
+       Er begge tomme, sier skjemaet fra at påmeldingen ikke er
+       åpen ennå — det viser aldri en takkeskjerm uten at svaret
+       faktisk er på vei et sted. */
+    rsvpEndepunkt:  '',
+    rsvpEpost:      '',
+
+    /* Gaver — hvert felt gir ett kort. Tomt felt = kortet vises ikke.
+       Er alle tomme, står det at ønskelisten kommer senere. */
+    onskelisteUrl:  '',
+    onskelisteNavn: 'Ønskelisten vår',
+    vipps:          '',
+    kontonummer:    ''
+  };
+
+  /* Gaveseksjonen — bygges av KONFIG over. */
   (function(){
-    var attend = null;
-    var chips = document.querySelectorAll('#chips .chip');
+    var grid = document.getElementById('gaver-grid');
+    var tom  = document.getElementById('gaver-tom');
+    var noe  = false;
+
+    if(KONFIG.onskelisteUrl){
+      var lenke = document.getElementById('gave-onskeliste');
+      lenke.href = KONFIG.onskelisteUrl;
+      document.getElementById('gave-onskeliste-navn').textContent = KONFIG.onskelisteNavn || 'Ønskelisten vår';
+      lenke.hidden = false; noe = true;
+    }
+    if(KONFIG.vipps){
+      document.getElementById('gave-vipps-nr').textContent = KONFIG.vipps;
+      document.getElementById('gave-vipps').hidden = false; noe = true;
+    }
+    if(KONFIG.kontonummer){
+      document.getElementById('gave-konto-nr').textContent = KONFIG.kontonummer;
+      document.getElementById('gave-konto').hidden = false; noe = true;
+    }
+
+    grid.hidden = !noe;
+    tom.hidden  = noe;
+
+    /* Kopier-knappene. navigator.clipboard finnes ikke overalt
+       (bl.a. ikke på usikre opphav), derfor reserveløsningen. */
+    function kopier(tekst){
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        return navigator.clipboard.writeText(tekst);
+      }
+      return new Promise(function(ok, feil){
+        var ta = document.createElement('textarea');
+        ta.value = tekst;
+        ta.setAttribute('readonly', '');
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        var klarte = false;
+        try{ klarte = document.execCommand('copy'); }catch(e){}
+        document.body.removeChild(ta);
+        klarte ? ok() : feil();
+      });
+    }
+
+    document.querySelectorAll('.kopier').forEach(function(knapp){
+      var opprinnelig = knapp.textContent;
+      knapp.addEventListener('click', function(){
+        var verdi = document.getElementById(knapp.dataset.kopier).textContent;
+        kopier(verdi).then(function(){
+          knapp.textContent = 'Kopiert';
+          knapp.dataset.kopiert = 'ja';
+        }).catch(function(){
+          knapp.textContent = 'Kopier manuelt';
+        }).then(function(){
+          setTimeout(function(){
+            knapp.textContent = opprinnelig;
+            delete knapp.dataset.kopiert;
+          }, 2200);
+        });
+      });
+    });
+  })();
+
+  /* RSVP. */
+  (function(){
+    var form      = document.getElementById('rsvp-form');
+    var err       = document.getElementById('rsvp-error');
+    var note      = document.getElementById('rsvp-note');
+    var thanks    = document.getElementById('rsvp-thanks');
+    var thanksTxt = document.getElementById('rsvp-thanks-tekst');
+    var submit    = form.querySelector('.submit');
+    var kunHvisKommer = document.querySelectorAll('.kun-hvis-kommer');
+
+    var kommer = null;
+    var chips  = document.querySelectorAll('#chips .chip');
     chips.forEach(function(c){
       c.addEventListener('click', function(){
-        attend = c.dataset.val;
+        kommer = c.dataset.val;
         chips.forEach(function(o){ o.setAttribute('aria-pressed', String(o === c)); });
+        /* antall, transport og allergier gir bare mening for dem som kommer */
+        kunHvisKommer.forEach(function(f){ f.hidden = (kommer === 'nei'); });
       });
     });
 
-    var form   = document.getElementById('rsvp-form');
-    var err    = document.getElementById('rsvp-error');
-    var note   = document.getElementById('rsvp-note');
-    var thanks = document.getElementById('rsvp-thanks');
-    var submit = form.querySelector('.submit');
+    var transportChip = document.getElementById('chip-transport');
+    transportChip.addEventListener('click', function(){
+      var på = transportChip.getAttribute('aria-pressed') === 'true';
+      transportChip.setAttribute('aria-pressed', String(!på));
+    });
 
-    if(RSVP_ENDPOINT) note.hidden = true;
+    /* Åpen påmelding betyr: svaret har et sted å gå. */
+    var harEndepunkt = !!KONFIG.rsvpEndepunkt;
+    var harEpost     = !!KONFIG.rsvpEpost;
+    if(harEndepunkt || harEpost) note.hidden = true;
 
-    function fail(msg){ err.textContent = msg; err.hidden = false; }
+    function fail(msg){
+      err.textContent = msg;
+      err.hidden = false;
+    }
 
-    function done(){
+    function takk(tekst){
+      thanksTxt.textContent = tekst;
       form.hidden = true;
       thanks.hidden = false;
       thanks.focus();
+    }
+
+    function somEpost(d){
+      return [
+        'Navn: ' + d.navn,
+        'E-post: ' + d.epost,
+        'Kommer: ' + (d.kommer ? 'Ja' : 'Nei'),
+        'Antall gjester: ' + (d.kommer ? d.antall : 0),
+        'Trenger felles transport: ' + (d.kommer && d.transport ? 'Ja' : 'Nei'),
+        'Allergier / matpreferanser: ' + (d.allergier || 'ingen')
+      ].join('\n');
     }
 
     form.addEventListener('submit', function(e){
       e.preventDefault();
       err.hidden = true;
 
-      var f = new FormData(form);
+      var f     = new FormData(form);
       var navn  = (f.get('navn')  || '').trim();
       var epost = (f.get('epost') || '').trim();
-      if(!navn)  return fail('Vi trenger navnet ditt.');
+      if(!navn)   return fail('Vi trenger navnet ditt.');
       if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(epost)) return fail('Sjekk e-postadressen.');
-      if(!attend) return fail('Si fra om du kommer.');
+      if(!kommer) return fail('Si fra om du kommer.');
 
-      var payload = {
-        navn: navn,
-        epost: epost,
-        kommer: attend === 'ja',
-        antall: Number(f.get('antall')) || 1,
-        allergier: (f.get('allergier') || '').trim()
+      var svarerJa = kommer === 'ja';
+      var antall   = Math.max(1, Math.min(10, Number(f.get('antall')) || 1));
+      var payload  = {
+        navn:      navn,
+        epost:     epost,
+        kommer:    svarerJa,
+        antall:    svarerJa ? antall : 0,
+        transport: svarerJa && transportChip.getAttribute('aria-pressed') === 'true',
+        allergier: svarerJa ? (f.get('allergier') || '').trim() : ''
       };
 
-      if(!RSVP_ENDPOINT){
-        return fail('Påmeldingen er ikke åpen ennå — svaret ditt blir ikke lagret. Vi sender lenke sammen med invitasjonen.');
+      /* 1. Endepunkt satt — send svaret dit. */
+      if(harEndepunkt){
+        submit.disabled = true;
+        submit.textContent = 'Sender …';
+        fetch(KONFIG.rsvpEndepunkt, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(payload)
+        }).then(function(res){
+          if(!res.ok) throw new Error(res.status);
+          takk('Vi har notert svaret ditt og gleder oss til å se deg.');
+        }).catch(function(){
+          submit.disabled = false;
+          submit.textContent = 'Send svar';
+          fail('Noe gikk galt underveis. Prøv igjen, eller send oss en melding.');
+        });
+        return;
       }
 
-      submit.disabled = true;
-      submit.textContent = 'Sender …';
+      /* 2. Ingen backend, men e-postadresse — åpne ferdig utfylt e-post. */
+      if(harEpost){
+        /* Lenkeklikk framfor location.href: mailto via location blir
+           blokkert i en del innebygde nettlesere (Messenger, Instagram). */
+        var a = document.createElement('a');
+        a.href = 'mailto:' + KONFIG.rsvpEpost
+          + '?subject=' + encodeURIComponent('RSVP – ' + navn)
+          + '&body='    + encodeURIComponent(somEpost(payload));
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        takk('Vi har åpnet en ferdig utfylt e-post til deg — trykk send, så er svaret registrert.');
+        return;
+      }
 
-      fetch(RSVP_ENDPOINT, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      }).then(function(res){
-        if(!res.ok) throw new Error(res.status);
-        done();
-      }).catch(function(){
-        submit.disabled = false;
-        submit.textContent = 'Send svar';
-        fail('Noe gikk galt. Prøv igjen, eller send oss en melding.');
-      });
+      /* 3. Ingen av delene — vær ærlig om det. */
+      fail('Påmeldingen er ikke åpen ennå, så svaret ditt blir ikke lagret. Vi sender lenke sammen med invitasjonen.');
     });
   })();
+
 </script>
 
 </body>
