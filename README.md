@@ -3,6 +3,9 @@
 Statisk side, én fil: `index.html`. Ingen byggesteg og ingen avhengigheter utover
 Google Fonts. Vercel deployer `main` automatisk til tonjeogalexander.vercel.app.
 
+Siden er **tospråklig** — norsk og engelsk. Norsk er standard; gjesten bytter
+med velgeren i toppen eller bunnen, og valget huskes.
+
 Åpne `index.html` direkte i nettleseren for å se endringer — det er hele
 utviklingsoppsettet.
 
@@ -33,32 +36,82 @@ I tillegg gjenstår disse tekstene — søk på ordet i kolonnen «Søk på»:
 | Overnatting og transport | `TEKST` | Står som «kommer» — fyll inn først når det er bestemt |
 | Kontaktinfo til toastmaster | `TEKST` | Ingen telefonnummer i filen nå |
 | Kart-lenken | `Se i kart` | Peker på et Google Maps-**søk**, ikke en delt pin |
-| Fem bilder | `BILDE` | Se tabellen under |
+| Tre bilder av gården | `BILDE` | Se tabellen under |
+
+## Tospråklig
+
+Hver tekst finnes to ganger, som `.no` og `.en`:
+
+```html
+<span class="no">Vielse ved vannet</span><span class="en">Ceremony by the water</span>
+```
+
+For hele avsnitt settes klassen på selve elementet (`<p class="no">` / `<p class="en">`).
+CSS viser bare det aktive språket:
+
+```css
+html[data-lang="no"] .en,
+html[data-lang="en"] .no{ display:none !important; }
+```
+
+Vi setter aldri `display` på språket som *skal* vises — da beholder elementet sin
+egen visning, og ingen andre regler kommer i veien. Uten JavaScript vises norsk.
+
+Attributter som ikke er tekstinnhold byttes av `settSprak()`:
+
+| Attributt | Dataattributt |
+|---|---|
+| `placeholder` | `data-plassholder-no` / `data-plassholder-en` |
+| `alt` | `data-alt-no` / `data-alt-en` |
+| knappetekst | `data-etikett-no` / `data-etikett-en` |
+| `<title>` | `data-tittel-no` / `data-tittel-en` på `<html>` |
+
+Tekst som lages i JavaScript (nedtelling, feilmeldinger, takkeskjerm) bruker
+hjelperen `T('norsk', 'english')`.
+
+**Legger du til tekst, må begge språk fylles inn.** Ellers står det tomt for
+halvparten av gjestene.
 
 ## Bilder
 
-Ligger i `bilder/`. Hero og portrett er på plass; de tre bildene av Huser Gård
-mangler fortsatt.
+Ligger i `bilder/`. Alle bilder av dere to er på plass. Det som mangler er
+**tre ekte foto av Huser Gård** — til de kommer, står akvarellen og tre tydelige
+plassholdere i mosaikken.
 
 | Fil | Mål | Plassering | Status |
 |---|---|---|---|
-| `hero-brygge.jpg` | 1536 × 672 (16:7) | Hero, maks 1180 px bred | ✅ |
-| `hero-brygge-mobil.jpg` | 1536 × 1152 (4:3) | Hero under 640 px, via `<picture>` | ✅ |
-| `oss-portrett.jpg` | 1200 × 1500 (4:5) | Oss | ✅ |
-| `oss-portrett-600.jpg` | 600 × 750 (4:5) | Oss på smale skjermer, via `srcset` | ✅ |
-| `galleri-*.jpg` (8 stk) | 600 × 600 (1:1) | Bildestripe nederst i Oss | ✅ |
-| `sted-01.jpg` | 900 × 1200 (3:4) | Stedet — hovedhuset | mangler |
-| `sted-02.jpg` | 900 × 1200 (3:4) | Stedet — vielsesplassen (forskjøvet 28 px ned på desktop) | mangler |
-| `sted-03.jpg` | 900 × 1200 (3:4) | Stedet — hagen/låven | mangler |
+| `hero-portal.jpg` | 864 × 1152 (3:4) | Hero — navnene ligger oppå | ✅ |
+| `oss-portrett.jpg` | 1200 × 1500 (4:5) | Oss — buet portrett | ✅ |
+| `oss-snap.jpg` | 600 × 600 (1:1) | Oss — polaroid nede til høyre | ✅ |
+| `oyeblikk-01…05.jpg` | 600 × 600 (1:1) | Øyeblikk-stripen | ✅ |
+| `akvarell-gaarden.jpg` | 1600 × 1113 | Stedet — hele maleriet | ✅ |
+| `sted-akvarell-hus.jpg` | 800 × 1000 (4:5) | Stedet — hovedhuset | ✅ |
+| `sted-akvarell-bryggen.jpg` | 780 × 1041 (3:4) | Stedet — bryggen, buet topp | ✅ |
+| `dagen-akvarell.jpg` | 760 × 1013 (3:4) | Dagen — sticky bildespalte | ✅ |
+| `sted-detalj.jpg` | 1000 × 1000 (1:1) | Stedet — detalj | mangler |
+| `sted-laaven.jpg` | 1000 × 1000 (1:1) | Stedet — låven | mangler |
+| `sted-hagen.jpg` | 1000 × 1250 (4:5) | Stedet — hagen i kveldslys | mangler |
 
 De tre som mangler vises som tydelige plassholdere til de kommer. Bytt hele
-`<div class="ph ph--dark">` mot en `<img>` med `aspect-ratio: 3/4` og
-`object-fit: cover`.
+`<div class="ph ph--dark">` mot en `<img>` med samme `aspect-ratio` og
+`object-fit: cover`, og gi den `data-alt-no` / `data-alt-en`.
 
-Bildene er beskåret fra originalfiler, ikke skjermdumper. Portrettet kommer
-fra en 4032 px original og er nedskalert til 1200 px; hero-bildet er 1536 px,
-som er kildens fulle bredde. Portrettet har en 600 px variant som serveres på
-smale skjermer via `srcset` — den sparer rundt 220 kB på mobil.
+### Akvarellen
+
+Akvarellen fra save the date-kortet bærer Stedet-seksjonen: hele maleriet i
+passepartout mot den mørke flaten, og to detaljutsnitt i mosaikken. Den er
+klippet fra kortet slik det kom inn på telefon (1077 px bredt) og skalert opp
+mykt — det tåler et akvarell, men **har dere originalfilen fra den som tegnet
+kortet, bytt den inn**. Da blir maleriet skarpt på store skjermer.
+
+`bilder/save-the-date.jpg` er hele kortet, tatt vare på for senere bruk.
+
+### Om `height`-attributtet på `<img>`
+
+Alle `<img>` har `width` og `height` for å unngå layoutskift. Da må CSS ha
+`height:auto` når `aspect-ratio` skal bestemme høyden — ellers vinner
+`height`-attributtet, og `object-fit:cover` zoomer bildet feil. Basisregelen
+`img{ height:auto }` tar dette; `.portal__frame img` setter `height:100%` selv.
 
 `og:image` i `<head>` peker på hero-bildet med absolutt URL. Får siden et eget
 domene, må den URL-en oppdateres — relative stier virker ikke i OG-tagger.
