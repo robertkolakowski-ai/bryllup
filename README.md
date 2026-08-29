@@ -37,21 +37,30 @@ I tillegg gjenstår disse tekstene — søk på ordet i kolonnen «Søk på»:
 
 ## Bilder
 
-Legg filene i `bilder/`. Bytt hele `<div class="ph …">` mot en `<img>` med samme
-`aspect-ratio` og `object-fit: cover`. Plassholderstilen er bevisst tydelig —
-behold den til ekte bilder finnes.
+Ligger i `bilder/`. Hero og portrett er på plass; de tre bildene av Huser Gård
+mangler fortsatt.
 
-| # | Fil | Mål | Plassering |
+| Fil | Mål | Plassering | Status |
 |---|---|---|---|
-| 01 | `hero-huser-gard.jpg` | 2400 × 1050 (16:7) | Hero, maks 1180 px bred |
-| 01b | `hero-huser-gard-mobile.jpg` | 1200 × 900 (4:3) | Hero under 640 px, via `<picture>` |
-| 02 | `oss-portrett.jpg` | 1200 × 1500 (4:5) | Oss — `object-position: center 35%` |
-| 03 | `sted-01.jpg` | 900 × 1200 (3:4) | Stedet — hovedhuset |
-| 04 | `sted-02.jpg` | 900 × 1200 (3:4) | Stedet — vielsesplassen (forskjøvet 28 px ned på desktop) |
-| 05 | `sted-03.jpg` | 900 × 1200 (3:4) | Stedet — hagen/låven |
+| `hero-fjord.jpg` | 1125 × 492 (16:7) | Hero, maks 1180 px bred | ✅ |
+| `hero-fjord-mobil.jpg` | 1125 × 844 (4:3) | Hero under 640 px, via `<picture>` | ✅ |
+| `oss-portrett.jpg` | 900 × 1125 (4:5) | Oss | ✅ |
+| `sted-01.jpg` | 900 × 1200 (3:4) | Stedet — hovedhuset | mangler |
+| `sted-02.jpg` | 900 × 1200 (3:4) | Stedet — vielsesplassen (forskjøvet 28 px ned på desktop) | mangler |
+| `sted-03.jpg` | 900 × 1200 (3:4) | Stedet — hagen/låven | mangler |
 
-Legg samtidig inn `og:image` i `<head>` (kommentar ligger der) så siden får
-forhåndsvisning når lenken deles på SMS og Messenger.
+De tre som mangler vises som tydelige plassholdere til de kommer. Bytt hele
+`<div class="ph ph--dark">` mot en `<img>` med `aspect-ratio: 3/4` og
+`object-fit: cover`.
+
+Bildene som ligger inne er beskåret fra skjermdumper av story-innlegg, så
+oppløsningen er begrenset av kilden — 1125 px bred. Det holder til én
+skjermbredde, men blir litt mykt på retina. Har dere originalbildene
+(fra kamerarullen, ikke skjermdump), kan de beskjæres på nytt i full
+oppløsning uten andre endringer i koden.
+
+`og:image` i `<head>` peker på hero-bildet med absolutt URL. Får siden et eget
+domene, må den URL-en oppdateres — relative stier virker ikke i OG-tagger.
 
 ## RSVP
 

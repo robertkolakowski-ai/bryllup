@@ -10,7 +10,12 @@
 <meta property="og:locale" content="nb_NO">
 <meta property="og:title" content="Alexander &amp; Tonje — 28. august 2027">
 <meta property="og:description" content="Vi gifter oss på Huser Gård i Fenstad. Program, praktisk informasjon og påmelding.">
-<!-- BILDE: legg til <meta property="og:image" content="https://tonjeogalexander.vercel.app/bilder/hero-huser-gard.jpg"> når bildet finnes -->
+<!-- Absolutt URL kreves. Bytt domenet hvis siden får et eget. -->
+<meta property="og:image" content="https://tonjeogalexander.vercel.app/bilder/hero-fjord.jpg">
+<meta property="og:image:width" content="1125">
+<meta property="og:image:height" content="492">
+<meta property="og:image:alt" content="Alexander med hunden Fomle foran fjorden">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23F6F1E3'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='19' text-anchor='middle' fill='%234E5B44'%3EA%26T%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -30,7 +35,8 @@
     5. Overnatting og transport           — søk: TEKST
     6. Kontaktinfo til toastmaster        — søk: TEKST
     7. Kart-lenken (peker nå på et Google Maps-søk, ikke en pin)
-    8. Fem bilder                         — søk: BILDE
+    8. Tre bilder av Huser Gård           — søk: BILDE
+       (hero og portrett ligger inne, se bilder/)
   ============================================================
 -->
 
@@ -192,15 +198,15 @@
     font-family: var(--sans); font-size: 11px; letter-spacing: .06em;
     color: var(--muted-warm); margin-top: 12px; line-height: 1.8;
   }
-  .ph--hero{
-    aspect-ratio: 16/7;
-    border-radius: 6px 6px 0 0;
-    border-bottom: none;
-    overflow: hidden;
-  }
-  .ph--hero .ph__what{ font-size: 22px; }
   .hero__figure{ max-width: 1180px; width: 100%; min-width: 0; margin: 56px auto 0; }
-  .ph--portrait{ aspect-ratio: 4/5; }
+  .hero__bilde{
+    display: block; width: 100%; height: auto;
+    border-radius: 6px 6px 0 0;
+  }
+  .oss__bilde{
+    display: block; width: 100%; height: auto;
+    border-radius: 4px;
+  }
   .ph--dark{
     aspect-ratio: 3/4;
     background: none;
@@ -404,20 +410,12 @@
     .nav{ gap: 12px; padding: 12px 12px; font-size: 10px; letter-spacing: .12em; }
     .nav__rsvp{ padding: 6px 11px; }
     .countdown .lab{ font-size: 8px; letter-spacing: .2em; }
-    /* hero-plassholderen bruker mobilutsnittet, ellers renner teksten ut av rammen */
-    .ph--hero{ aspect-ratio: 4/3; }
-    .ph--hero .ph__what{ font-size: 17px; }
     .ph__spec{ font-size: 10px; }
     .stedet__grid > *:nth-child(2){ transform: none; }
   }
   @media (max-width: 380px){
     .nav{ gap: 9px; font-size: 9px; letter-spacing: .08em; }
     .nav__rsvp{ padding: 5px 9px; }
-  }
-  @media (max-width: 400px){
-    /* plassholderteksten trenger mer høyde enn 4:3 gir på de smaleste skjermene;
-       forholdstallet betyr uansett bare noe for det ekte bildet */
-    .ph--hero{ aspect-ratio: auto; min-height: 200px; }
   }
   @media (prefers-reduced-motion: reduce){
     html{ scroll-behavior: auto; }
@@ -463,24 +461,21 @@
     </div>
   </div>
 
-  <!-- BILDE 01 — bytt hele .ph--hero mot <img src="bilder/hero-huser-gard.jpg" alt="Huser Gård"> -->
   <div class="hero__figure">
-    <div class="ph ph--hero">
-      <div class="ph__tag">Bildeplass 01 — Hero</div>
-      <div class="ph__what">Akvarellillustrasjonen fra save the date-kortet, beskåret til liggende format</div>
-      <div class="ph__spec">Fil: <b>hero-huser-gard.jpg</b> · 2400 × 1050 px · object-fit: cover · full bredde, maks 1180 px<br>Mobil: utsnitt 4:3 (hero-huser-gard-mobile.jpg, 1200 × 900 px)</div>
-    </div>
+    <picture>
+      <source media="(max-width: 640px)" srcset="bilder/hero-fjord-mobil.jpg" width="1125" height="844">
+      <img class="hero__bilde" src="bilder/hero-fjord.jpg"
+           alt="Alexander med hunden Fomle foran fjorden en stille sommerkveld"
+           width="1125" height="492" fetchpriority="high" decoding="async">
+    </picture>
   </div>
 </header>
 
 <section id="oss" class="sec">
   <div class="sec__inner oss">
-    <!-- BILDE 02 -->
-    <div class="ph ph--portrait">
-      <div class="ph__tag">Bildeplass 02 — Paret</div>
-      <div class="ph__what">Portrett av Alexander og Tonje</div>
-      <div class="ph__spec">Fil: <b>oss-portrett.jpg</b> · 1200 × 1500 px (4:5)<br>object-fit: cover · object-position: center 35%</div>
-    </div>
+    <img class="oss__bilde" src="bilder/oss-portrett.jpg"
+         alt="Alexander og Tonje på restaurant"
+         width="900" height="1125" loading="lazy" decoding="async">
     <div>
       <span class="eyebrow">Oss to</span>
       <h2 class="oss__title">Alexander <em>og</em> Tonje</h2>
