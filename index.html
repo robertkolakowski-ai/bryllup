@@ -228,6 +228,22 @@
   .oss__body{ font-size: 20px; line-height: 1.85; color: var(--ink-soft); margin-bottom: 18px; }
   .oss__quote{ font-style: italic; font-size: 19px; line-height: 1.8; color: var(--muted); }
   .oss__sign{ margin-top: 26px; font-family: var(--script); font-size: 34px; color: var(--sage); }
+  .stripe{
+    display:grid;
+    /* faste spalter, ikke auto-fit: fire bilder skal bli 2x2 eller 4x1,
+       aldri 3+1 med en foreldreløs rute på slutten */
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    margin-top: clamp(44px,6vw,72px);
+  }
+  @media (min-width: 900px){
+    .stripe{ grid-template-columns: repeat(4, 1fr); }
+  }
+  .stripe img{
+    display:block; width:100%; height:auto;
+    aspect-ratio: 1/1; object-fit: cover;
+    border-radius: 4px;
+  }
 
   /* ---------- PROGRAM ---------- */
   .dagen{ background: var(--cream-light); }
@@ -472,7 +488,8 @@
 </header>
 
 <section id="oss" class="sec">
-  <div class="sec__inner oss">
+  <div class="sec__inner">
+   <div class="oss">
     <img class="oss__bilde" src="bilder/oss-portrett.jpg"
          srcset="bilder/oss-portrett-600.jpg 600w, bilder/oss-portrett.jpg 1200w"
          sizes="(max-width: 719px) calc(100vw - 48px), 504px"
@@ -485,6 +502,18 @@
       <p class="oss__body">Her skriver dere deres egen historie — hvordan dere møttes, hvor frieriet skjedde, og hvorfor det ble akkurat Huser Gård.</p>
       <p class="oss__quote">«En setning fra dere to — gjerne noe kort og personlig som gjestene smiler av.»</p>
       <div class="oss__sign">Alexander &amp; Tonje</div>
+    </div>
+   </div>
+
+    <div class="stripe">
+      <img src="bilder/galleri-17mai.jpg" alt="Tonje i bunad og Alexander i dress på 17. mai"
+           width="600" height="600" loading="lazy" decoding="async">
+      <img src="bilder/galleri-fjellet.jpg" alt="Tonje med fiskestang ved et fjellvann"
+           width="600" height="600" loading="lazy" decoding="async">
+      <img src="bilder/galleri-fomle.jpg" alt="Tonje og Alexander hjemme med hunden Fomle"
+           width="600" height="600" loading="lazy" decoding="async">
+      <img src="bilder/galleri-roma.jpg" alt="Alexander og Tonje foran Colosseum i Roma"
+           width="600" height="600" loading="lazy" decoding="async">
     </div>
   </div>
 </section>

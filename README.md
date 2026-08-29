@@ -46,6 +46,10 @@ mangler fortsatt.
 | `hero-brygge-mobil.jpg` | 1536 × 1152 (4:3) | Hero under 640 px, via `<picture>` | ✅ |
 | `oss-portrett.jpg` | 1200 × 1500 (4:5) | Oss | ✅ |
 | `oss-portrett-600.jpg` | 600 × 750 (4:5) | Oss på smale skjermer, via `srcset` | ✅ |
+| `galleri-17mai.jpg` | 600 × 600 (1:1) | Bildestripe nederst i Oss | ✅ |
+| `galleri-fjellet.jpg` | 600 × 600 (1:1) | Bildestripe nederst i Oss | ✅ |
+| `galleri-fomle.jpg` | 600 × 600 (1:1) | Bildestripe nederst i Oss | ✅ |
+| `galleri-roma.jpg` | 600 × 600 (1:1) | Bildestripe nederst i Oss | ✅ |
 | `sted-01.jpg` | 900 × 1200 (3:4) | Stedet — hovedhuset | mangler |
 | `sted-02.jpg` | 900 × 1200 (3:4) | Stedet — vielsesplassen (forskjøvet 28 px ned på desktop) | mangler |
 | `sted-03.jpg` | 900 × 1200 (3:4) | Stedet — hagen/låven | mangler |
@@ -137,6 +141,11 @@ bryllupsliste, et Google Sheet. Siden bryr seg ikke om hvilken tjeneste.
   fra DOM-rekkefølgen der Oss kommer først. Begge er tilsiktet.
 - **Seks navpunkter er så mange det er plass til** på 320px. Legger du til et
   sjuende, brekker navet til to linjer og `scroll-margin-top` blir for liten.
+  Derfor ligger bildestripa inne i «Oss» og ikke som en egen seksjon med
+  eget navpunkt.
+- **Bildestripa bruker faste spalter**, ikke `auto-fit`. Med `auto-fit` ble
+  fire bilder til 3+1 med en foreldreløs rute på nettbrett. Bytter du antall
+  bilder, juster spaltetallet så det går opp.
 - **Praktisk-gitteret** får hairlines fra `gap: 1px` + bakgrunnsfarge på
   containeren, ikke fra borders på kortene. Endrer du `gap`, forsvinner linjene.
 - **Nedtellingen** bruker eksplisitt `+02:00` så tallene blir like i alle tidssoner.
