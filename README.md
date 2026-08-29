@@ -139,6 +139,37 @@ Det sparer rundt 380 kB på en telefon. Endrer du bredden på et av disse
 elementene i CSS, må `sizes` oppdateres tilsvarende — ellers velger nettleseren
 feil variant.
 
+## Monogrammet
+
+Merket **T & A** ligger som rene vektorbaner i tre filer:
+
+| Fil | Bruk |
+|---|---|
+| `bilder/monogram.svg` | Det frie merket — trykk, servietter, skilt, lakksegl |
+| `bilder/monogram-bue.svg` | I bue — større flater, forsiden, programark |
+| `bilder/favicon.svg` | Fanen i nettleseren, strammere sperring så det leser på 16 px |
+
+Bokstavene er **konvertert til baner**, ikke tekst. Det betyr at merket ser
+likt ut overalt — i Illustrator, Canva, hos et trykkeri, på en gravør — uten
+at noen trenger å ha en bestemt font installert.
+
+Buen er den samme formen som går igjen på siden: hero-portrettet, portrettet i
+«Oss» og det midterste bildet i mosaikken. Den er elliptisk, ikke halvsirkel —
+akkurat som `border-radius: 999px` gir på et stående bilde.
+
+På siden ligger merket tre steder: i nettleserfanen, over «vi gifter oss» i
+hero, og i bunnlinjen. På nettsiden er de innebygd i HTML-en med
+`fill="currentColor"` på bokstavene, slik at det samme merket virker både på
+creme og mot den mørke bunnen. Buen og ampersanden er alltid gull.
+
+Vil dere ha det i en annen farge, endre `#C8A96A` (gull) og `#2C2F28` (blekk)
+i SVG-filene. Trenger dere PNG, åpne SVG-en i nettleseren og eksporter — den
+er vektor, så den tåler hvilken som helst størrelse.
+
+**Merk rekkefølgen:** monogrammet står som *T & A* (Tonje først), mens teksten
+på siden gjennomgående sier *Alexander & Tonje*. Begge deler er vanlig, men
+skal de være like, må én av dem snus.
+
 ## Bevegelse og navigasjon
 
 **Scroll-reveal.** Elementer med `data-reveal` stiger 12 px og toner inn når de
