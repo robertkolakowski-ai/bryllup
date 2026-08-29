@@ -74,27 +74,39 @@ halvparten av gjestene.
 
 ## Bilder
 
-Ligger i `bilder/`. Alle bilder av dere to er på plass. Det som mangler er
-**tre ekte foto av Huser Gård** — til de kommer, står akvarellen og tre tydelige
-plassholdere i mosaikken.
+Ligger i `bilder/`. **Alle bildeplasser er nå fylt med ekte foto** — ingen
+plassholdere igjen på siden.
 
-| Fil | Mål | Plassering | Status |
-|---|---|---|---|
-| `hero-portal.jpg` | 864 × 1152 (3:4) | Hero — navnene ligger oppå | ✅ |
-| `oss-portrett.jpg` | 1200 × 1500 (4:5) | Oss — buet portrett | ✅ |
-| `oss-snap.jpg` | 600 × 600 (1:1) | Oss — polaroid nede til høyre | ✅ |
-| `oyeblikk-01…05.jpg` | 600 × 600 (1:1) | Øyeblikk-stripen | ✅ |
-| `akvarell-gaarden.jpg` | 1600 × 1113 | Stedet — hele maleriet | ✅ |
-| `sted-akvarell-hus.jpg` | 800 × 1000 (4:5) | Stedet — hovedhuset | ✅ |
-| `sted-akvarell-bryggen.jpg` | 780 × 1041 (3:4) | Stedet — bryggen, buet topp | ✅ |
-| `dagen-akvarell.jpg` | 760 × 1013 (3:4) | Dagen — sticky bildespalte | ✅ |
-| `sted-detalj.jpg` | 1000 × 1000 (1:1) | Stedet — detalj | mangler |
-| `sted-laaven.jpg` | 1000 × 1000 (1:1) | Stedet — låven | mangler |
-| `sted-hagen.jpg` | 1000 × 1250 (4:5) | Stedet — hagen i kveldslys | mangler |
+| Fil | Mål | Plassering |
+|---|---|---|
+| `hero-portal.jpg` + `-600` | 864 × 1152 (3:4) | Hero — navnene ligger oppå |
+| `oss-portrett.jpg` + `-800`, `-600` | 1200 × 1500 (4:5) | Oss — buet portrett |
+| `oss-snap.jpg` | 600 × 600 (1:1) | Oss — polaroid nede til høyre |
+| `oyeblikk-01…05.jpg` | 600 × 600 (1:1) | Øyeblikk-stripen |
+| `dagen-akvarell.jpg` | 760 × 1013 (3:4) | Dagen — sticky bildespalte |
+| `akvarell-gaarden.jpg` + `-900` | 1600 × 1113 | Stedet — hele maleriet |
+| `sted-gaarden.jpg` | 900 × 1125 (4:5) | Stedet — gården i høstlys |
+| `sted-hytta.jpg` | 900 × 900 (1:1) | Stedet — glasshytta innvendig |
+| `sted-elva.jpg` | 860 × 1146 (3:4) | Stedet — buet, brygga ved elva |
+| `sted-domen.jpg` | 880 × 1100 (4:5) | Stedet — glampingdomen |
+| `og-gaarden.jpg` | 1200 × 630 | Delebilde når lenken sendes |
 
-De tre som mangler vises som tydelige plassholdere til de kommer. Bytt hele
-`<div class="ph ph--dark">` mot en `<img>` med samme `aspect-ratio` og
-`object-fit: cover`, og gi den `data-alt-no` / `data-alt-en`.
+Bildene av gården er beskåret fra fotografier fra WonderInn. **Avklar bruken
+med dem** hvis det ikke allerede er gjort.
+
+Mosaikken i Stedet har fire ulike motiver med vilje — to utsnitt av samme
+flyfoto leste som en dublett, selv med ulik beskjæring.
+
+Plassholderstilen (`.ph`) ligger fortsatt i CSS-en. Trenger dere en ny
+bildeplass senere, er mønsteret:
+
+```html
+<div class="ph ph--dark r-4x5">
+  <div class="ph__tag">Bildeplass</div>
+  <div class="ph__what">Hva bildet skal vise</div>
+  <div class="ph__spec">bilder/navn.jpg · 1000 × 1250 px</div>
+</div>
+```
 
 ### Akvarellen
 

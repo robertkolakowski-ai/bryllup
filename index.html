@@ -16,10 +16,10 @@
 <meta property="og:description" content="Vi gifter oss på Huser Gård i Fenstad. Program, praktisk informasjon og påmelding.">
 <!-- Absolutt URL kreves. Bytt domenet hvis siden får et eget. -->
 <meta property="og:url" content="https://tonjeogalexander.vercel.app/">
-<meta property="og:image" content="https://tonjeogalexander.vercel.app/bilder/hero-brygge.jpg">
-<meta property="og:image:width" content="1536">
-<meta property="og:image:height" content="672">
-<meta property="og:image:alt" content="Alexander og Tonje på brygga en gyllen sommerkveld">
+<meta property="og:image" content="https://tonjeogalexander.vercel.app/bilder/og-gaarden.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Huser Gård ved elva i Fenstad, sett ovenfra en sommerkveld">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://tonjeogalexander.vercel.app/">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23F6F1E3'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='19' text-anchor='middle' fill='%234E5B44'%3EA%26T%3C/text%3E%3C/svg%3E">
@@ -55,7 +55,8 @@
     5. Overnatting og transport
     6. Kontaktinfo til toastmaster
     7. Kart-lenken (peker nå på et Google Maps-søk, ikke en pin)
-    8. To bilder av Huser Gård i mosaikken (søk: BILDE)
+
+  Alle bildeplasser er nå fylt med ekte foto.
 
   TOSPRÅKLIG: hver tekst finnes to ganger, som .no og .en.
   Legger du til tekst, må BEGGE språk fylles inn.
@@ -300,6 +301,10 @@
   .mosaic__col{ display:grid; gap:16px; }
   .mosaic__col--offset{ transform: translateY(40px); }
   .mosaic__cap{ font-family:var(--script); font-size:26px; color:var(--gold); text-align:center; }
+  /* Fotoene står uten passepartout — den rammen hører akvarellene til */
+  .mosaic__bilde{ margin:0; }
+  .mosaic__bilde img{ width:100%; height:auto; border-radius:4px; }
+  .mosaic__bilde--arch img{ border-radius: var(--arch); }
   .r-4x5{ aspect-ratio:4/5; } .r-1x1{ aspect-ratio:1; } .r-3x4{ aspect-ratio:3/4; }
   .stedet__cta{ display:flex; justify-content:center; margin-top:clamp(64px,9vw,110px); }
   .btn-ghost{
@@ -621,45 +626,39 @@
 
     <div class="mosaic">
       <div data-reveal data-forsink="1" class="mosaic__col">
-        <figure class="art">
-          <img src="bilder/sted-akvarell-hus.jpg" width="800" height="1000" loading="lazy"
-               alt="Hovedhuset på Huser Gård, malt i akvarell"
-               data-alt-no="Hovedhuset på Huser Gård, malt i akvarell"
-               data-alt-en="The main house at Huser Gård, painted in watercolour">
+        <figure class="mosaic__bilde">
+          <img src="bilder/sted-gaarden.jpg" width="900" height="1125" loading="lazy"
+               alt="Huser Gård sett ovenfra i gyllent høstlys, med elva nedenfor"
+               data-alt-no="Huser Gård sett ovenfra i gyllent høstlys, med elva nedenfor"
+               data-alt-en="Huser Gård from above in golden autumn light, the river below">
         </figure>
-        <!-- BILDE: ekte foto av en detalj på gården -->
-        <div class="ph ph--dark r-1x1">
-          <div class="ph__tag"><span class="no">Bildeplass</span><span class="en">Photo slot</span></div>
-          <div class="ph__what"><span class="no">Detalj — dør, blomster, treverk</span><span class="en">Detail — door, flowers, timber</span></div>
-          <div class="ph__spec">bilder/sted-detalj.jpg · 1000 × 1000 px</div>
-        </div>
+        <figure class="mosaic__bilde">
+          <img src="bilder/sted-hytta.jpg" width="900" height="900" loading="lazy"
+               alt="Innsiden av en glasshytte med utsikt rett ut mot elva"
+               data-alt-no="Innsiden av en glasshytte med utsikt rett ut mot elva"
+               data-alt-en="Inside one of the glass cabins, looking straight out over the river">
+        </figure>
       </div>
 
       <div data-reveal data-forsink="2" class="mosaic__col mosaic__col--offset">
-        <figure class="art art--arch">
-          <img src="bilder/sted-akvarell-bryggen.jpg" width="780" height="1041" loading="lazy"
-               alt="Bryggen der vielsen holdes, malt i akvarell"
-               data-alt-no="Bryggen der vielsen holdes, malt i akvarell"
-               data-alt-en="The jetty where the ceremony is held, painted in watercolour">
+        <figure class="mosaic__bilde mosaic__bilde--arch">
+          <img src="bilder/sted-elva.jpg" width="860" height="1146" loading="lazy"
+               alt="Gården og jordene ned mot elva en sommerkveld, med brygga ved vannkanten"
+               data-alt-no="Gården og jordene ned mot elva en sommerkveld, med brygga ved vannkanten"
+               data-alt-en="The farm and meadows down to the river on a summer evening, the jetty at the water's edge">
         </figure>
         <div class="mosaic__cap">
-          <span class="no">klokken tre, ved vannet</span><span class="en">three o’clock, by the water</span>
+          <span class="no">klokken tre, ved vannet</span><span class="en">three o'clock, by the water</span>
         </div>
       </div>
 
       <div data-reveal data-forsink="3" class="mosaic__col">
-        <!-- BILDE: ekte foto av låven / festlokalet -->
-        <div class="ph ph--dark r-1x1">
-          <div class="ph__tag"><span class="no">Bildeplass</span><span class="en">Photo slot</span></div>
-          <div class="ph__what"><span class="no">Låven / festlokalet</span><span class="en">The barn / the party room</span></div>
-          <div class="ph__spec">bilder/sted-laaven.jpg · 1000 × 1000 px</div>
-        </div>
-        <!-- BILDE: ekte foto av hagen i kveldslys -->
-        <div class="ph ph--dark r-4x5">
-          <div class="ph__tag"><span class="no">Bildeplass</span><span class="en">Photo slot</span></div>
-          <div class="ph__what"><span class="no">Hagen i kveldslys</span><span class="en">The garden at dusk</span></div>
-          <div class="ph__spec">bilder/sted-hagen.jpg · 1000 × 1250 px</div>
-        </div>
+        <figure class="mosaic__bilde">
+          <img src="bilder/sted-domen.jpg" width="880" height="1100" loading="lazy"
+               alt="Glampingdomen på sin terrasse i skogkanten"
+               data-alt-no="Glampingdomen på sin terrasse i skogkanten"
+               data-alt-en="The glamping dome on its deck at the edge of the woods">
+        </figure>
       </div>
     </div>
 
