@@ -42,9 +42,10 @@ mangler fortsatt.
 
 | Fil | Mål | Plassering | Status |
 |---|---|---|---|
-| `hero-fjord.jpg` | 1125 × 492 (16:7) | Hero, maks 1180 px bred | ✅ |
-| `hero-fjord-mobil.jpg` | 1125 × 844 (4:3) | Hero under 640 px, via `<picture>` | ✅ |
-| `oss-portrett.jpg` | 900 × 1125 (4:5) | Oss | ✅ |
+| `hero-brygge.jpg` | 1536 × 672 (16:7) | Hero, maks 1180 px bred | ✅ |
+| `hero-brygge-mobil.jpg` | 1536 × 1152 (4:3) | Hero under 640 px, via `<picture>` | ✅ |
+| `oss-portrett.jpg` | 1200 × 1500 (4:5) | Oss | ✅ |
+| `oss-portrett-600.jpg` | 600 × 750 (4:5) | Oss på smale skjermer, via `srcset` | ✅ |
 | `sted-01.jpg` | 900 × 1200 (3:4) | Stedet — hovedhuset | mangler |
 | `sted-02.jpg` | 900 × 1200 (3:4) | Stedet — vielsesplassen (forskjøvet 28 px ned på desktop) | mangler |
 | `sted-03.jpg` | 900 × 1200 (3:4) | Stedet — hagen/låven | mangler |
@@ -53,11 +54,10 @@ De tre som mangler vises som tydelige plassholdere til de kommer. Bytt hele
 `<div class="ph ph--dark">` mot en `<img>` med `aspect-ratio: 3/4` og
 `object-fit: cover`.
 
-Bildene som ligger inne er beskåret fra skjermdumper av story-innlegg, så
-oppløsningen er begrenset av kilden — 1125 px bred. Det holder til én
-skjermbredde, men blir litt mykt på retina. Har dere originalbildene
-(fra kamerarullen, ikke skjermdump), kan de beskjæres på nytt i full
-oppløsning uten andre endringer i koden.
+Bildene er beskåret fra originalfiler, ikke skjermdumper. Portrettet kommer
+fra en 4032 px original og er nedskalert til 1200 px; hero-bildet er 1536 px,
+som er kildens fulle bredde. Portrettet har en 600 px variant som serveres på
+smale skjermer via `srcset` — den sparer rundt 220 kB på mobil.
 
 `og:image` i `<head>` peker på hero-bildet med absolutt URL. Får siden et eget
 domene, må den URL-en oppdateres — relative stier virker ikke i OG-tagger.
