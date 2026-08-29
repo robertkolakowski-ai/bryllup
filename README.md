@@ -118,6 +118,7 @@ plassholderen sier selv hvilket filnavn den venter på.
 | `alpakkaene.jpg` | `galleri.html` — «Alpakkaene» | Liggende, 1800 × 1200 px |
 | `kart.jpg` | `praktisk.html` — kartet over gården | Liggende, 1600 × 900 px |
 | `antrekk.jpg` | `praktisk.html` — antrekk | Stående, 1000 × 1250 px |
+| `alpakkaene.jpg` | `index.html` — under omtalen av gården | Liggende 16:9, 1720 × 960 px |
 
 **Om rettigheter:** bildene på wonderinn.no er deres eget materiale. Til en
 privat bryllupsside sier de fleste steder ja uten videre, men spør dem først —

@@ -859,3 +859,25 @@ html[data-lang="en"] .no{ display: none !important; }
   box-shadow: var(--shadow-lift);
 }
 .card-showcase img{ width:100%; height:auto; }
+
+
+/* =========================================================
+   25. Akvarellbånd med bildetekst
+   ========================================================= */
+.art-band{
+  margin: clamp(38px, 6vw, 62px) 0 0;
+  text-align: center;
+}
+.art-band img{
+  width: 100%;
+  max-width: 860px;
+  height: auto;
+  margin: 0 auto;
+}
+.art-band figcaption{
+  margin-top: 16px;
+  font-family: var(--serif-display);
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--sage-deep);
+}
