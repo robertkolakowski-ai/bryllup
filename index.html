@@ -11,10 +11,10 @@
 <meta property="og:title" content="Alexander &amp; Tonje — 28. august 2027">
 <meta property="og:description" content="Vi gifter oss på Huser Gård i Fenstad. Program, praktisk informasjon og påmelding.">
 <!-- Absolutt URL kreves. Bytt domenet hvis siden får et eget. -->
-<meta property="og:image" content="https://tonjeogalexander.vercel.app/bilder/hero-brygge.jpg">
-<meta property="og:image:width" content="1536">
-<meta property="og:image:height" content="672">
-<meta property="og:image:alt" content="Alexander og Tonje på brygga en gyllen sommerkveld">
+<meta property="og:image" content="https://tonjeogalexander.vercel.app/bilder/og-akvarell.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Akvarell av Huser Gård med vielsen på bryggen ved vannet">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23F6F1E3'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='19' text-anchor='middle' fill='%234E5B44'%3EA%26T%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -180,24 +180,7 @@
     color: var(--sage); margin-top: 8px;
   }
 
-  /* ---------- BILDEPLASSHOLDERE ---------- */
-  .ph{
-    position: relative; width: 100%;
-    display:flex; flex-direction:column; align-items:center; justify-content:center;
-    text-align:center; padding: 24px;
-    border: 1px dashed var(--sage-light);
-    border-radius: 4px;
-    background: repeating-linear-gradient(135deg,#EFE9D7 0 14px,#EDE6D1 14px 28px);
-  }
-  .ph__tag{
-    font-family: var(--sans); font-size: 10px;
-    letter-spacing: .3em; text-transform: uppercase; color: var(--sage);
-  }
-  .ph__what{ font-style: italic; font-size: 20px; color: var(--sage-dark); margin-top: 10px; max-width: 620px; }
-  .ph__spec{
-    font-family: var(--sans); font-size: 11px; letter-spacing: .06em;
-    color: var(--muted-warm); margin-top: 12px; line-height: 1.8;
-  }
+  /* ---------- BILDER ---------- */
   .hero__figure{ max-width: 1180px; width: 100%; min-width: 0; margin: 56px auto 0; }
   .hero__bilde{
     display: block; width: 100%; height: auto;
@@ -207,15 +190,6 @@
     display: block; width: 100%; height: auto;
     border-radius: 4px;
   }
-  .ph--dark{
-    aspect-ratio: 3/4;
-    background: none;
-    border-color: var(--hairline-gold);
-  }
-  .ph--dark .ph__tag{ color: var(--gold); }
-  .ph--dark .ph__what{ color: var(--on-dark); font-size: 19px; margin-top: 8px; }
-  .ph--dark .ph__spec{ color: var(--on-dark-3); margin-top: 10px; line-height: 1.7; }
-
   /* ---------- OSS ---------- */
   .oss{
     display:grid;
@@ -277,12 +251,17 @@
   .stedet{ background: var(--ink); color: var(--on-dark); }
   .stedet .sec__head{ margin-bottom: 56px; }
   .stedet .sec__lede{ color: var(--on-dark-2); }
-  .stedet__grid{
-    display:grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(260px,100%),1fr));
-    gap: 18px;
+  .stedet__figur{ max-width: 860px; margin: 0 auto; }
+  .stedet__figur img{
+    display: block; width: 100%; height: auto;
+    border-radius: 6px;
+    border: 1px solid var(--hairline-gold);
   }
-  .stedet__grid > *:nth-child(2){ transform: translateY(28px); }
+  .stedet__figur figcaption{
+    font-family: var(--sans); font-size: 11px;
+    letter-spacing: .22em; text-transform: uppercase;
+    color: var(--on-dark-3); text-align: center; margin-top: 18px;
+  }
   .stedet__cta{ display:flex; justify-content:center; margin-top: 64px; }
   .btn-ghost{
     font-family: var(--sans); font-size: 11px;
@@ -426,8 +405,6 @@
     .nav{ gap: 12px; padding: 12px 12px; font-size: 10px; letter-spacing: .12em; }
     .nav__rsvp{ padding: 6px 11px; }
     .countdown .lab{ font-size: 8px; letter-spacing: .2em; }
-    .ph__spec{ font-size: 10px; }
-    .stedet__grid > *:nth-child(2){ transform: none; }
   }
   @media (max-width: 380px){
     .nav{ gap: 9px; font-size: 9px; letter-spacing: .08em; }
@@ -570,26 +547,17 @@
       <h2 class="sec__title">Huser Gård</h2>
       <p class="sec__lede">En gammel gård i Fenstad med jorder, gamle trær og vannet rett nedenfor. Vielsen holdes ute, festen inne på gården.</p>
     </div>
-    <div class="stedet__grid">
-      <!-- BILDE 03–05 -->
-      <div class="ph ph--dark">
-        <div class="ph__tag">Bildeplass 03</div>
-        <div class="ph__what">Hovedhuset</div>
-        <div class="ph__spec">sted-01.jpg · 900 × 1200 px</div>
-      </div>
-      <div class="ph ph--dark">
-        <div class="ph__tag">Bildeplass 04</div>
-        <div class="ph__what">Vielsesplassen ved vannet</div>
-        <div class="ph__spec">sted-02.jpg · 900 × 1200 px</div>
-      </div>
-      <div class="ph ph--dark">
-        <div class="ph__tag">Bildeplass 05</div>
-        <div class="ph__what">Hagen / låven</div>
-        <div class="ph__spec">sted-03.jpg · 900 × 1200 px</div>
-      </div>
-    </div>
+    <figure class="stedet__figur">
+      <img src="bilder/stedet-akvarell.jpg"
+           alt="Akvarell av Huser Gård: hovedhuset, gjestene på plenen og vielsen på bryggen ved vannet"
+           width="1077" height="749" loading="lazy" decoding="async">
+      <figcaption>Akvarellen fra save the date-kortet</figcaption>
+    </figure>
     <div class="stedet__cta">
-      <!-- TEKST: bytt til en delt Google Maps-lenke med riktig pin når adressen er avklart -->
+      <!-- TEKST: bytt til en delt Google Maps-lenke med riktig pin når adressen er avklart.
+           Kandidat fra PR #1, IKKE bekreftet — sjekk med gården før den brukes:
+             Huservegen 128, 2170 Fenstad (Nes kommune, Akershus)
+             Stedet markedsføres også som «WonderInn Riverside» — https://wonderinn.no/no/riverside/ -->
       <a class="btn-ghost" href="https://maps.google.com/?q=Huser+G%C3%A5rd+Fenstad" target="_blank" rel="noopener">Se i kart</a>
     </div>
   </div>

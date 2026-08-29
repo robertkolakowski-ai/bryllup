@@ -32,7 +32,7 @@ I tillegg gjenstår disse tekstene — søk på ordet i kolonnen «Søk på»:
 | Klokkeslettene i programmet | `TEKST` | Antatt, ikke bekreftet |
 | Overnatting og transport | `TEKST` | Står som «kommer» — fyll inn først når det er bestemt |
 | Kontaktinfo til toastmaster | `TEKST` | Ingen telefonnummer i filen nå |
-| Kart-lenken | `Se i kart` | Peker på et Google Maps-**søk**, ikke en delt pin |
+| Kart-lenken | `Se i kart` | Peker på et Google Maps-**søk**, ikke en delt pin. Kandidatadresse fra PR #1 ligger som kommentar i filen — ubekreftet |
 | Fem bilder | `BILDE` | Se tabellen under |
 
 ## Bilder
@@ -40,27 +40,28 @@ I tillegg gjenstår disse tekstene — søk på ordet i kolonnen «Søk på»:
 Ligger i `bilder/`. Hero og portrett er på plass; de tre bildene av Huser Gård
 mangler fortsatt.
 
-| Fil | Mål | Plassering | Status |
-|---|---|---|---|
-| `hero-brygge.jpg` | 1536 × 672 (16:7) | Hero, maks 1180 px bred | ✅ |
-| `hero-brygge-mobil.jpg` | 1536 × 1152 (4:3) | Hero under 640 px, via `<picture>` | ✅ |
-| `oss-portrett.jpg` | 1200 × 1500 (4:5) | Oss | ✅ |
-| `oss-portrett-600.jpg` | 600 × 750 (4:5) | Oss på smale skjermer, via `srcset` | ✅ |
-| `galleri-*.jpg` (8 stk) | 600 × 600 (1:1) | Bildestripe nederst i Oss | ✅ |
-| `sted-01.jpg` | 900 × 1200 (3:4) | Stedet — hovedhuset | mangler |
-| `sted-02.jpg` | 900 × 1200 (3:4) | Stedet — vielsesplassen (forskjøvet 28 px ned på desktop) | mangler |
-| `sted-03.jpg` | 900 × 1200 (3:4) | Stedet — hagen/låven | mangler |
+| Fil | Mål | Plassering |
+|---|---|---|
+| `hero-brygge.jpg` | 1536 × 672 (16:7) | Hero, maks 1180 px bred |
+| `hero-brygge-mobil.jpg` | 1536 × 1152 (4:3) | Hero under 640 px, via `<picture>` |
+| `oss-portrett.jpg` | 1200 × 1500 (4:5) | Oss |
+| `oss-portrett-600.jpg` | 600 × 750 (4:5) | Oss på smale skjermer, via `srcset` |
+| `galleri-*.jpg` (8 stk) | 600 × 600 (1:1) | Bildestripe nederst i Oss |
+| `stedet-akvarell.jpg` | 1077 × 749 | Stedet |
+| `og-akvarell.jpg` | 1200 × 630 | Delingsbilde, `og:image` |
 
-De tre som mangler vises som tydelige plassholdere til de kommer. Bytt hele
-`<div class="ph ph--dark">` mot en `<img>` med `aspect-ratio: 3/4` og
-`object-fit: cover`.
+Alle bildeplasser er fylt. Akvarellen i «Stedet» og delingsbildet er hentet fra save the date-kortet og
+kom fra PR #1. Den viser gården, gjestene på plenen og vielsen på bryggen —
+altså stedet slik gjestene allerede har sett det på kortet.
 
 Bildene er beskåret fra originalfiler, ikke skjermdumper. Portrettet kommer
 fra en 4032 px original og er nedskalert til 1200 px; hero-bildet er 1536 px,
 som er kildens fulle bredde. Portrettet har en 600 px variant som serveres på
 smale skjermer via `srcset` — den sparer rundt 220 kB på mobil.
 
-`og:image` i `<head>` peker på hero-bildet med absolutt URL. Får siden et eget
+`og:image` i `<head>` peker på `og-akvarell.jpg` med absolutt URL. Akvarellen
+er valgt framfor et foto fordi 1200 × 630 er formatet Facebook og Messenger
+vil ha, og fordi gjestene kjenner igjen motivet fra kortet. Får siden et eget
 domene, må den URL-en oppdateres — relative stier virker ikke i OG-tagger.
 
 ## RSVP
