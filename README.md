@@ -104,6 +104,26 @@ dem inn — 300–500 kB per bilde holder i massevis.
 
 Bilder fra WonderInn må avklares med dem før bruk.
 
+### Bilder fra WonderInn / Huser Gård
+
+Nettstedet er forberedt på bilder fra stedet. Lagre filene i `assets/img/`
+med navnene under, og bytt ut plassholderen på den siden som er nevnt —
+plassholderen sier selv hvilket filnavn den venter på.
+
+| Filnavn | Hvor det vises | Format |
+| --- | --- | --- |
+| `laaven.jpg` | `galleri.html` — «Låven» | Liggende, 1800 × 1200 px |
+| `vorma.jpg` | `galleri.html` — «Elva Vorma» | Liggende, 1800 × 1200 px |
+| `speilhyttene.jpg` | `galleri.html` — «Speilhyttene» | Liggende, 1800 × 1200 px |
+| `alpakkaene.jpg` | `galleri.html` — «Alpakkaene» | Liggende, 1800 × 1200 px |
+| `kart.jpg` | `praktisk.html` — kartet over gården | Liggende, 1600 × 900 px |
+| `antrekk.jpg` | `praktisk.html` — antrekk | Stående, 1000 × 1250 px |
+
+**Om rettigheter:** bildene på wonderinn.no er deres eget materiale. Til en
+privat bryllupsside sier de fleste steder ja uten videre, men spør dem først —
+en kort e-post holder. Mange leverer også gjerne filer i høyere oppløsning enn
+det som ligger på nettsiden.
+
 ### Bildene som allerede ligger inne
 
 Akvarellen fra save the date-kortet er klippet ut og brukt fire steder:
@@ -136,7 +156,8 @@ kortet, bytt den inn** — da blir forsidebåndet skarpt hele veien.
 ### Bør på plass etter hvert
 
 - [ ] Originalfilen av akvarellen i full oppløsning, om den finnes — se over.
-- [ ] Bilder til galleriet, brudefølget og kontaktsiden.
+- [ ] Bilder fra WonderInn / Huser Gård — se tabellen over.
+- [ ] Bilder til brudefølget og kontaktsiden.
 - [ ] Bekreft busselskap, oppmøtested i Oslo og avgangstider (`praktisk.html`).
 - [ ] Bekreft om fredagen blir noe av, og hvem som inviteres (`programmet.html`).
 - [ ] Konkrete hotellnavn, eventuell rabattkode og fristen for et gjestekvotum.
