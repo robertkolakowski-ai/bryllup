@@ -10,7 +10,10 @@ med velgeren i toppen eller bunnen, og valget huskes.
 utviklingsoppsettet.
 
 `vercel.json` slår på `cleanUrls`, så nettsiden ligger på `/` og ikke
-`/index.html`.
+`/index.html`. Den sender også `/oppsett` og `/oppsett.html` videre til
+`/?oppsett` — oppsettsiden lå en kort stund på de adressene, og en gammel
+bokmerke skal ikke ende i 404. Begge omdirigeringene hører til den
+midlertidige oppsettsiden og kan slettes sammen med den.
 
 ## Oppsett
 
@@ -79,6 +82,7 @@ ordet, slett de tre, og ingenting mer skal gjøres:
 | `<style>` | blokka `MIDLERTIDIG — OPPSETT`, fram til `SLUTT PÅ MIDLERTIDIG OPPSETT (CSS)` |
 | `<nav>` | lenken «Oppsett» |
 | `<script>` | blokka `MIDLERTIDIG — OPPSETT`, fram til `SLUTT PÅ MIDLERTIDIG OPPSETT` |
+| `vercel.json` | `redirects`-lista — den finnes bare for gamle `/oppsett`-bokmerker |
 
 Skriptblokka eier også `FORHANDSVISNING`, `OPPSETT_APEN` og demo-gjestene.
 Går du løs på den, må du fjerne de to bruksstedene også: `demo`-linja i «Hvem
