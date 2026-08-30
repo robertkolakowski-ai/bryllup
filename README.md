@@ -9,17 +9,8 @@ med velgeren i toppen eller bunnen, og valget huskes.
 Åpne `index.html` direkte i nettleseren for å se endringer — det er hele
 utviklingsoppsettet.
 
-`vercel.json` slår på `cleanUrls`, så oppsettsiden ligger på **`/oppsett`** i
-produksjon. Lenkene i markupen peker fortsatt på `oppsett.html` og `index.html`
-— Vercel sender dem videre til de korte adressene. Det er med vilje: skriver vi
-`/oppsett` i markupen, slutter siden å virke når den åpnes lokalt, der ingen
-server rydder i adressene.
-
-To steder i `oppsett.html` bruker likevel `./` og ikke `index.html`:
-forhåndsvisningsrammen og `fetch`-en som leser gjeldende `KONFIG`. Rammen bærer
-`?oppsett`, og skal ikke gjennom en omdirigering med spørrestrengen på slep — da
-ville en tapt spørrestreng vist gjestenes utgave i stedet for utkastet. `./`
-treffer index-filen direkte både i produksjon og lokalt.
+`vercel.json` slår på `cleanUrls`, så nettsiden ligger på `/` og ikke
+`/index.html`.
 
 ## Oppsett
 
@@ -51,41 +42,53 @@ at det kommer. Uten `kartLenke` brukes et Google-søk.
 Uten toastmaster-verdier står det at kontaktinfo kommer. RSVP-en velger
 leveringsmåte etter hva som er satt, og sier ærlig fra hvis ingenting er satt.
 
-### Oppsettsiden
+### Oppsettsiden — midlertidig, og skal slettes
 
-`oppsett.html` er en egen side, bare for paret. Der fylles alt inn:
+Oppsettsiden ligger **inne i `index.html`**, som en egen side som legger seg
+over nettsiden. Menyen har en lenke, «Oppsett»; samme side kommer opp med
+`?oppsett` i adressen. Der fylles alt inn:
 
 - **Verdier** — ett felt per `KONFIG`-nøkkel, med forklaring på hva feltet
   gjør med siden.
 - **Gjestene** — hele `GJESTER`-lista som skjema: legg til, flytt, slett,
   norsk og engelsk side om side.
-- **Forhåndsvisning** — hele nettsiden i en ramme ved siden av, som
-  oppdaterer seg mens du skriver.
-- **Sjekkliste** — åtte punkter med tre tilstander: *i filen*, *bare i
-  utkastet*, *mangler*. Den leser `index.html` og sammenligner, så den vet
-  forskjell på det som er publisert og det du nettopp skrev.
+- **Forhåndsvisning** — nettsiden i en ramme ved siden av, som oppdaterer seg
+  mens du skriver. Rammen laster samme fil med `?utkast`.
+- **Sjekkliste** — punktene med tre tilstander: *i filen*, *bare i utkastet*,
+  *mangler*. Den sammenligner utkastet med `KONFIG_I_FIL` og `GJESTER_I_FIL`,
+  kopier tatt før utkastet legges oppå, så den vet hva som faktisk er
+  publisert.
 - **Koden** — ferdig formatert `KONFIG`- og `GJESTER`-blokk å lime inn.
 
-Utkastet ligger i `localStorage` under nøkkelen `bryllup-utkast`, altså bare
-i den nettleseren. **Det er ikke publisert.** `index.html` leser utkastet kun
-i forhåndsvisning — `?oppsett` i adressen, eller lokalt — og legger da en
-stripe nederst som sier fra. Gjestene ser alltid det som står i filen.
+Utkastet ligger i `localStorage` under `bryllup-utkast`, altså bare i den
+nettleseren. **Det er ikke publisert.** Utkastet leses bare i forhåndsvisning
+— `?oppsett`, `?utkast`, eller lokalt — og `?utkast` legger en stripe nederst
+som sier fra. Gjestene ser alltid det som står i filen.
 
-Arbeidsgangen er derfor: fyll inn → se at det blir riktig → kopier koden →
-lim den inn i `index.html` → commit. Sjekklista sier ifra så lenge noe bare
-finnes i utkastet.
+Arbeidsgangen er: fyll inn → se at det blir riktig → kopier koden → lim den
+inn i `index.html` → commit. Sjekklista sier ifra så lenge noe bare finnes i
+utkastet.
 
-Menyen har foreløpig en lenke, **Oppsett**, til siden. Slik tar du det bort
-når alt er limt inn:
+#### Slik fjerner du den
 
-1. Fjern `<a href="oppsett.html" class="nav__oppsett">…</a>` i `<nav>`.
-2. Slett `oppsett.html`, blokka «UTKAST FRA OPPSETTSIDEN» i `<script>`, og
-   `.nav__oppsett`- og `.utkast`-reglene i `<style>`. Ingenting annet peker dit.
+Hele oppsettsiden ligger i tre blokker, alle merket **`MIDLERTIDIG`**. Søk på
+ordet, slett de tre, og ingenting mer skal gjøres:
 
-Gjestene laster aldri `oppsett.html` — den er en egen fil. Det eneste de får
-med seg er de få linjene i punkt 2.
+| Hvor | Hva |
+|---|---|
+| `<style>` | blokka `MIDLERTIDIG — OPPSETT`, fram til `SLUTT PÅ MIDLERTIDIG OPPSETT (CSS)` |
+| `<nav>` | lenken «Oppsett» |
+| `<script>` | blokka `MIDLERTIDIG — OPPSETT`, fram til `SLUTT PÅ MIDLERTIDIG OPPSETT` |
 
-Siden retter seg etter verdiene: et gavekort uten verdi vises ikke, og
+Skriptblokka eier også `FORHANDSVISNING`, `OPPSETT_APEN` og demo-gjestene.
+Går du løs på den, må du fjerne de to bruksstedene også: `demo`-linja i «Hvem
+er hvem», og `if(OPPSETT_APEN) return;` i åpningsgardinen. Begge er
+énlinjere, og siden virker fint med dem stående til du kommer dit.
+
+Fram til da laster gjestene koden uten å bruke den. Det er den bevisste prisen
+for å ha alt i én fil mens oppsettet pågår.
+
+Siden retter seg etter verdieneSiden retter seg etter verdiene: et gavekort uten verdi vises ikke, og
 RSVP-en velger leveringsmåte etter hva som er satt. Ingenting annet må endres.
 
 I tillegg gjenstår disse tekstene — søk på ordet i kolonnen «Søk på»:
@@ -431,9 +434,9 @@ begynner på *Familien*. Endrer du den regelen, endrer du hilsenen for alle par.
   polaroidenes rotasjon, mosaikkens forskjøvne kolonne. Scroll-reveal legger sin
   `translateY(12px)` *etter* den. Skriver du `transform:` rett på et element med
   `data-reveal`, slår du ut skjevheten, og `.vist` gir den aldri tilbake.
-- **Endrer du et `KONFIG`-felt, må `oppsett.html` også vite om det** — feltet
-  ligger i `FELT`-lista der. Står det ikke der, forsvinner verdien når
-  innstillingssiden genererer koden på nytt.
+- **Endrer du et `KONFIG`-felt, må oppsettsiden også vite om det** — feltet
+  ligger i `FELT`-lista i den midlertidige skriptblokka. Står det ikke der,
+  forsvinner verdien når oppsettsiden genererer koden på nytt.
 
 ## Design tokens
 

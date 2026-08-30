@@ -45,9 +45,15 @@
   ============================================================
   FØR PUBLISERING — dette må paret bekrefte eller fylle inn:
 
-  Menyen har en midlertidig lenke, «Oppsett», som viser hva som
-  gjenstår. Samme side kommer opp med ?oppsett i adressen. Fjern
-  nav-lenken når alt er fylt ut.
+  MIDLERTIDIG OPPSETTSIDE
+  Menyen har en lenke, «Oppsett», som åpner en side der alt under
+  fylles ut, med forhåndsvisning og ferdig kode å lime inn. Samme
+  side kommer opp med ?oppsett i adressen; ?utkast viser nettsiden
+  med utkastet uten oppsettsiden.
+
+  Hele oppsettsiden skal ut av filen når alt er limt inn. Søk på
+  MIDLERTIDIG — det er tre steder: en CSS-blokk, nav-lenken og en
+  skriptblokk. Ingenting annet peker dit.
 
   I KONFIG nederst i filen (alt annet retter seg etter disse verdiene):
     1. rsvpEpost ELLER rsvpEndepunkt — hvor RSVP-svarene skal
@@ -235,11 +241,23 @@
   .sprak button + button{ border-left:1px solid rgba(124,138,107,.32); }
   .sprak button[aria-pressed="true"]{ background:var(--sage-dark); color:var(--cream); }
 
-  /* MIDLERTIDIG: lenken til oppsett.html, og stripa som sier fra når
-     siden viser et utkast. Begge kan slettes sammen med oppsett.html. */
+  /* ══════════════════════════════════════════════════════════
+     MIDLERTIDIG — OPPSETT · SLETT MEG
+
+     Alt herfra og ned til «SLUTT PÅ MIDLERTIDIG OPPSETT» hører til
+     oppsettsiden, og skal bort den dagen KONFIG og GJESTER er fylt
+     ut. Reglene er scopet under #oppsett, så de rører ingenting
+     annet på siden.
+
+     Tre steder skal slettes. Søk på MIDLERTIDIG:
+       1. denne CSS-blokka
+       2. nav-lenken «Oppsett»
+       3. skriptblokka «MIDLERTIDIG — OPPSETT»
+     ══════════════════════════════════════════════════════════ */
   .nav__oppsett{ color:var(--muted-warm); border-bottom:1px dotted var(--muted-warm); }
   .nav__oppsett:hover{ color:var(--ink); }
 
+  /* Stripa som sier fra at siden viser et utkast (?utkast) */
   .utkast{
     position:fixed; left:0; right:0; bottom:0; z-index:70;
     display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:8px 18px;
@@ -248,6 +266,143 @@
   }
   .utkast a{ color:var(--gold); border-bottom:1px solid rgba(200,169,106,.5); }
   .utkast a:hover{ color:var(--gold); border-bottom-color:var(--gold); }
+
+  /* Selve oppsettsiden — legger seg over hele nettsiden */
+  html.oppsett-apen{ overflow:hidden; }
+  #oppsett{
+    position:fixed; inset:0; z-index:90; overflow:auto;
+    background-color:var(--cream); background-image:var(--korn);
+    color:var(--ink); font-family:var(--serif); font-size:17px; line-height:1.6;
+  }
+  #oppsett h1,#oppsett h2{ margin:0; font-weight:300; letter-spacing:.02em; }
+  #oppsett code{ font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.9em; }
+
+  #oppsett .topp{
+    position:sticky; top:0; z-index:2;
+    display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:14px;
+    padding:16px clamp(18px,3vw,32px);
+    background:rgba(246,241,227,.94);
+    -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--hairline);
+  }
+  #oppsett .topp h1{ font-size:clamp(26px,3.4vw,36px); line-height:1.1; }
+  #oppsett .topp__hoyre{ display:flex; flex-wrap:wrap; align-items:center; gap:10px; }
+  #oppsett .lagret{
+    font-family:var(--sans); font-size:10px; letter-spacing:.24em; text-transform:uppercase;
+    color:var(--sage); opacity:0; transition:opacity .25s ease;
+  }
+  #oppsett .lagret.vis{ opacity:1; }
+
+  #oppsett .knapp{
+    font-family:var(--sans); font-size:11px; letter-spacing:.22em; text-transform:uppercase;
+    background:none; color:var(--muted); border:1px solid var(--hairline);
+    border-radius:999px; padding:9px 18px; cursor:pointer; text-decoration:none;
+    transition:background .2s ease, color .2s ease, border-color .2s ease;
+  }
+  #oppsett .knapp:hover{ border-color:var(--sage); color:var(--ink); }
+  #oppsett .knapp--fylt{ background:var(--sage-dark); border-color:var(--sage-dark); color:var(--cream); }
+  #oppsett .knapp--fylt:hover{ background:var(--ink); border-color:var(--ink); color:var(--cream); }
+  #oppsett .knapp--liten{ padding:6px 12px; font-size:10px; letter-spacing:.16em; }
+  #oppsett .knapp--fare:hover{ border-color:#A6564B; color:#A6564B; }
+
+  #oppsett .rom{
+    display:grid; grid-template-columns:minmax(0,1fr) minmax(0,440px);
+    gap:clamp(20px,2.6vw,36px); align-items:start; padding:clamp(20px,3vw,36px);
+  }
+  @media (max-width:1000px){ #oppsett .rom{ grid-template-columns:minmax(0,1fr); } }
+
+  #oppsett .kort{
+    background:var(--paper); border:1px solid var(--hairline); border-radius:4px;
+    padding:clamp(20px,2.6vw,32px); margin-bottom:clamp(18px,2.4vw,28px);
+  }
+  #oppsett .kort > h2{ font-size:clamp(24px,3vw,32px); }
+  #oppsett .kort__lede{ font-style:italic; color:var(--muted); margin:8px 0 0; }
+
+  /* Beskjeden om at siden er midlertidig — den skal være umulig å overse */
+  #oppsett .merknad{
+    background:var(--cream-light); border:1px solid var(--hairline-gold); border-radius:4px;
+    padding:18px 20px; margin-bottom:clamp(18px,2.4vw,28px);
+    font-style:italic; color:var(--muted); line-height:1.7;
+  }
+  #oppsett .merknad b{
+    display:block; margin-bottom:6px; font-style:normal;
+    font-family:var(--sans); font-size:12px; letter-spacing:.2em;
+    text-transform:uppercase; color:var(--gold);
+  }
+  #oppsett .merknad ol{ margin:10px 0 0; padding-left:22px; }
+  #oppsett .merknad li{ margin-top:4px; }
+
+  #oppsett .liste{ list-style:none; margin:20px 0 0; padding:0; border-top:1px solid var(--hairline); }
+  #oppsett .punkt{
+    display:grid; grid-template-columns:24px 1fr auto; gap:10px; align-items:baseline;
+    padding:11px 0; border-bottom:1px solid var(--hairline);
+  }
+  #oppsett .punkt__ikon{ font-family:var(--sans); font-size:13px; }
+  #oppsett .punkt--fil .punkt__ikon{ color:var(--sage); }
+  #oppsett .punkt--utkast .punkt__ikon{ color:var(--gold); }
+  #oppsett .punkt--mangler .punkt__ikon{ color:var(--sage-light); }
+  #oppsett .punkt__navn{ font-family:var(--sans); font-size:12px; letter-spacing:.06em; }
+  #oppsett .punkt__hva{ display:block; margin-top:2px; font-style:italic; font-size:15px; color:var(--muted); }
+  #oppsett .punkt__stat{
+    font-family:var(--sans); font-size:9px; letter-spacing:.2em;
+    text-transform:uppercase; color:var(--muted-warm); white-space:nowrap;
+  }
+  #oppsett .punkt--utkast .punkt__stat{ color:var(--gold); }
+
+  #oppsett .felt{ margin-top:20px; }
+  #oppsett .felt > label{
+    display:block; margin-bottom:6px;
+    font-family:var(--sans); font-size:11px; letter-spacing:.16em;
+    text-transform:uppercase; color:var(--sage-dark);
+  }
+  #oppsett input[type=text], #oppsett textarea, #oppsett select{
+    width:100%; font-family:var(--serif); font-size:17px; color:var(--ink);
+    background:var(--cream-light); border:1px solid var(--hairline); border-radius:3px;
+    padding:11px 13px;
+  }
+  #oppsett textarea{ resize:vertical; min-height:64px; line-height:1.55; }
+  #oppsett .hjelp{ margin:6px 0 0; font-style:italic; font-size:15px; color:var(--muted-warm); line-height:1.55; }
+  #oppsett .par{ display:grid; grid-template-columns:repeat(auto-fit,minmax(min(200px,100%),1fr)); gap:14px; }
+
+  #oppsett .gjest-rad{ border:1px solid var(--hairline); border-radius:4px; margin-top:14px; background:var(--cream-light); }
+  #oppsett .gjest-rad[open]{ background:var(--paper); }
+  #oppsett .gjest-rad > summary{
+    cursor:pointer; padding:13px 16px; list-style:none;
+    display:flex; flex-wrap:wrap; align-items:baseline; gap:10px;
+  }
+  #oppsett .gjest-rad > summary::-webkit-details-marker{ display:none; }
+  #oppsett .gjest-rad > summary::before{ content:"▸"; color:var(--sage); font-size:12px; }
+  #oppsett .gjest-rad[open] > summary::before{ content:"▾"; }
+  #oppsett .gjest-navn{ font-size:20px; }
+  #oppsett .gjest-navn--tom{ color:var(--muted-warm); font-style:italic; }
+  #oppsett .gjest-merke{
+    font-family:var(--sans); font-size:9px; letter-spacing:.2em; text-transform:uppercase;
+    color:var(--sage); border:1px solid var(--hairline); border-radius:999px; padding:3px 9px;
+  }
+  #oppsett .gjest-krop{ padding:4px 16px 18px; border-top:1px solid var(--hairline); }
+  #oppsett .gjest-verktoy{ display:flex; gap:8px; margin-top:18px; }
+  #oppsett .gjest-verktoy .knapp{ flex:none; }
+
+  #oppsett .kode{
+    width:100%; min-height:260px; padding:16px;
+    font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:12.5px; line-height:1.65;
+    color:var(--ink); background:var(--cream-light);
+    border:1px solid var(--hairline); border-radius:3px;
+    white-space:pre; overflow:auto;
+  }
+  #oppsett .rad{ display:flex; flex-wrap:wrap; gap:10px; margin-top:16px; }
+
+  #oppsett .vis{ position:sticky; top:88px; }
+  #oppsett .vis__ramme{ background:var(--paper); border:1px solid var(--hairline); border-radius:4px; overflow:hidden; }
+  #oppsett .vis__topp{
+    display:flex; align-items:center; justify-content:space-between; gap:10px;
+    padding:11px 14px; border-bottom:1px solid var(--hairline);
+    font-family:var(--sans); font-size:10px; letter-spacing:.2em;
+    text-transform:uppercase; color:var(--muted-warm);
+  }
+  #oppsett iframe{ display:block; width:100%; height:min(74vh,900px); border:0; background:var(--cream); }
+  @media (max-width:1000px){ #oppsett .vis{ position:static; } #oppsett iframe{ height:70vh; } }
+  /* ══ SLUTT PÅ MIDLERTIDIG OPPSETT (CSS) ══════════════════ */
 
   /* ── HERO: navnene ligger oppå det buede bildet ── */
   .hero{
@@ -828,8 +983,9 @@
   <a href="#gaver"><span class="no">Gaver</span><span class="en">Gifts</span></a>
   <a href="#praktisk"><span class="no">Praktisk</span><span class="en">Details</span></a>
   <a href="#rsvp" class="nav__rsvp">RSVP</a>
-  <!-- MIDLERTIDIG: lenke til oppsett.html. Slett denne linja når alt er fylt ut. -->
-  <a href="oppsett.html" class="nav__oppsett"><span class="no">Oppsett</span><span class="en">Setup</span></a>
+  <!-- MIDLERTIDIG — OPPSETT: slett denne lenka sammen med de to blokkene
+       som er merket på samme måte i <style> og <script>. -->
+  <a href="?oppsett" class="nav__oppsett"><span class="no">Oppsett</span><span class="en">Setup</span></a>
   <div class="sprak" role="group" aria-label="Språk / Language">
     <button type="button" data-sprak="no" aria-pressed="true">NO</button>
     <button type="button" data-sprak="en" aria-pressed="false">EN</button>
@@ -1564,46 +1720,547 @@
   ];
 
   /* ══════════════════════════════════════════════════════════════
-     UTKAST FRA OPPSETTSIDEN
+     MIDLERTIDIG — OPPSETT · SLETT MEG
 
-     oppsett.html lagrer et utkast i nettleseren (localStorage).
-     Det leses bare i forhåndsvisning — ?oppsett i adressen, eller
-     når siden kjøres lokalt. Gjestene ser alltid det som faktisk
-     står i KONFIG og GJESTER her i filen, aldri et utkast.
+     Oppsettsiden: her fylles KONFIG og GJESTER ut, med
+     forhåndsvisning ved siden av og ferdig formatert kode nederst.
+     Åpnes med «Oppsett» i menyen (?oppsett i adressen).
+     Utkastet lagres i nettleseren, ikke i filen — gjestene ser
+     alltid det som faktisk står i KONFIG og GJESTER over.
 
-     Slettes sammen med oppsett.html den dagen alt er limt inn.
+     ─────────────────────────────────────────────────────────────
+     SLIK FJERNER DU DET NÅR ALT ER FYLT UT OG LIMT INN.
+     Tre steder, alle merket MIDLERTIDIG:
+       1. denne blokka, fram til «SLUTT PÅ MIDLERTIDIG OPPSETT»
+       2. CSS-blokka «MIDLERTIDIG — OPPSETT» i <style>
+       3. nav-lenken «Oppsett» i <nav>
+     Ingenting annet på siden peker hit.
+     ─────────────────────────────────────────────────────────────
      ══════════════════════════════════════════════════════════════ */
+
+  /* Verdiene slik de står i FILEN — tas før utkastet legges oppå,
+     så sjekklista kan skille «i filen» fra «bare i utkastet». */
+  var KONFIG_I_FIL  = JSON.parse(JSON.stringify(KONFIG));
+  var GJESTER_I_FIL = JSON.parse(JSON.stringify(GJESTER));
+
+  var SOK = location.search;
+  /* ?oppsett åpner oppsettsiden. ?utkast viser nettsiden med
+     utkastet, uten oppsettsiden — det er «Se siden». Lokalt
+     brukes utkastet uansett, så utvikling slipper parametre. */
   var FORHANDSVISNING = /^(localhost|127\.0\.0\.1)$/.test(location.hostname)
-                        || location.search.indexOf('oppsett') !== -1;
-  var UTKAST = null;
+                        || SOK.indexOf('oppsett') !== -1
+                        || SOK.indexOf('utkast')  !== -1;
+  /* I forhåndsvisningsrammen er vi ikke øverst — der skal bare siden vises. */
+  var OPPSETT_APEN = window.top === window.self && SOK.indexOf('oppsett') !== -1;
+
+  var NOKKEL = 'bryllup-utkast';
+  var utkast = { konfig:{}, gjester:[] };
 
   (function(){
     if(!FORHANDSVISNING) return;
-    try{ UTKAST = JSON.parse(localStorage.getItem('bryllup-utkast') || 'null'); }
-    catch(e){ return; }
-    if(!UTKAST) return;
 
-    if(UTKAST.konfig){
-      Object.keys(KONFIG).forEach(function(navn){
-        if(typeof UTKAST.konfig[navn] === 'string') KONFIG[navn] = UTKAST.konfig[navn];
-      });
-    }
-    if(Array.isArray(UTKAST.gjester) && UTKAST.gjester.length){
-      GJESTER = UTKAST.gjester;
+    var lest = null;
+    try{ lest = JSON.parse(localStorage.getItem(NOKKEL) || 'null'); }catch(e){}
+    if(lest){
+      if(lest.konfig){
+        Object.keys(KONFIG).forEach(function(navn){
+          if(typeof lest.konfig[navn] === 'string') KONFIG[navn] = lest.konfig[navn];
+        });
+      }
+      if(Array.isArray(lest.gjester) && lest.gjester.length) GJESTER = lest.gjester;
     }
 
     /* Stripa nederst så et utkast aldri forveksles med det publiserte.
-       Inne i forhåndsvisningsruta på oppsettsiden er den bare i veien. */
-    if(window.top !== window.self) return;
+       Ikke i rammen, og ikke bak oppsettsiden. */
+    if(!lest || OPPSETT_APEN || window.top !== window.self) return;
     document.addEventListener('DOMContentLoaded', function(){
       var stripe = document.createElement('div');
       stripe.className = 'utkast';
       stripe.innerHTML = '<span>Forhåndsvisning av utkast — gjestene ser dette ikke</span>'
-        + '<a href="oppsett.html">Tilbake til oppsett</a>';
+        + '<a href="?oppsett">Tilbake til oppsett</a>';
       document.body.appendChild(stripe);
       document.body.classList.add('har-utkast');   /* løfter RSVP-linja over stripa */
     });
   })();
+
+  /* ── Selve oppsettsiden ── */
+  (function(){
+    if(!OPPSETT_APEN) return;
+    document.documentElement.classList.add('oppsett-apen');
+
+    /* Feltene i KONFIG, i samme rekkefølge som over. Legger du til
+       en nøkkel i KONFIG, må den også inn her — ellers forsvinner
+       verdien når koden nederst genereres på nytt. */
+    var FELT = [
+      { n:'rsvpEndepunkt',   l:'RSVP — endepunkt',
+        h:'URL som tar imot POST med JSON. Formspree, Formspark, egen funksjon — alt som svarer 2xx.',
+        p:'https://formspree.io/f/…' },
+      { n:'rsvpEpost',       l:'RSVP — e-post',
+        h:'Alternativet til endepunktet: skjemaet åpner en ferdig utfylt e-post som gjesten sender. Endepunktet vinner om begge er satt.',
+        p:'oss@example.com' },
+      { n:'onskelisteUrl',   l:'Ønskeliste — lenke',
+        h:'Kan peke hvor som helst. Uten den står det at lista kommer senere.', p:'https://…' },
+      { n:'onskelisteNavn',  l:'Ønskeliste — navn på kortet',
+        h:'Står den tom, brukes «Ønskelisten vår».', p:'Ønskelisten vår' },
+      { n:'vipps',           l:'Vipps-nummer', h:'Vises med kopiknapp.', p:'12 34 56' },
+      { n:'vippsLenke',      l:'Vipps — QR-lenke', h:'Valgfri. Gir en knapp som åpner Vipps direkte.', p:'https://qr.vipps.no/…' },
+      { n:'kontonummer',     l:'Kontonummer', h:'Vises med kopiknapp.', p:'1234.56.78901' },
+      { n:'bilderAlbumUrl',  l:'Bildealbum etter dagen',
+        h:'Delt iCloud-album gjestene legger sine egne bilder i. Lag albumet i Bilder-appen, velg «Del album» → «Offentlig nettsted», og lim inn lenken. Tom = seksjonen sier at albumet kommer.',
+        p:'https://www.icloud.com/sharedalbum/…' },
+      { n:'kartLenke',       l:'Kartlenke',
+        h:'Delt lenke med riktig pin. Tom = Google-søk på Huser Gård.', p:'https://maps.app.goo.gl/…' },
+      { n:'toastmasterNavn', l:'Toastmaster — navn', h:'', p:'' },
+      { n:'toastmasterTlf',  l:'Toastmaster — telefon', h:'', p:'900 00 000' },
+      { n:'toastmasterEpost',l:'Toastmaster — e-post', h:'', p:'' }
+    ];
+
+    var GRUPPER = [
+      { id:'tonje',     navn:'Tonjes side' },
+      { id:'alexander', navn:'Alexanders side' },
+      { id:'felles',    navn:'Felles' }
+    ];
+
+    /* Sjekklista — punktene siden retter seg etter. */
+    var SJEKK = [
+      { navn:'rsvpEndepunkt / rsvpEpost', felt:['rsvpEndepunkt','rsvpEpost'],
+        hva:'Hvor RSVP-svarene skal. Uten dette sier skjemaet fra at påmeldingen ikke er åpen.' },
+      { navn:'vipps', felt:['vipps'], hva:'Gir et gavekort med kopiknapp.' },
+      { navn:'kontonummer', felt:['kontonummer'], hva:'Gir et gavekort med kopiknapp.' },
+      { navn:'onskelisteUrl', felt:['onskelisteUrl'], hva:'Uten den står det at lista kommer senere.' },
+      { navn:'bilderAlbumUrl', felt:['bilderAlbumUrl'],
+        hva:'Delt album for gjestenes egne bilder. Uten den står det at albumet kommer.' },
+      { navn:'kartLenke', felt:['kartLenke'], hva:'Nå brukes et Google-søk på Huser Gård.' },
+      { navn:'toastmaster', felt:['toastmasterNavn'], ogsa:['toastmasterTlf','toastmasterEpost'],
+        hva:'Navn og minst én av telefon eller e-post.' },
+      { navn:'GJESTER', gjester:true,
+        hva:'Hvem er hvem. Er lista tom, står det at oversikten kommer senere.' }
+    ];
+
+    var side = document.createElement('div');
+    side.id = 'oppsett';
+    side.innerHTML =
+        '<div class="topp">'
+      +   '<div>'
+      +     '<span class="eyebrow">Bare for dere to</span>'
+      +     '<h1>Oppsett</h1>'
+      +   '</div>'
+      +   '<div class="topp__hoyre">'
+      +     '<span class="lagret" id="o-lagret">Lagret</span>'
+      +     '<a class="knapp" href="?utkast">Se siden</a>'
+      +     '<a class="knapp" href="' + location.pathname + '">Lukk</a>'
+      +     '<button type="button" class="knapp knapp--fare" id="o-nullstill">Nullstill utkastet</button>'
+      +   '</div>'
+      + '</div>'
+      + '<div class="rom">'
+      +   '<main>'
+      +     '<div class="merknad">'
+      +       '<b>Denne siden er midlertidig</b>'
+      +       'Alt du skriver her lagres bare i denne nettleseren — gjestene ser ingenting '
+      +       'av det før koden nederst er limt inn i <code>index.html</code>. '
+      +       'Når alt er limt inn, skal hele oppsettsiden ut av filen:'
+      +       '<ol>'
+      +         '<li>skriptblokka merket <code>MIDLERTIDIG — OPPSETT</code></li>'
+      +         '<li>CSS-blokka med samme merking</li>'
+      +         '<li>nav-lenken «Oppsett»</li>'
+      +       '</ol>'
+      +     '</div>'
+      +     '<section class="kort">'
+      +       '<h2>Hva som gjenstår</h2>'
+      +       '<p class="kort__lede" id="o-lede"></p>'
+      +       '<ul class="liste" id="o-sjekkliste"></ul>'
+      +     '</section>'
+      +     '<section class="kort">'
+      +       '<h2>Verdier</h2>'
+      +       '<p class="kort__lede">Tomme felt er greit — siden skjuler det som ikke er fylt ut.</p>'
+      +       '<div id="o-felt"></div>'
+      +     '</section>'
+      +     '<section class="kort">'
+      +       '<h2>Gjestene</h2>'
+      +       '<p class="kort__lede">Hvem er hvem. Legg gjerne inn et par eller en familie som én gjest.</p>'
+      +       '<div id="o-gjester"></div>'
+      +       '<div class="rad"><button type="button" class="knapp knapp--fylt" id="o-legg-til">Legg til gjest</button></div>'
+      +     '</section>'
+      +     '<section class="kort">'
+      +       '<h2>Koden som skal limes inn</h2>'
+      +       '<p class="kort__lede">Erstatt <code>var KONFIG = { … };</code> og '
+      +         '<code>var GJESTER = [ … ];</code> nederst i <code>index.html</code> med dette.</p>'
+      +       '<div class="rad" style="margin-bottom:14px">'
+      +         '<button type="button" class="knapp knapp--fylt" id="o-kopier">Kopier koden</button></div>'
+      +       '<textarea class="kode" id="o-kode" readonly spellcheck="false"></textarea>'
+      +     '</section>'
+      +   '</main>'
+      +   '<aside class="vis">'
+      +     '<div class="vis__ramme">'
+      +       '<div class="vis__topp"><span>Forhåndsvisning</span>'
+      +         '<button type="button" class="knapp knapp--liten" id="o-oppdater">Oppdater</button></div>'
+      +       '<iframe id="o-ramme" title="Forhåndsvisning av bryllupssiden" src="?utkast"></iframe>'
+      +     '</div>'
+      +   '</aside>'
+      + '</div>';
+    document.body.appendChild(side);
+
+    var lagretMerke = document.getElementById('o-lagret');
+    var merkeTid;
+    function lagre(){
+      try{ localStorage.setItem(NOKKEL, JSON.stringify(utkast)); }catch(e){}
+      lagretMerke.classList.add('vis');
+      clearTimeout(merkeTid);
+      merkeTid = setTimeout(function(){ lagretMerke.classList.remove('vis'); }, 1400);
+    }
+
+    /* Utkastet starter fra det som allerede står i filen. */
+    (function(){
+      var lest = null;
+      try{ lest = JSON.parse(localStorage.getItem(NOKKEL) || 'null'); }catch(e){}
+      utkast.konfig  = (lest && lest.konfig) || {};
+      utkast.gjester = (lest && Array.isArray(lest.gjester)) ? lest.gjester : [];
+      FELT.forEach(function(f){
+        if(typeof utkast.konfig[f.n] !== 'string')
+          utkast.konfig[f.n] = typeof KONFIG_I_FIL[f.n] === 'string' ? KONFIG_I_FIL[f.n] : '';
+      });
+      if(!utkast.gjester.length && GJESTER_I_FIL.length)
+        utkast.gjester = JSON.parse(JSON.stringify(GJESTER_I_FIL));
+    })();
+
+    var ramme = document.getElementById('o-ramme');
+    var visTid;
+    function oppdaterVisning(straks){
+      clearTimeout(visTid);
+      visTid = setTimeout(function(){
+        try{ ramme.contentWindow.location.reload(); }
+        catch(e){ ramme.src = '?utkast&t=' + Date.now(); }
+      }, straks ? 0 : 700);
+    }
+    function endret(straks){ lagre(); tegnSjekkliste(); tegnKode(); oppdaterVisning(straks); }
+
+    /* ── Sjekklista ── */
+    function harIFil(n){ return !!(KONFIG_I_FIL[n] || '').trim(); }
+    function harNa(n){   return !!(utkast.konfig[n] || '').trim(); }
+
+    function tegnSjekkliste(){
+      var igjen = 0, ulagret = 0;
+      document.getElementById('o-sjekkliste').innerHTML = SJEKK.map(function(s){
+        var na, fil;
+        if(s.gjester){
+          na  = utkast.gjester.length > 0;
+          fil = GJESTER_I_FIL.length > 0;
+        } else {
+          na  = s.felt.some(harNa)   && (!s.ogsa || s.ogsa.some(harNa));
+          fil = s.felt.some(harIFil) && (!s.ogsa || s.ogsa.some(harIFil));
+        }
+        var tilstand = fil ? 'fil' : (na ? 'utkast' : 'mangler');
+        if(!na) igjen++;
+        if(na && !fil) ulagret++;
+        return '<li class="punkt punkt--' + tilstand + '">'
+          + '<span class="punkt__ikon" aria-hidden="true">' + (fil ? '✓' : (na ? '●' : '○')) + '</span>'
+          + '<span><span class="punkt__navn">' + s.navn + '</span>'
+          + '<span class="punkt__hva">' + s.hva + '</span></span>'
+          + '<span class="punkt__stat">' + (fil ? 'i filen' : (na ? 'bare i utkastet' : 'mangler')) + '</span></li>';
+      }).join('');
+
+      var lede = document.getElementById('o-lede');
+      if(igjen === 0 && ulagret === 0){
+        lede.textContent = 'Alt er fylt ut og limt inn. Nå kan hele oppsettsiden fjernes fra filen.';
+      } else if(ulagret){
+        lede.textContent = igjen + ' av ' + SJEKK.length + ' punkter gjenstår. '
+          + ulagret + (ulagret === 1 ? ' punkt er' : ' punkter er')
+          + ' fylt ut, men ikke limt inn i index.html ennå.';
+      } else {
+        lede.textContent = igjen + ' av ' + SJEKK.length + ' punkter gjenstår.';
+      }
+    }
+
+    /* ── Verdifeltene ── */
+    function tegnKonfigFelt(){
+      var rot = document.getElementById('o-felt');
+      rot.innerHTML = '';
+      FELT.forEach(function(f){
+        var boks = document.createElement('div');
+        boks.className = 'felt';
+        var id = 'o-f-' + f.n;
+        var lab = document.createElement('label');
+        lab.setAttribute('for', id);
+        lab.textContent = f.l;
+        var inn = document.createElement('input');
+        inn.type = 'text'; inn.id = id;
+        inn.value = utkast.konfig[f.n] || '';
+        if(f.p) inn.placeholder = f.p;
+        inn.addEventListener('input', function(){
+          utkast.konfig[f.n] = inn.value.trim();
+          endret();
+        });
+        boks.appendChild(lab); boks.appendChild(inn);
+        if(f.h){
+          var h = document.createElement('p');
+          h.className = 'hjelp'; h.textContent = f.h;
+          boks.appendChild(h);
+        }
+        rot.appendChild(boks);
+      });
+    }
+
+    /* ── Gjestene ── */
+    function tomGjest(){
+      return { navn:'', gruppe:'felles',
+               relasjon:{no:'',en:''}, rolle:{no:'',en:''},
+               om:{no:'',en:''}, kjentFor:{no:'',en:''}, bilde:'' };
+    }
+    function normaliser(g){
+      var t = tomGjest();
+      t.navn   = g.navn   || '';
+      t.gruppe = g.gruppe || 'felles';
+      t.bilde  = g.bilde  || '';
+      ['relasjon','rolle','om','kjentFor'].forEach(function(k){
+        t[k] = { no: (g[k] && g[k].no) || '', en: (g[k] && g[k].en) || '' };
+      });
+      return t;
+    }
+
+    function felt(merke, verdi, hjelp, ved, flerlinje){
+      var d = document.createElement('div');
+      d.className = 'felt';
+      var lab = document.createElement('label');
+      lab.textContent = merke;
+      var inn = document.createElement(flerlinje ? 'textarea' : 'input');
+      if(!flerlinje) inn.type = 'text';
+      inn.value = verdi || '';
+      inn.addEventListener('input', function(){ ved(inn.value); });
+      lab.appendChild(inn);
+      d.appendChild(lab);
+      if(hjelp){
+        var h = document.createElement('p');
+        h.className = 'hjelp'; h.textContent = hjelp;
+        d.appendChild(h);
+      }
+      return d;
+    }
+
+    var oppdaterSummary = function(){};
+
+    function sprakPar(merke, obj, hjelp, flerlinje){
+      var d = document.createElement('div');
+      d.className = 'felt';
+      var lab = document.createElement('label');
+      lab.textContent = merke;
+      d.appendChild(lab);
+      var par = document.createElement('div');
+      par.className = 'par';
+      [['Norsk','no'],['English','en']].forEach(function(pair){
+        var inn = document.createElement(flerlinje ? 'textarea' : 'input');
+        if(!flerlinje) inn.type = 'text';
+        inn.value = obj[pair[1]] || '';
+        inn.placeholder = pair[0];
+        inn.addEventListener('input', function(){
+          obj[pair[1]] = inn.value;
+          oppdaterSummary();
+          endret();
+        });
+        par.appendChild(inn);
+      });
+      d.appendChild(par);
+      if(hjelp){
+        var h = document.createElement('p');
+        h.className = 'hjelp'; h.textContent = hjelp;
+        d.appendChild(h);
+      }
+      return d;
+    }
+
+    function tegnGjester(){
+      var rot = document.getElementById('o-gjester');
+      rot.innerHTML = '';
+
+      if(!utkast.gjester.length){
+        var tom = document.createElement('p');
+        tom.className = 'hjelp';
+        tom.textContent = 'Ingen gjester lagt inn ennå. Siden viser «oversikten kommer senere» så lenge lista er tom.';
+        rot.appendChild(tom);
+        return;
+      }
+
+      utkast.gjester.forEach(function(g, i){
+        var rad = document.createElement('details');
+        rad.className = 'gjest-rad';
+        if(!g.navn) rad.open = true;
+
+        var sum = document.createElement('summary');
+        var navnEl = document.createElement('span');
+        var merkeEl = document.createElement('span');
+        merkeEl.className = 'gjest-merke';
+        sum.appendChild(navnEl); sum.appendChild(merkeEl);
+        rad.appendChild(sum);
+
+        function frisk(){
+          navnEl.className = 'gjest-navn' + (g.navn ? '' : ' gjest-navn--tom');
+          navnEl.textContent = g.navn || 'Uten navn';
+          var gr = GRUPPER.filter(function(x){ return x.id === g.gruppe; })[0];
+          merkeEl.textContent = gr ? gr.navn : g.gruppe;
+        }
+        frisk();
+
+        var krop = document.createElement('div');
+        krop.className = 'gjest-krop';
+
+        krop.appendChild(felt('Navn', g.navn, 'Kan også være et par eller en familie — «Familien Sund».',
+          function(v){ g.navn = v; frisk(); endret(); }));
+
+        var gd = document.createElement('div');
+        gd.className = 'felt';
+        var glab = document.createElement('label');
+        glab.textContent = 'Relasjon til oss';
+        var sel = document.createElement('select');
+        GRUPPER.forEach(function(x){
+          var o = document.createElement('option');
+          o.value = x.id; o.textContent = x.navn;
+          if(x.id === g.gruppe) o.selected = true;
+          sel.appendChild(o);
+        });
+        sel.addEventListener('change', function(){ g.gruppe = sel.value; frisk(); endret(); });
+        glab.appendChild(sel);
+        gd.appendChild(glab);
+        var gh = document.createElement('p');
+        gh.className = 'hjelp';
+        gh.textContent = 'Styrer filteret på siden. Filteret vises først når minst to av gruppene er i bruk.';
+        gd.appendChild(gh);
+        krop.appendChild(gd);
+
+        krop.appendChild(sprakPar('Hvordan vi kjenner dem', g.relasjon,
+          'Kort — står med små kapiteler. «Tonjes storesøster».'));
+        krop.appendChild(sprakPar('Om dem', g.om,
+          'Én–to setninger. Interesser, yrke, hva som helst.', true));
+        krop.appendChild(sprakPar('Kjent for', g.kjentFor,
+          'Den morsomme linja, i skriftfonten. Valgfri — hold den vennlig.'));
+        krop.appendChild(sprakPar('Rolle', g.rolle,
+          'Valgfri. Lite skilt nederst på bildet: forlover, toastmaster, brudepike.'));
+        krop.appendChild(felt('Bilde', g.bilde,
+          'Legg portrettet i bilder/gjester/ og skriv stien her. 600 × 750 px. Uten bilde settes initialene inn.',
+          function(v){ g.bilde = v.trim(); endret(); }));
+
+        var verktoy = document.createElement('div');
+        verktoy.className = 'gjest-verktoy';
+        [['Flytt opp', -1], ['Flytt ned', 1]].forEach(function(par){
+          var b = document.createElement('button');
+          b.type = 'button';
+          b.className = 'knapp knapp--liten';
+          b.textContent = par[0];
+          b.disabled = (par[1] < 0 && i === 0) || (par[1] > 0 && i === utkast.gjester.length - 1);
+          if(b.disabled) b.style.opacity = '.4';
+          b.addEventListener('click', function(){
+            var flytt = utkast.gjester.splice(i, 1)[0];
+            utkast.gjester.splice(i + par[1], 0, flytt);
+            tegnGjester(); endret(true);
+          });
+          verktoy.appendChild(b);
+        });
+        var slett = document.createElement('button');
+        slett.type = 'button';
+        slett.className = 'knapp knapp--liten knapp--fare';
+        slett.textContent = 'Slett gjest';
+        slett.addEventListener('click', function(){
+          if(!confirm('Slette ' + (g.navn || 'denne gjesten') + '?')) return;
+          utkast.gjester.splice(i, 1);
+          tegnGjester(); endret(true);
+        });
+        verktoy.appendChild(slett);
+        krop.appendChild(verktoy);
+
+        rad.appendChild(krop);
+        rot.appendChild(rad);
+        if(i === 0) oppdaterSummary = frisk;
+      });
+    }
+
+    /* ── Koden som skal limes inn ── */
+    function jsStreng(t){
+      return "'" + String(t == null ? '' : t)
+        .replace(/\\/g, '\\\\').replace(/'/g, "\\'")
+        .replace(/\r?\n/g, ' ').trim() + "'";
+    }
+    function toSprak(o){ return '{ no: ' + jsStreng(o.no) + ', en: ' + jsStreng(o.en || o.no) + ' }'; }
+    function fyll(navn, bredde){
+      var t = navn + ':';
+      while(t.length < bredde) t += ' ';
+      return t;
+    }
+
+    function tegnKode(){
+      var linjer = ['  var KONFIG = {'];
+      FELT.forEach(function(f){
+        linjer.push('    ' + fyll(f.n, 18) + jsStreng(utkast.konfig[f.n] || '') + ',');
+      });
+      linjer[linjer.length - 1] = linjer[linjer.length - 1].replace(/,$/, '');
+      linjer.push('  };', '');
+
+      if(!utkast.gjester.length){
+        linjer.push('  var GJESTER = [];');
+      } else {
+        linjer.push('  var GJESTER = [');
+        utkast.gjester.forEach(function(g, i){
+          var d = ['    {'];
+          d.push('      ' + fyll('navn', 10) + jsStreng(g.navn) + ',');
+          d.push('      ' + fyll('gruppe', 10) + jsStreng(g.gruppe) + ',');
+          if(g.relasjon.no) d.push('      ' + fyll('relasjon', 10) + toSprak(g.relasjon) + ',');
+          if(g.rolle.no)    d.push('      ' + fyll('rolle', 10) + toSprak(g.rolle) + ',');
+          if(g.bilde)       d.push('      ' + fyll('bilde', 10) + jsStreng(g.bilde) + ',');
+          if(g.om.no)       d.push('      ' + fyll('om', 10) + toSprak(g.om) + ',');
+          if(g.kjentFor.no) d.push('      ' + fyll('kjentFor', 10) + toSprak(g.kjentFor) + ',');
+          d[d.length - 1] = d[d.length - 1].replace(/,$/, '');
+          d.push('    }' + (i < utkast.gjester.length - 1 ? ',' : ''));
+          linjer = linjer.concat(d);
+        });
+        linjer.push('  ];');
+      }
+      document.getElementById('o-kode').value = linjer.join('\n');
+    }
+
+    /* ── Knapper ── */
+    document.getElementById('o-legg-til').addEventListener('click', function(){
+      utkast.gjester.push(tomGjest());
+      tegnGjester(); endret(true);
+      var rader = side.querySelectorAll('.gjest-rad');
+      if(rader.length) rader[rader.length - 1].scrollIntoView({ behavior:'smooth', block:'center' });
+    });
+
+    document.getElementById('o-oppdater').addEventListener('click', function(){ oppdaterVisning(true); });
+
+    document.getElementById('o-nullstill').addEventListener('click', function(){
+      if(!confirm('Slette hele utkastet? Det som allerede står i index.html blir liggende.')) return;
+      try{ localStorage.removeItem(NOKKEL); }catch(e){}
+      utkast.konfig = {}; utkast.gjester = [];
+      FELT.forEach(function(f){
+        utkast.konfig[f.n] = typeof KONFIG_I_FIL[f.n] === 'string' ? KONFIG_I_FIL[f.n] : '';
+      });
+      utkast.gjester = JSON.parse(JSON.stringify(GJESTER_I_FIL));
+      tegnKonfigFelt(); tegnGjester(); endret(true);
+    });
+
+    var kopierKnapp = document.getElementById('o-kopier');
+    kopierKnapp.addEventListener('click', function(){
+      var tekst = document.getElementById('o-kode').value;
+      function ferdig(ok){
+        kopierKnapp.textContent = ok ? 'Kopiert' : 'Merk og kopier selv';
+        setTimeout(function(){ kopierKnapp.textContent = 'Kopier koden'; }, 2000);
+      }
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(tekst).then(function(){ ferdig(true); }, function(){ ferdig(false); });
+      } else {
+        var ta = document.getElementById('o-kode');
+        ta.select();
+        var ok = false;
+        try{ ok = document.execCommand('copy'); }catch(e){}
+        ferdig(ok);
+      }
+    });
+
+    utkast.gjester = utkast.gjester.map(normaliser);
+    tegnKonfigFelt();
+    tegnGjester();
+    tegnSjekkliste();
+    tegnKode();
+    lagre();
+  })();
+  /* ══ SLUTT PÅ MIDLERTIDIG OPPSETT ═══════════════════════════════ */
 
   /* ══════════════════════════════════════════════════════════════
      PERSONLIG HILSEN — ?gjest=ingrid i adressen.
@@ -2171,6 +2828,7 @@
      ══════════════════════════════════════════════════════════════ */
   (function(){
     if(window.top !== window.self) return;
+    if(OPPSETT_APEN) return;                       /* ligger bak oppsettsiden */
     if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     try{
       if(sessionStorage.getItem('bryllup-apning')) return;
