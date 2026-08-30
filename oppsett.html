@@ -238,7 +238,10 @@
         <span>Forhåndsvisning</span>
         <button type="button" class="knapp knapp--liten" id="oppdater">Oppdater</button>
       </div>
-      <iframe id="ramme" title="Forhåndsvisning av bryllupssiden" src="index.html?oppsett"></iframe>
+      <!-- «./» og ikke «index.html»: med cleanUrls sender Vercel index.html
+           videre til «/», og en forhåndsvisning som mister ?oppsett underveis
+           ville vist gjestenes utgave i stedet for utkastet. -->
+      <iframe id="ramme" title="Forhåndsvisning av bryllupssiden" src="./?oppsett"></iframe>
     </div>
   </aside>
 </div>
@@ -314,7 +317,7 @@
   }
 
   function lesFil(){
-    return fetch('index.html', { cache:'no-store' }).then(function(r){ return r.text(); }).then(function(t){
+    return fetch('./', { cache:'no-store' }).then(function(r){ return r.text(); }).then(function(t){
       var k = klipp(t, 'var KONFIG = {', '\n  };');
       var g = klipp(t, 'var GJESTER = [', '\n  ];');
       try{ if(k) iFil.konfig  = new Function('return ' + k)() || {}; }catch(e){}
@@ -354,7 +357,7 @@
     clearTimeout(visTid);
     visTid = setTimeout(function(){
       try{ ramme.contentWindow.location.reload(); }
-      catch(e){ ramme.src = 'index.html?oppsett&t=' + Date.now(); }
+      catch(e){ ramme.src = './?oppsett&t=' + Date.now(); }
     }, straks ? 0 : 700);
   }
 

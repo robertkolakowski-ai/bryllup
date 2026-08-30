@@ -10,10 +10,16 @@ med velgeren i toppen eller bunnen, og valget huskes.
 utviklingsoppsettet.
 
 `vercel.json` slår på `cleanUrls`, så oppsettsiden ligger på **`/oppsett`** i
-produksjon. Lenkene i filene peker fortsatt på `oppsett.html` og `index.html` —
-Vercel sender dem videre til den korte adressen. Det er med vilje: skriver vi
-`/oppsett` i markupen, slutter siden å virke når den åpnes lokalt eller rett
-fra filsystemet, der ingen server rydder i adressene.
+produksjon. Lenkene i markupen peker fortsatt på `oppsett.html` og `index.html`
+— Vercel sender dem videre til de korte adressene. Det er med vilje: skriver vi
+`/oppsett` i markupen, slutter siden å virke når den åpnes lokalt, der ingen
+server rydder i adressene.
+
+To steder i `oppsett.html` bruker likevel `./` og ikke `index.html`:
+forhåndsvisningsrammen og `fetch`-en som leser gjeldende `KONFIG`. Rammen bærer
+`?oppsett`, og skal ikke gjennom en omdirigering med spørrestrengen på slep — da
+ville en tapt spørrestreng vist gjestenes utgave i stedet for utkastet. `./`
+treffer index-filen direkte både i produksjon og lokalt.
 
 ## Oppsett
 
