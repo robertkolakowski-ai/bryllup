@@ -49,7 +49,7 @@ leveringsmåte etter hva som er satt, og sier ærlig fra hvis ingenting er satt.
   norsk og engelsk side om side.
 - **Forhåndsvisning** — hele nettsiden i en ramme ved siden av, som
   oppdaterer seg mens du skriver.
-- **Sjekkliste** — sju punkter med tre tilstander: *i filen*, *bare i
+- **Sjekkliste** — åtte punkter med tre tilstander: *i filen*, *bare i
   utkastet*, *mangler*. Den leser `index.html` og sammenligner, så den vet
   forskjell på det som er publisert og det du nettopp skrev.
 - **Koden** — ferdig formatert `KONFIG`- og `GJESTER`-blokk å lime inn.
