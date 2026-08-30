@@ -190,33 +190,19 @@
   .sprak button + button{ border-left:1px solid rgba(124,138,107,.32); }
   .sprak button[aria-pressed="true"]{ background:var(--sage-dark); color:var(--cream); }
 
-  /* MIDLERTIDIG: lenken til oppsettsiden og selve panelet.
-     Begge deler kan slettes i ett jafs når KONFIG er fylt ut. */
+  /* MIDLERTIDIG: lenken til oppsett.html, og stripa som sier fra når
+     siden viser et utkast. Begge kan slettes sammen med oppsett.html. */
   .nav__oppsett{ color:var(--muted-warm); border-bottom:1px dotted var(--muted-warm); }
   .nav__oppsett:hover{ color:var(--ink); }
 
-  .oppsett{ background:var(--paper); border-bottom:1px solid var(--hairline-gold); padding:clamp(28px,4vw,44px) 24px; }
-  .oppsett__inner{ max-width:820px; margin:0 auto; }
-  .oppsett__topp{ display:flex; flex-wrap:wrap; align-items:baseline; justify-content:space-between; gap:14px; }
-  .oppsett h2{ font-size:clamp(28px,4vw,40px); }
-  .oppsett__lukk{
-    font-family:var(--sans); font-size:10px; letter-spacing:.24em; text-transform:uppercase;
-    color:var(--muted); border:1px solid var(--hairline); border-radius:999px; padding:8px 16px;
+  .utkast{
+    position:fixed; left:0; right:0; bottom:0; z-index:70;
+    display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:8px 18px;
+    padding:11px 20px; background:var(--ink); color:var(--on-dark);
+    font-family:var(--sans); font-size:10px; letter-spacing:.2em; text-transform:uppercase;
   }
-  .oppsett__lukk:hover{ border-color:var(--sage); color:var(--ink); }
-  .oppsett__lede{ font-style:italic; font-size:17px; color:var(--muted); margin-top:10px; line-height:1.7; }
-  .oppsett__liste{ list-style:none; margin:24px 0 0; padding:0; border-top:1px solid var(--hairline); }
-  .oppsett__punkt{
-    display:grid; grid-template-columns:26px 1fr; gap:12px; align-items:baseline;
-    padding:13px 0; border-bottom:1px solid var(--hairline);
-  }
-  .oppsett__ikon{ font-family:var(--sans); font-size:13px; line-height:1.5; }
-  .oppsett__punkt--ok   .oppsett__ikon{ color:var(--sage); }
-  .oppsett__punkt--mangler .oppsett__ikon{ color:var(--gold); }
-  .oppsett__nokkel{ font-family:var(--sans); font-size:12px; letter-spacing:.06em; color:var(--ink); }
-  .oppsett__hva{ display:block; margin-top:4px; font-style:italic; font-size:16px; color:var(--muted); line-height:1.6; }
-  .oppsett__punkt--ok .oppsett__nokkel{ color:var(--muted-warm); }
-  .oppsett__fot{ margin-top:20px; font-family:var(--sans); font-size:11px; letter-spacing:.06em; color:var(--muted-warm); line-height:1.9; }
+  .utkast a{ color:var(--gold); border-bottom:1px solid rgba(200,169,106,.5); }
+  .utkast a:hover{ color:var(--gold); border-bottom-color:var(--gold); }
 
   /* ── HERO: navnene ligger oppå det buede bildet ── */
   .hero{
@@ -596,8 +582,8 @@
   <a href="#gaver"><span class="no">Gaver</span><span class="en">Gifts</span></a>
   <a href="#praktisk"><span class="no">Praktisk</span><span class="en">Details</span></a>
   <a href="#rsvp" class="nav__rsvp">RSVP</a>
-  <!-- MIDLERTIDIG: lenke til oppsettsiden. Slett denne linja når alt er fylt ut. -->
-  <a href="?oppsett" class="nav__oppsett"><span class="no">Oppsett</span><span class="en">Setup</span></a>
+  <!-- MIDLERTIDIG: lenke til oppsett.html. Slett denne linja når alt er fylt ut. -->
+  <a href="oppsett.html" class="nav__oppsett"><span class="no">Oppsett</span><span class="en">Setup</span></a>
   <div class="sprak" role="group" aria-label="Språk / Language">
     <button type="button" data-sprak="no" aria-pressed="true">NO</button>
     <button type="button" data-sprak="en" aria-pressed="false">EN</button>
@@ -1234,6 +1220,47 @@
     }
   ];
 
+  /* ══════════════════════════════════════════════════════════════
+     UTKAST FRA OPPSETTSIDEN
+
+     oppsett.html lagrer et utkast i nettleseren (localStorage).
+     Det leses bare i forhåndsvisning — ?oppsett i adressen, eller
+     når siden kjøres lokalt. Gjestene ser alltid det som faktisk
+     står i KONFIG og GJESTER her i filen, aldri et utkast.
+
+     Slettes sammen med oppsett.html den dagen alt er limt inn.
+     ══════════════════════════════════════════════════════════════ */
+  var FORHANDSVISNING = /^(localhost|127\.0\.0\.1)$/.test(location.hostname)
+                        || location.search.indexOf('oppsett') !== -1;
+  var UTKAST = null;
+
+  (function(){
+    if(!FORHANDSVISNING) return;
+    try{ UTKAST = JSON.parse(localStorage.getItem('bryllup-utkast') || 'null'); }
+    catch(e){ return; }
+    if(!UTKAST) return;
+
+    if(UTKAST.konfig){
+      Object.keys(KONFIG).forEach(function(navn){
+        if(typeof UTKAST.konfig[navn] === 'string') KONFIG[navn] = UTKAST.konfig[navn];
+      });
+    }
+    if(Array.isArray(UTKAST.gjester) && UTKAST.gjester.length){
+      GJESTER = UTKAST.gjester;
+    }
+
+    /* Stripa nederst så et utkast aldri forveksles med det publiserte.
+       Inne i forhåndsvisningsruta på oppsettsiden er den bare i veien. */
+    if(window.top !== window.self) return;
+    document.addEventListener('DOMContentLoaded', function(){
+      var stripe = document.createElement('div');
+      stripe.className = 'utkast';
+      stripe.innerHTML = '<span>Forhåndsvisning av utkast — gjestene ser dette ikke</span>'
+        + '<a href="oppsett.html">Tilbake til oppsett</a>';
+      document.body.appendChild(stripe);
+    });
+  })();
+
   /* ── Hvem er hvem — bygges av GJESTER over ── */
   (function(){
     var grid   = document.getElementById('gjester-grid');
@@ -1241,9 +1268,7 @@
     var antall = document.getElementById('gjester-antall');
     var tom    = document.getElementById('gjester-tom');
 
-    var forhandsvisning = /^(localhost|127\.0\.0\.1)$/.test(location.hostname)
-                          || location.search.indexOf('oppsett') !== -1;
-    var demo  = !GJESTER.length && forhandsvisning;
+    var demo  = !GJESTER.length && FORHANDSVISNING;
     var liste = GJESTER.length ? GJESTER : (demo ? GJESTER_DEMO : []);
     if(!liste.length) return;                  /* teksten i .gjester__tom blir stående */
 
@@ -1445,92 +1470,6 @@
     if(tlf && epost) document.getElementById('kontakt-skille').hidden = false;
     document.getElementById('kontakt-tom').hidden  = true;
     document.getElementById('kontakt-fylt').hidden = false;
-  })();
-
-  /* ── Oppsettsiden ──
-     Viser hva som fortsatt mangler i KONFIG og i gjestelista.
-     Åpnes med «Oppsett» i menyen (?oppsett i adressen) og kommer
-     alltid opp når siden kjøres lokalt. Gjestene ser den aldri.
-
-     Slik skjuler du den når alt er på plass: fjern lenken i <nav>,
-     så finnes panelet bare for den som kjenner adressen. Skal den
-     bort helt, slett denne blokka, .oppsett-reglene i <style> og
-     nav-lenken. Ingenting annet peker hit. */
-  (function(){
-    var lokalt = /^(localhost|127\.0\.0\.1)$/.test(location.hostname);
-    if(!lokalt && location.search.indexOf('oppsett') === -1) return;
-
-    var punkter = [
-      { nokkel: 'rsvpEndepunkt / rsvpEpost',
-        ok: !!(KONFIG.rsvpEndepunkt || KONFIG.rsvpEpost),
-        no: 'Hvor RSVP-svarene skal. Uten dette sier skjemaet fra at påmeldingen ikke er åpen.',
-        en: 'Where the RSVP replies go. Without it the form says replies are not open yet.' },
-      { nokkel: 'vipps',
-        ok: !!KONFIG.vipps,
-        no: 'Vipps-nummer. Gir et gavekort med kopiknapp.',
-        en: 'Vipps number. Adds a gift card with a copy button.' },
-      { nokkel: 'kontonummer',
-        ok: !!KONFIG.kontonummer,
-        no: 'Bankkonto. Gir et gavekort med kopiknapp.',
-        en: 'Bank account. Adds a gift card with a copy button.' },
-      { nokkel: 'onskelisteUrl',
-        ok: !!KONFIG.onskelisteUrl,
-        no: 'Lenke til ønskelista. Uten den står det at lista kommer senere.',
-        en: 'Link to the gift list. Without it the page says the list is coming.' },
-      { nokkel: 'kartLenke',
-        ok: !!KONFIG.kartLenke,
-        no: 'Delt kartlenke med riktig pin. Nå brukes et Google-søk på Huser Gård.',
-        en: 'A shared map link with the right pin. For now a Google search for Huser Gård is used.' },
-      { nokkel: 'toastmaster',
-        ok: !!(KONFIG.toastmasterNavn && (KONFIG.toastmasterTlf || KONFIG.toastmasterEpost)),
-        no: 'Navn og minst én av telefon eller e-post.',
-        en: 'Name plus at least one of phone or email.' },
-      { nokkel: 'GJESTER',
-        ok: GJESTER.length > 0,
-        no: 'Hvem er hvem. Er lista tom, står det at oversikten kommer senere — og ?oppsett viser tre demo-gjester.',
-        en: 'Who is who. While the list is empty the section says it is coming — and ?oppsett shows three demo guests.' }
-    ];
-
-    var igjen = punkter.filter(function(p){ return !p.ok; }).length;
-
-    var panel = document.createElement('section');
-    panel.className = 'oppsett';
-    panel.id = 'oppsett';
-    panel.innerHTML =
-      '<div class="oppsett__inner">'
-      + '<div class="oppsett__topp">'
-      +   '<div>'
-      +     '<span class="eyebrow"><span class="no">Bare for dere to</span><span class="en">For the two of you</span></span>'
-      +     '<h2><span class="no">Oppsett</span><span class="en">Setup</span></h2>'
-      +   '</div>'
-      +   '<a class="oppsett__lukk" href="' + location.pathname + '">'
-      +     '<span class="no">Skjul</span><span class="en">Hide</span></a>'
-      + '</div>'
-      + '<p class="oppsett__lede">'
-      +   '<span class="no">' + (igjen
-            ? igjen + ' av ' + punkter.length + ' punkter gjenstår. Alt fylles inn i KONFIG og GJESTER nederst i index.html.'
-            : 'Alt er fylt ut. Nå kan lenken «Oppsett» i menyen fjernes.') + '</span>'
-      +   '<span class="en">' + (igjen
-            ? igjen + ' of ' + punkter.length + ' items remain. Everything is filled in under KONFIG and GJESTER at the bottom of index.html.'
-            : 'Everything is filled in. The “Setup” link in the menu can now be removed.') + '</span>'
-      + '</p>'
-      + '<ul class="oppsett__liste">'
-      + punkter.map(function(p){
-          return '<li class="oppsett__punkt oppsett__punkt--' + (p.ok ? 'ok' : 'mangler') + '">'
-            + '<span class="oppsett__ikon" aria-hidden="true">' + (p.ok ? '\u2713' : '\u2022') + '</span>'
-            + '<span><span class="oppsett__nokkel">' + p.nokkel + '</span>'
-            + '<span class="oppsett__hva"><span class="no">' + p.no + '</span>'
-            + '<span class="en">' + p.en + '</span></span></span></li>';
-        }).join('')
-      + '</ul>'
-      + '<p class="oppsett__fot">'
-      +   '<span class="no">Denne siden vises bare med ?oppsett i adressen, eller når siden kjøres lokalt. Gjestene ser den aldri.</span>'
-      +   '<span class="en">This page only appears with ?oppsett in the address, or when the site runs locally. Guests never see it.</span>'
-      + '</p>'
-      + '</div>';
-
-    var nav = document.querySelector('.nav');
-    nav.parentNode.insertBefore(panel, nav.nextSibling);
   })();
 
   /* ── RSVP ── */

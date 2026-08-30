@@ -38,17 +38,37 @@ leveringsmåte etter hva som er satt, og sier ærlig fra hvis ingenting er satt.
 
 ### Oppsettsiden
 
-Menyen har foreløpig en lenke, **Oppsett**, som åpner en side med hva som
-gjenstår: sju punkter med hake eller prikk, og én linje som forklarer hva
-hvert punkt gjør med siden. Samme side kommer opp med **`?oppsett`** i
-adressen, og alltid når siden kjøres lokalt. «Skjul» tar deg tilbake.
+`oppsett.html` er en egen side, bare for paret. Der fylles alt inn:
 
-Lenken er ment å være midlertidig. Slik tar du den bort når alt er fylt ut:
+- **Verdier** — ett felt per `KONFIG`-nøkkel, med forklaring på hva feltet
+  gjør med siden.
+- **Gjestene** — hele `GJESTER`-lista som skjema: legg til, flytt, slett,
+  norsk og engelsk side om side.
+- **Forhåndsvisning** — hele nettsiden i en ramme ved siden av, som
+  oppdaterer seg mens du skriver.
+- **Sjekkliste** — sju punkter med tre tilstander: *i filen*, *bare i
+  utkastet*, *mangler*. Den leser `index.html` og sammenligner, så den vet
+  forskjell på det som er publisert og det du nettopp skrev.
+- **Koden** — ferdig formatert `KONFIG`- og `GJESTER`-blokk å lime inn.
 
-1. Fjern `<a href="?oppsett" class="nav__oppsett">…</a>` i `<nav>`.
-   Da finnes siden fortsatt for den som skriver `?oppsett` selv.
-2. Skal den vekk helt: slett blokka «Oppsettsiden» i `<script>` og
-   `.oppsett`-reglene i `<style>`. Ingenting annet peker dit.
+Utkastet ligger i `localStorage` under nøkkelen `bryllup-utkast`, altså bare
+i den nettleseren. **Det er ikke publisert.** `index.html` leser utkastet kun
+i forhåndsvisning — `?oppsett` i adressen, eller lokalt — og legger da en
+stripe nederst som sier fra. Gjestene ser alltid det som står i filen.
+
+Arbeidsgangen er derfor: fyll inn → se at det blir riktig → kopier koden →
+lim den inn i `index.html` → commit. Sjekklista sier ifra så lenge noe bare
+finnes i utkastet.
+
+Menyen har foreløpig en lenke, **Oppsett**, til siden. Slik tar du det bort
+når alt er limt inn:
+
+1. Fjern `<a href="oppsett.html" class="nav__oppsett">…</a>` i `<nav>`.
+2. Slett `oppsett.html`, blokka «UTKAST FRA OPPSETTSIDEN» i `<script>`, og
+   `.nav__oppsett`- og `.utkast`-reglene i `<style>`. Ingenting annet peker dit.
+
+Gjestene laster aldri `oppsett.html` — den er en egen fil. Det eneste de får
+med seg er de få linjene i punkt 2.
 
 Siden retter seg etter verdiene: et gavekort uten verdi vises ikke, og
 RSVP-en velger leveringsmåte etter hva som er satt. Ingenting annet må endres.
