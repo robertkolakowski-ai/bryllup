@@ -24,6 +24,8 @@ var KONFIG = {
   vippsLenke:       '',   // valgfritt: qr.vipps.no-lenke gir en knapp i tillegg
   kontonummer:      '',   // f.eks. '1234.56.78901'
 
+  bilderAlbumUrl:   '',   // delt iCloud-album for gjestenes egne bilder
+
   kartLenke:        '',   // delt kartlenke med riktig pin
   toastmasterNavn:  '',
   toastmasterTlf:   '',   // f.eks. '900 00 000'
@@ -32,7 +34,8 @@ var KONFIG = {
 ```
 
 Alt er valgfritt og feiler pent. Et gavekort uten verdi vises ikke; er alle
-tomme, står det at ønskelisten kommer. Uten `kartLenke` brukes et Google-søk.
+tomme, står det at ønskelisten kommer. Uten `bilderAlbumUrl` sier bildealbumet
+at det kommer. Uten `kartLenke` brukes et Google-søk.
 Uten toastmaster-verdier står det at kontaktinfo kommer. RSVP-en velger
 leveringsmåte etter hva som er satt, og sier ærlig fra hvis ingenting er satt.
 
@@ -257,7 +260,7 @@ ikke lenger gir mening, og svaret sendes med `antall: 0`.
 Hvor svaret havner styres av `KONFIG` — tre moduser, i denne rekkefølgen:
 
 **1. `rsvpEndepunkt` satt.** Svaret sendes som `POST` med JSON-kroppen
-`{ navn, epost, kommer, antall, transport, allergier }`. Knappen låses under
+`{ navn, epost, kommer, antall, transport, allergier, musikk }`. Knappen låses under
 sending; svarer serveren noe annet enn 2xx, får gjesten feilmelding og kan
 prøve igjen — takkeskjermen vises ikke. Fungerer med alt som tar imot JSON:
 
@@ -360,6 +363,29 @@ Bygger du dem om til å tegnes på nytt ved hvert filterklikk, blir de usynlige:
 **Begge språk ligger i markupen** kortene bygges av, som `.no` og `.en`.
 Derfor trenger ingenting å tegnes på nytt når noen bytter språk.
 
+## Personlige invitasjonslenker
+
+`index.html?gjest=ingrid` skriver **INGRID** over hero og fyller navnet inn i
+RSVP-skjemaet. Verdien slås opp mot `GJESTER` — både fornavn og fullt navn
+treffer, og æ/ø/å og mellomrom kan sløyfes (`?gjest=familiensund`). Finner den
+ingen, brukes verdien i adressen som den står, så lenkene virker også før
+gjestelista er fylt ut.
+
+Én person hilses med fornavn. Par og familier står som de er skrevet —
+«Ingrid og Martin», «Familien Sund» — fordi navnet inneholder *og* eller
+begynner på *Familien*. Endrer du den regelen, endrer du hilsenen for alle par.
+
+## Det som skjer av seg selv
+
+| Hva | Hvor | Merknad |
+|---|---|---|
+| Åpningsgardin | `.gardin` | Save-the-date-kortet fyller skjermen og løfter seg. Én gang per besøk (`sessionStorage`), aldri ved reduced-motion, aldri i forhåndsvisningsrammen |
+| Lesefremdrift | `.fremdrift` | 2px gull øverst. Skalerer med `transform`, koster ingenting |
+| Sticky RSVP | `.rsvpbar` | Bare under 760px. Kommer etter hero, trekker seg tilbake når RSVP er i syne eller skjemaet er sendt |
+| Legg i kalender | `.kalender` | `.ics` lages i nettleseren, ingen fil å vedlikeholde. Tidene er i UTC — 15:00 norsk sommertid er `13:00Z` |
+| Papirkorn | `--korn` | SVG-turbulens som data-URI. Bare på bakgrunnsflater, aldri over foto |
+| Felles bildetone | `filter:` | `saturate(.94) contrast(1.02) sepia(.05)` på alle foto, aldri på akvarellene |
+
 ## Detaljer som er lette å ødelegge
 
 - **Nav-rekkefølgen** (Dagen, Stedet, Oss, Gaver, Praktisk) skiller seg bevisst
@@ -389,6 +415,13 @@ Derfor trenger ingenting å tegnes på nytt når noen bytter språk.
 - **`scroll-margin-top: 76px`** på seksjonene hindrer at det sticky navet dekker
   overskriften ved ankerhopp.
 - **`prefers-reduced-motion`** slår av hero-fade og alle transitions. Ikke fjern.
+- **`--egen-transform`** bærer elementets egen skjevhet eller forskyvning —
+  polaroidenes rotasjon, mosaikkens forskjøvne kolonne. Scroll-reveal legger sin
+  `translateY(12px)` *etter* den. Skriver du `transform:` rett på et element med
+  `data-reveal`, slår du ut skjevheten, og `.vist` gir den aldri tilbake.
+- **Endrer du et `KONFIG`-felt, må `oppsett.html` også vite om det** — feltet
+  ligger i `FELT`-lista der. Står det ikke der, forsvinner verdien når
+  innstillingssiden genererer koden på nytt.
 
 ## Design tokens
 
