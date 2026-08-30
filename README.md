@@ -36,19 +36,19 @@ tomme, står det at ønskelisten kommer. Uten `kartLenke` brukes et Google-søk.
 Uten toastmaster-verdier står det at kontaktinfo kommer. RSVP-en velger
 leveringsmåte etter hva som er satt, og sier ærlig fra hvis ingenting er satt.
 
-### Oppsettsjekk
+### Oppsettsiden
 
-Åpne siden med **`?oppsett`** i adressen — eller kjør den lokalt — så lister
-konsollen opp nøyaktig hva som fortsatt mangler i `KONFIG`. Gjestene ser den
-aldri. Praktisk når resten skal fylles inn:
+Menyen har foreløpig en lenke, **Oppsett**, som åpner en side med hva som
+gjenstår: sju punkter med hake eller prikk, og én linje som forklarer hva
+hvert punkt gjør med siden. Samme side kommer opp med **`?oppsett`** i
+adressen, og alltid når siden kjøres lokalt. «Skjul» tar deg tilbake.
 
-```
-Oppsett — dette gjenstår i KONFIG:
-  · rsvpEndepunkt ELLER rsvpEpost — RSVP lagrer ingenting
-  · vipps
-  · kontonummer
-  …
-```
+Lenken er ment å være midlertidig. Slik tar du den bort når alt er fylt ut:
+
+1. Fjern `<a href="?oppsett" class="nav__oppsett">…</a>` i `<nav>`.
+   Da finnes siden fortsatt for den som skriver `?oppsett` selv.
+2. Skal den vekk helt: slett blokka «Oppsettsiden» i `<script>` og
+   `.oppsett`-reglene i `<style>`. Ingenting annet peker dit.
 
 Siden retter seg etter verdiene: et gavekort uten verdi vises ikke, og
 RSVP-en velger leveringsmåte etter hva som er satt. Ingenting annet må endres.
@@ -61,6 +61,7 @@ I tillegg gjenstår disse tekstene — søk på ordet i kolonnen «Søk på»:
 | Klokkeslettene i programmet | `TEKST` | Antatt, ikke bekreftet |
 | Overnatting og transport | `TEKST` | Står som «kommer» — fyll inn først når det er bestemt |
 | Tre bilder av gården | `BILDE` | Se tabellen under |
+| Gjestene | `GJESTER` | Se «Hvem er hvem» under |
 
 ## Tospråklig
 
@@ -296,14 +297,61 @@ eldre nettlesere.
 Ønskelisten kan peke hvor som helst — Prisjakt, Amazon, Norgesgruppens
 bryllupsliste, et Google Sheet. Siden bryr seg ikke om hvilken tjeneste.
 
+## Hvem er hvem
+
+Seksjonen `#gjester` bygges av lista `GJESTER` nederst i `index.html`. Ett
+objekt per gjest — kort, filter og telling lages av seg selv:
+
+```js
+{
+  navn:     'Ingrid Berg',
+  gruppe:   'tonje',                 // 'tonje' | 'alexander' | 'felles'
+  relasjon: { no: 'Tonjes storesøster', en: 'Tonje’s big sister' },
+  rolle:    { no: 'Forlover', en: 'Maid of honour' },   // valgfritt
+  bilde:    'bilder/gjester/ingrid.jpg',                // valgfritt
+  om:       { no: '…', en: '…' },
+  kjentFor: { no: '…', en: '…' }                        // valgfritt
+}
+```
+
+| Felt | Påkrevd | Merknad |
+|---|---|---|
+| `navn` | ja | Kan også være et par eller en familie — «Familien Sund» |
+| `gruppe` | ja | Styrer filteret. Andre verdier havner utenfor alle knappene |
+| `relasjon` | nei | Kort. Står med små kapiteler, så lange setninger brekker stygt |
+| `om` | nei | Én–to setninger |
+| `rolle` | nei | Lite skilt nederst på bildet: forlover, toastmaster, brudepike |
+| `kjentFor` | nei | Den morsomme linja, i skriftfonten |
+| `bilde` | nei | `bilder/gjester/`, 600 × 750 px (4:5). Mangler den, settes initialene inn |
+
+Alt som er tekst må ha både `no` og `en`.
+
+**Er `GJESTER` tom**, står det i en innrammet boks at oversikten kommer
+senere — det er slik gjestene ser seksjonen nå. Med `?oppsett` i adressen
+vises tre demo-gjester i stedet, med en tydelig merkelapp over. Demo-lista
+(`GJESTER_DEMO`) kan slettes når de ekte gjestene er lagt inn.
+
+**Filteret** vises bare når minst to av gruppene faktisk er i bruk. Rekkefølgen
+på knappene er rekkefølgen i `GRUPPER` inne i blokka. Filtrering skjuler kort
+med `hidden` — kortene lages én gang, så scroll-reveal rekker å se dem.
+Bygger du dem om til å tegnes på nytt ved hvert filterklikk, blir de usynlige:
+`IntersectionObserver` er allerede ferdig med å observere.
+
+**Begge språk ligger i markupen** kortene bygges av, som `.no` og `.en`.
+Derfor trenger ingenting å tegnes på nytt når noen bytter språk.
+
 ## Detaljer som er lette å ødelegge
 
 - **Nav-rekkefølgen** (Dagen, Stedet, Oss, Gaver, Praktisk) skiller seg bevisst
   fra DOM-rekkefølgen der Oss kommer først. Begge er tilsiktet.
-- **Seks navpunkter er så mange det er plass til** på 320px. Legger du til et
-  sjuende, brekker navet til to linjer og `scroll-margin-top` blir for liten.
-  Derfor ligger bildestripa inne i «Oss» og ikke som en egen seksjon med
-  eget navpunkt.
+- **Navet brekker til flere linjer under 480px.** Med sju punkter, RSVP-pilla,
+  språkvelgeren og den midlertidige Oppsett-lenken blir det 124–135px høyt der.
+  Overskriftene blir likevel ikke dekket, fordi seksjonene har minst 90px
+  toppluft — men legger du inn en seksjon med mindre padding, må
+  `scroll-margin-top` opp.
+- **`repeat(auto-fit, minmax(min(300px,100%), 1fr))`** — `min(…,100%)` er ikke
+  pynt. Uten den kan ikke spalta krympe under 300px, og siden fikk 39px
+  vannrett rulling på 320px-skjermer. Alle gitrene på siden bruker formen.
 - **Bildestripa bruker faste spalter**, ikke `auto-fit`. Med `auto-fit` ble
   bildene til 3+1 med en foreldreløs rute på nettbrett. Åtte bilder gir 2×4
   under 680px og 4×2 over. Endrer du antall bilder, må spaltetallet gå opp
