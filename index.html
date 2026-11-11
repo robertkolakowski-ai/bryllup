@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Tonje &amp; Alexander — 28. august 2027</title>
 <meta name="description" content="Tonje og Alexander gifter seg 28. august 2027 på Huser Gård i Fenstad. Program, praktisk informasjon og påmelding.">
-<meta name="theme-color" content="#F6F1E3">
+<meta name="theme-color" content="#C9B99C">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="nb_NO">
 <meta property="og:locale:alternate" content="en_GB">
@@ -25,7 +25,7 @@
 <link rel="icon" href="bilder/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&family=Parisienne&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Mono:wght@300;400;500&family=Pinyon+Script&display=swap" rel="stylesheet">
 <script>
   /* Setter språk før siden tegnes, så det ikke blinker. */
   (function(){
@@ -84,29 +84,35 @@
 
 <style>
   :root{
-    --cream:        #F6F1E3;
-    --cream-light:  #FBF7EC;
-    --paper:        #FFFDF6;
-    --ink:          #2C2F28;
-    --ink-soft:     #3C4038;
-    --sage-dark:    #4E5B44;
-    --sage:         #7C8A6B;
-    --sage-light:   #A9B79A;
-    --muted:        #5C6155;
-    --muted-warm:   #8B8577;
-    --gold:         #C8A96A;
-    --on-dark:      #F6F1E3;
-    --on-dark-2:    #CFCCBE;
-    --on-dark-3:    #A8A597;
-    --hairline:     rgba(124,138,107,.28);
-    --hairline-gold:rgba(200,169,106,.55);
+    /* Palett: varm sand/taupe, sepia og mørk brun — etter referansen.
+       Variabelnavnene (--sage, --gold …) er beholdt fra den forrige
+       stilen så resten av CSS-en virker uendret; verdiene er nå brune
+       toner. --gold er mørk bronse på lyse flater og byttes til lys
+       sand inne i de mørke seksjonene (se «Ny stil» nederst). */
+    --cream:        #C9B99C;
+    --cream-light:  #D1C3A8;
+    --paper:        #E6DCC8;
+    --ink:          #2B2822;
+    --ink-soft:     #3A342A;
+    --sage-dark:    #4A4132;
+    --sage:         #5E5340;
+    --sage-light:   #9C8E74;
+    --muted:        #4F4637;
+    --muted-warm:   #62573F;
+    --gold:         #6F5E3C;
+    --on-dark:      #EFE6D2;
+    --on-dark-2:    #CFC5AE;
+    --on-dark-3:    #A79D88;
+    --hairline:     rgba(58,52,42,.28);
+    --hairline-gold:rgba(111,94,60,.5);
     --serif:  'Cormorant Garamond', Garamond, serif;
-    --sans:   'Jost', system-ui, sans-serif;
-    --script: 'Parisienne', cursive;
-    --stripe: repeating-linear-gradient(135deg,#EFE9D7 0 14px,#EDE6D1 14px 28px);
-    --stripe-sm: repeating-linear-gradient(135deg,#EFE9D7 0 12px,#EDE6D1 12px 24px);
+    --sans:   'DM Mono', ui-monospace, Menlo, monospace;
+    --mono:   'DM Mono', ui-monospace, Menlo, monospace;
+    --script: 'Pinyon Script', cursive;
+    --stripe: repeating-linear-gradient(135deg,#CFC0A4 0 14px,#CABA9E 14px 28px);
+    --stripe-sm: repeating-linear-gradient(135deg,#CFC0A4 0 12px,#CABA9E 12px 24px);
     /* Buet ("arch") toppform — brukes på hero, portrett og bryggebildet */
-    --arch: 999px 999px 10px 10px;
+    --arch: 0;
 
     /* Papirkorn ───────────────────────────────────────
        Skal ikke ses — skal kjennes. Creme-flatene får dybde og
@@ -129,7 +135,7 @@
   html{ scroll-behavior: smooth; }
   body{
     margin:0; background-color: var(--cream); background-image: var(--korn); color: var(--ink);
-    font-family: var(--serif); overflow-x: hidden;
+    font-family: var(--mono); font-size:14px; line-height:1.8; overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
   }
   a{ color: var(--sage-dark); text-decoration:none; transition: color .2s ease; }
@@ -225,7 +231,7 @@
     position:sticky; top:0; z-index:50;
     display:flex; align-items:center; justify-content:center; flex-wrap:wrap;
     gap:clamp(18px,3vw,34px); padding:15px 24px;
-    background: rgba(246,241,227,.9);
+    background: rgba(201,185,156,.92);
     -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
     border-bottom:1px solid rgba(124,138,107,.24);
     font-family: var(--sans); font-size:11px; letter-spacing:.22em; text-transform:uppercase;
@@ -966,6 +972,176 @@
     body{ background:#fff; background-image:none; }
     .stedet, .foot, .gaver, .reise__post{ background:#fff; background-image:none; color:#000; }
   }
+
+  /* ══════════════════════════════════════════════════════════
+     NY STIL — sepia, sand og skriveskrift
+     Etter referansen: varm taupe-bunn, mørk brun bunn nederst,
+     sepia-toner på alle foto, skriveskrift i navn og overskrifter,
+     monospace i brødtekst og etiketter, rette kanter (ingen buer,
+     ingen piller). Ligger sist så den vinner over reglene over.
+     ══════════════════════════════════════════════════════════ */
+
+  /* Lys bronse-aksent på de mørke flatene */
+  .stedet, .gaver, .foot, .reise__post, .rsvpbar{ --gold:#D6C49C; }
+
+  /* Brødtekst: monospace, rolig, uten kursiv */
+  .sec__lede, .hero__place, .oss__body, .oss__quote, .program__desc,
+  .stedet__head p, .gjest__om, .gjester__tom p, .gaver__tom,
+  .gavekort__hjelp, .card__body, .rsvp__lede, .thanks__p,
+  .etterpa__tekst, .album__tekst, .reise__hvordan, .form__error{
+    font-family:var(--mono); font-style:normal; font-size:13.5px; line-height:1.95;
+  }
+  .sec__lede{ max-width:56ch; }
+  .oss__body{ font-size:14px; }
+  .oss__quote{ border-left-color:var(--hairline-gold); }
+  .field input, .field textarea{ font-family:var(--mono); font-size:14px; }
+  .skip{ font-family:var(--mono); }
+
+  /* Overskrifter: høykontrast serif, store bokstaver, åpen sperring */
+  .sec__title, .oss__title, .stedet__head h2{
+    font-family:var(--serif); font-weight:500; text-transform:uppercase;
+    letter-spacing:.09em; line-height:1.15;
+  }
+  .sec__title{ font-size:clamp(26px,3.6vw,40px); }
+  .sec__title--stor{ font-size:clamp(30px,4.4vw,50px); }
+  .oss__title{ font-size:clamp(28px,4vw,46px); }
+  .stedet__head h2{ font-size:clamp(30px,4.6vw,54px); }
+  .program__what, .card__title, .gjest__navn{
+    font-family:var(--serif); font-weight:500; letter-spacing:.03em;
+  }
+  .program__what{ font-size:22px; }
+  .card__title{ font-size:22px; text-transform:uppercase; letter-spacing:.08em; }
+  .eyebrow{ letter-spacing:.3em; }
+
+  /* Skriveskrift: Pinyon er lett og trenger litt mer størrelse */
+  .polaroid__cap, .oss__sign, .dagen__cap{ font-size:calc(1em * 1.15); }
+  .oss__sign{ font-size:42px; }
+  .thanks__h{ font-size:50px; }
+  .foot__script{ font-size:clamp(46px,8vw,76px); }
+  .gjest__kjent-t{ font-size:23px; }
+
+  /* Foto: varm sepia over alt, men ikke akvarellene (.art) */
+  .portal__frame img,
+  .oss__portrett,
+  .polaroid img,
+  .mosaic__bilde img,
+  .gjest__foto{ filter: sepia(.55) saturate(.72) contrast(.96) brightness(.97); }
+
+  /* Rette kanter overalt: ingen piller, ingen buer */
+  .nav__rsvp, .sprak, .sprak button, .btn-ghost, .btn-line, .kopier,
+  .filter button, .chip, .submit, .kalender a, .gjest__rolle,
+  .rsvpbar__knapp{ border-radius:0; }
+  .gjest__foto, .gjest__ingenfoto, .oss__portrett, .art--arch img,
+  .mosaic__bilde--arch img{ border-radius:0; }
+  .mosaic__bilde img{ border-radius:0; }
+
+  .nav{ font-size:11px; letter-spacing:.18em; border-bottom-color:var(--hairline); }
+  .nav__rsvp{ border-color:var(--sage-dark); }
+  .nav__rsvp:hover, .nav__rsvp[aria-current="true"]{ background:var(--ink); color:var(--on-dark); }
+  .sprak{ border-color:var(--hairline-gold); }
+  .sprak button[aria-pressed="true"], .chip[aria-pressed="true"],
+  .filter button[aria-pressed="true"]{ background:var(--ink); border-color:var(--ink); color:var(--on-dark); }
+  .btn-line, .kopier, .kalender a, .chip{ border-color:var(--sage-dark); color:var(--ink); }
+  .btn-line:hover, .kopier:hover, .kalender a:hover{ background:var(--ink); color:var(--on-dark); border-color:var(--ink); }
+  .submit{ background:var(--ink); color:var(--on-dark); }
+  .submit:hover{ background:var(--sage-dark); }
+
+  /* Flater: samme taupe hele veien, med tynne linjer mellom */
+  .dagen, .gjester, .praktisk{ background-color:var(--cream-light); border-color:var(--hairline); }
+  .card{ background:var(--cream-light); }
+  .form{ border-color:var(--hairline-gold); box-shadow:0 20px 50px rgba(43,40,34,.14); }
+  .form::before{ border-color:rgba(111,94,60,.28); }
+  .gjester__tom, .etterpa, .album__kort{ border-color:var(--hairline-gold); }
+  .art{ padding:8px; }
+  .program__line::after{ background:var(--cream-light); border-color:var(--sage-dark); }
+  .strip__hint{ color:var(--muted-warm); }
+  .rsvpbar{ background:rgba(43,40,34,.96); }
+  .gardin{ background-color:var(--cream); }
+
+  /* Mørke seksjoner: lys sand, hårfine linjer */
+  .gavekort{ border-color:rgba(214,196,156,.35); }
+  a.gavekort:hover{ border-color:var(--gold); }
+  .gaver .btn-line, .gaver .kopier, .btn-ghost{ border-color:rgba(214,196,156,.6); color:var(--on-dark); }
+  .gaver .btn-line:hover, .gaver .kopier:hover, .btn-ghost:hover{ background:var(--on-dark); color:var(--ink); border-color:var(--on-dark); }
+  .reise{ background:rgba(214,196,156,.3); border-color:rgba(214,196,156,.3); }
+  .foot .sprak{ border-color:rgba(214,196,156,.5); }
+  .foot .sprak button[aria-pressed="true"]{ background:var(--on-dark); color:var(--ink); border-color:var(--on-dark); }
+  .foot__rule i{ background:linear-gradient(90deg,transparent,rgba(214,196,156,.8)); }
+  .foot__rule i:last-child{ background:linear-gradient(270deg,transparent,rgba(214,196,156,.8)); }
+
+  /* ── HERO: fullt foto i sepia, navn i skriveskrift nederst ── */
+  .hero{
+    display:flex; flex-direction:column; justify-content:flex-end; align-items:center;
+    padding:clamp(120px,22vh,220px) 24px clamp(26px,4vw,40px);
+    background:#2B2822; color:#F1E8D4; overflow:hidden; text-align:center;
+  }
+  .monogram--hero{ display:none; }
+  /* .hero__inner og .portal løses opp, så bildet kan dekke hele hero */
+  .hero__inner{ display:contents; }
+  .portal__navn, .hero__kicker, .hero__rsvp, .hero__meta, .hilsen{ position:relative; z-index:1; }
+  .hero__meta{ max-width:1100px; }
+  .portal{ display:contents; }
+  .portal__frame{
+    position:absolute; inset:0; width:auto; aspect-ratio:auto; border-radius:0;
+  }
+  .portal__frame picture, .portal__frame img{ width:100%; height:100%; }
+  .portal__frame img{ object-fit:cover; object-position:50% 22%; filter:sepia(.7) saturate(.65) contrast(.95) brightness(.72); }
+  .portal__scrim{
+    background:linear-gradient(180deg,
+      rgba(43,34,24,.28) 0%, rgba(43,34,24,.10) 28%,
+      rgba(43,34,24,.58) 62%, rgba(32,26,18,.88) 100%);
+  }
+  .portal__navn{
+    display:flex; flex-wrap:wrap; justify-content:center; align-items:baseline;
+    gap:0 .28em; line-height:1.05;
+  }
+  .portal__name, .portal__name--top, .portal__name--bottom{
+    position:static; font-family:var(--script); font-weight:400; text-transform:none;
+    letter-spacing:0; text-indent:0; color:#F5ECD8;
+    font-size:clamp(58px,11vw,128px); text-shadow:0 2px 30px rgba(20,15,8,.55);
+  }
+  .portal__amp{
+    position:static; transform:none; font-family:var(--serif); font-style:italic;
+    font-size:clamp(34px,5.5vw,64px); color:#E7D9B8; text-shadow:0 2px 20px rgba(20,15,8,.5);
+  }
+  .hero__kicker{
+    display:block; margin:clamp(2px,1vw,10px) 0 0;
+  }
+  .hero__kicker span{
+    font-family:var(--serif); font-size:clamp(17px,2.6vw,26px); font-weight:500;
+    letter-spacing:.22em; text-transform:uppercase; color:#F1E8D4;
+  }
+  .hero__rsvp{
+    margin-top:clamp(22px,3vw,34px); padding:12px 30px;
+    border:1px solid rgba(241,232,212,.75); color:#F1E8D4;
+    font-family:var(--mono); font-size:11px; letter-spacing:.24em; text-transform:uppercase;
+    transition:background .25s ease, color .25s ease;
+  }
+  .hero__rsvp:hover{ background:#F1E8D4; color:#2B2822; }
+  .hero__meta{
+    width:100%; margin-top:clamp(56px,10vh,110px);
+    display:flex; flex-wrap:wrap; justify-content:space-between; align-items:flex-end;
+    gap:14px 24px; text-align:left;
+  }
+  .hero__date, .hero__place, .hero__count{
+    font-family:var(--mono); font-style:normal; font-size:11px;
+    letter-spacing:.2em; text-transform:uppercase; color:#E7DCC4; margin:0;
+  }
+  .hero__place{ text-align:right; }
+  .hero__count{ flex-basis:100%; order:3; text-align:center; color:#CFC3A8; }
+  .hero__count i{ color:#E7D9B8; }
+  .hero__meta .kalender{ flex-basis:100%; order:4; margin-top:6px; }
+  .hero__meta .kalender a{ color:#F1E8D4; border-color:rgba(241,232,212,.5); }
+  .hero__meta .kalender a:hover{ background:#F1E8D4; color:#2B2822; border-color:#F1E8D4; }
+  .hilsen{ color:#E7D9B8; }
+  .portal__navn{ gap:0 .12em; }
+  /* Teksten under akvarellene ligger på papir, ikke på mørk bunn */
+  .art figcaption, .akvarell.art figcaption{ color:var(--sage-dark); }
+  .art figcaption small{ color:var(--muted-warm); }
+  @media (max-width:620px){
+    .hero__meta{ justify-content:center; text-align:center; }
+    .hero__place{ text-align:center; }
+  }
 </style>
 </head>
 <body>
@@ -999,27 +1175,29 @@
     <!-- Fylles fra ?gjest= i adressen. Se «Personlig hilsen» i skriptet. -->
     <div class="hilsen" id="hilsen" hidden></div>
 
-    <div class="hero__kicker">
-      <i></i>
-      <span class="no">Vi gifter oss</span><span class="en">We are getting married</span>
-      <i></i>
-    </div>
-
     <div class="portal">
       <div class="portal__frame">
-        <img src="bilder/hero-portal.jpg" width="864" height="1152" fetchpriority="high"
-             srcset="bilder/hero-portal-600.jpg 600w, bilder/hero-portal.jpg 864w"
-             sizes="min(74vw, 430px)"
-             alt="Tonje og Alexander ved vannet en sommerkveld"
-             data-alt-no="Tonje og Alexander ved vannet en sommerkveld"
-             data-alt-en="Tonje and Alexander by the water on a summer evening">
+        <picture>
+          <source media="(min-width: 700px)" srcset="bilder/hero-brygge-mobil.jpg" width="1536" height="1152">
+          <img src="bilder/hero-portal.jpg" width="864" height="1152" fetchpriority="high"
+               alt="Tonje og Alexander ved vannet en sommerkveld"
+               data-alt-no="Tonje og Alexander ved vannet en sommerkveld"
+               data-alt-en="Tonje and Alexander by the water on a summer evening">
+        </picture>
         <div class="portal__scrim"></div>
       </div>
 
-      <div class="portal__name portal__name--top">Tonje</div>
-      <div class="portal__amp"><span class="no">og</span><span class="en">and</span></div>
-      <div class="portal__name portal__name--bottom">Alexander</div>
+      <div class="portal__navn">
+        <span class="portal__name">Tonje</span>
+        <span class="portal__amp"><span class="no">&amp;</span><span class="en">&amp;</span></span>
+        <span class="portal__name">Alexander</span>
+      </div>
     </div>
+
+    <div class="hero__kicker">
+      <span class="no">Vi gifter oss</span><span class="en">We are getting married</span>
+    </div>
+    <a class="hero__rsvp" href="#rsvp"><span class="no">RSVP her</span><span class="en">RSVP here</span></a>
 
     <div class="hero__meta">
       <div class="hero__date">28 . 08 . 2027</div>
